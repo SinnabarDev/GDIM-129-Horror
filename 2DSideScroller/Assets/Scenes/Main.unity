@@ -249,7 +249,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf33a908cb365eb44aa3989aa3519f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlashlightAim
+  flashbulb: {fileID: 479463339}
   isFacingRight: 1
+  maxBattery: 5
+  batteryDrainRate: 1
+  mashTimeRequired: 5
+  cooldownTime: 2
+  mashRequiredCount: 20
 --- !u!114 &479463339
 MonoBehaviour:
   m_ObjectHideFlags: 0
