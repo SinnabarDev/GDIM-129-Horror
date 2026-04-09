@@ -25,7 +25,7 @@ public class FlashlightAim : MonoBehaviour
     private int mashCount = 0;
     private float cooldownTimer = 0f;
 
-private float currentBattery;
+    private float currentBattery;
     public enum BeamMode
     {
         Wide,     // slow
@@ -89,150 +89,150 @@ private float currentBattery;
         isFacingRight = facingRight;
     }
 
-private void OnTriggerEnter2D(Collider2D collision)
-{
-    if (collision.CompareTag("Enemy"))
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Enemy enemy = collision.GetComponent<Enemy>();
-
-        if (enemy != null && !enemiesInLight.Contains(enemy))
+        if (collision.CompareTag("Enemy"))
         {
-            enemiesInLight.Add(enemy);
+            Enemy enemy = collision.GetComponent<Enemy>();
+
+            if (enemy != null && !enemiesInLight.Contains(enemy))
+            {
+                enemiesInLight.Add(enemy);
+            }
         }
     }
-}
 
-private void OnTriggerExit2D(Collider2D collision)
-{
-    if (collision.CompareTag("Enemy"))
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        Enemy enemy = collision.GetComponent<Enemy>();
-
-        if (enemy != null)
+        if (collision.CompareTag("Enemy"))
         {
-            enemiesInLight.Remove(enemy);
-            //enemy.ClearLightEffects();
+            Enemy enemy = collision.GetComponent<Enemy>();
+
+            if (enemy != null)
+            {
+                enemiesInLight.Remove(enemy);
+                //enemy.ClearLightEffects();
+            }
         }
     }
-}
-void UpdateBeamVisuals()
-{
-    //if (currentMode == BeamMode.Focused)
-    //{
-    //    flashbulb.pointLightOuterAngle = 25f;
-    //    flashbulb.pointLightInnerAngle = 10f;
-    //    flashbulb.intensity = 1.25f; // optional: feels stronger
-    //}
-    //else
-    //{
-    //    flashbulb.pointLightOuterAngle = 45f;
-    //    flashbulb.pointLightInnerAngle = 25f;
-    //    flashbulb.intensity = 1f;//
-    //}
-    float targetOuter = currentMode == BeamMode.Focused ? 25f : 45f;
-    float targetInner = currentMode == BeamMode.Focused ? 10f : 25f;
-
-    flashbulb.pointLightOuterAngle = Mathf.Lerp(flashbulb.pointLightOuterAngle, targetOuter, Time.deltaTime * 10f);
-    flashbulb.pointLightInnerAngle = Mathf.Lerp(flashbulb.pointLightInnerAngle, targetInner, Time.deltaTime * 3f);
-    flashbulb.intensity = Mathf.Lerp(flashbulb.intensity, currentMode == BeamMode.Focused ? 1.25f : 1f, Time.deltaTime * 0.1f);
-}
-
-void ApplyEffectsToEnemies()
-{
-    foreach (Enemy enemy in enemiesInLight)
+    void UpdateBeamVisuals()
     {
-        if (currentMode == BeamMode.Wide)
+        //if (currentMode == BeamMode.Focused)
+        //{
+        //    flashbulb.pointLightOuterAngle = 25f;
+        //    flashbulb.pointLightInnerAngle = 10f;
+        //    flashbulb.intensity = 1.25f; // optional: feels stronger
+        //}
+        //else
+        //{
+        //    flashbulb.pointLightOuterAngle = 45f;
+        //    flashbulb.pointLightInnerAngle = 25f;
+        //    flashbulb.intensity = 1f;//
+        //}
+        float targetOuter = currentMode == BeamMode.Focused ? 25f : 45f;
+        float targetInner = currentMode == BeamMode.Focused ? 10f : 25f;
+
+        flashbulb.pointLightOuterAngle = Mathf.Lerp(flashbulb.pointLightOuterAngle, targetOuter, Time.deltaTime * 10f);
+        flashbulb.pointLightInnerAngle = Mathf.Lerp(flashbulb.pointLightInnerAngle, targetInner, Time.deltaTime * 3f);
+        flashbulb.intensity = Mathf.Lerp(flashbulb.intensity, currentMode == BeamMode.Focused ? 1.25f : 1f, Time.deltaTime * 0.1f);
+    }
+
+    void ApplyEffectsToEnemies()
+    {
+        foreach (Enemy enemy in enemiesInLight)
         {
-            //enemy.ApplySlow();
+            if (currentMode == BeamMode.Wide)
+            {
+                //enemy.ApplySlow();
+            }
+            else
+            {
+                //enemy.ApplyStun();
+            }
+        }
+    }
+
+    void BatterySystem()
+    {
+        if (currentMode == BeamMode.Focused && !isDrained)
+        {
+            currentBattery -= batteryDrainRate * Time.deltaTime;
+
+            if (currentBattery <= 0)
+            {
+                flashbulb.enabled = false;
+                currentBattery = 0;
+                isDrained = true;
+                currentMode = BeamMode.Wide;
+                UpdateBeamVisuals();
+                Debug.Log("Battery Drained!");
+
+            }
+        }
+    }
+
+    void RechargeMash()
+    {
+        if (!isDrained) return;
+
+        if (cooldownTimer > 0)
+        {
+            cooldownTimer -= Time.deltaTime;
+            return;
+        }
+
+        if (!recoveryStarted)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                recoveryStarted = true;
+                isRecovering = true;
+                mashTimer = 0f;
+                mashCount = 0;
+            }
+
+            return;
+        }
+
+        mashTimer += Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            mashCount++;
+            UnityEngine.Debug.Log("Mash Count: " + mashCount);
+        }
+
+        if (mashTimer < mashTimeRequired)
+            return;
+
+        if (mashCount >= mashRequiredCount)
+        {
+            RechargeBattery();
         }
         else
         {
-            //enemy.ApplyStun();
-        }
-    }
-}
-
-void BatterySystem()
-{
-    if (currentMode == BeamMode.Focused && !isDrained)
-    {
-        currentBattery -= batteryDrainRate * Time.deltaTime;
-
-        if (currentBattery <= 0)
-        {
-            flashbulb.enabled = false;
-            currentBattery = 0;
-            isDrained = true;
-            currentMode = BeamMode.Wide;
-            UpdateBeamVisuals();
-            Debug.Log("Battery Drained!");
-
-        }
-    }
-}
-
-void RechargeMash()
-{
-    if (!isDrained) return;
-
-    if (cooldownTimer > 0)
-    {
-        cooldownTimer -= Time.deltaTime;
-        return;
-    }
-
-    if (!recoveryStarted)
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            recoveryStarted = true;
-            isRecovering = true;
-            mashTimer = 0f;
-            mashCount = 0;
+            FailRecovery();
         }
 
-        return;
+        recoveryStarted = false;
     }
-
-    mashTimer += Time.deltaTime;
-
-    if (Input.GetKeyDown(KeyCode.F))
+    void RechargeBattery()
     {
-        mashCount++;
-        UnityEngine.Debug.Log("Mash Count: " + mashCount);
+        UnityEngine.Debug.Log("Battery Recharged!");
+
+        isDrained = false;
+        isRecovering = false;
+
+        currentBattery = maxBattery;
+        flashbulb.enabled = true;
     }
 
-    if (mashTimer < mashTimeRequired)
-        return;
-
-    if (mashCount >= mashRequiredCount)
+    void FailRecovery()
     {
-        RechargeBattery();
+        UnityEngine.Debug.Log("Recovery Failed - Cooldown!");
+
+        isRecovering = false;
+        recoveryStarted = false;
+        cooldownTimer = cooldownTime;
     }
-    else
-    {
-        FailRecovery();
-    }
-
-    recoveryStarted = false;
-}
-void RechargeBattery()
-{
-    UnityEngine.Debug.Log("Battery Recharged!");
-
-    isDrained = false;
-    isRecovering = false;
-
-    currentBattery = maxBattery;
-    flashbulb.enabled = true;
-}
-
-void FailRecovery()
-{
-    UnityEngine.Debug.Log("Recovery Failed - Cooldown!");
-
-    isRecovering = false;
-    recoveryStarted = false;
-    cooldownTimer = cooldownTime;
-}
 }
