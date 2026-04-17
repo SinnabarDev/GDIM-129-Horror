@@ -1,13 +1,16 @@
-// Assets/Scripts/Player/PlayerItemCollector2D.cs
 using System.Collections.Generic;
 using UnityEngine;
 
 public sealed class PlayerPickup : MonoBehaviour
 {
-    [Header("Collection")]
-    [SerializeField] private float pickupRange = 1.25f;
+    [Header("Keys")]
+    [SerializeField] private float keyPickupRange = 1.25f;
     [SerializeField] private LayerMask keyLayer;
     [SerializeField] private int goalKeyCount = 3;
+
+    [Header("Doors")]
+    [SerializeField] private float doorInteractRange = 1.5f;
+    [SerializeField] private LayerMask doorLayer;
 
     private readonly HashSet<int> collectedKeyIds = new();
 
@@ -18,20 +21,28 @@ public sealed class PlayerPickup : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            TryCollectNearestKey();
+            HandleLeftClick();
         }
     }
 
-    private void TryCollectNearestKey()
+    private void HandleLeftClick()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, pickupRange, keyLayer);
-
-        if (hits == null || hits.Length == 0)
+        if (TryCollectNearestKey())
         {
             return;
         }
 
-        Collider2D nearestKey = null;
+        if (HasCollectedAllKeys)
+        {
+            TryUnlockNearestDoor();
+        }
+    }
+
+    private bool TryCollectNearestKey()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, keyPickupRange, keyLayer);
+
+        Key nearestKey = null;
         float nearestDistanceSqr = float.MaxValue;
         Vector2 playerPosition = transform.position;
 
@@ -42,8 +53,14 @@ public sealed class PlayerPickup : MonoBehaviour
                 continue;
             }
 
-            int keyId = hit.gameObject.GetInstanceID();
-            if (collectedKeyIds.Contains(keyId))
+            Key key = hit.GetComponent<Key>();
+            if (key == null || key.IsPickedUp)
+            {
+                continue;
+            }
+
+            int keyObjectId = key.gameObject.GetInstanceID();
+            if (collectedKeyIds.Contains(keyObjectId))
             {
                 continue;
             }
@@ -54,39 +71,83 @@ public sealed class PlayerPickup : MonoBehaviour
             if (distanceSqr < nearestDistanceSqr)
             {
                 nearestDistanceSqr = distanceSqr;
-                nearestKey = hit;
+                nearestKey = key;
             }
         }
 
         if (nearestKey == null)
         {
-            return;
+            return false;
         }
 
-        CollectKey(nearestKey.gameObject);
-    }
+        int collectedId = nearestKey.gameObject.GetInstanceID();
 
-    private void CollectKey(GameObject keyObject)
-    {
-        int keyId = keyObject.GetInstanceID();
-
-        if (!collectedKeyIds.Add(keyId))
+        if (!nearestKey.TryPickUp())
         {
-            return;
+            return false;
         }
 
-        keyObject.SetActive(false);
+        collectedKeyIds.Add(collectedId);
 
         Debug.Log($"Collected key {CollectedKeyCount}/{goalKeyCount}");
 
         if (HasCollectedAllKeys)
         {
-            Debug.Log("All distinct keys collected. Goal achieved.");
+            Debug.Log("All 3 keys collected. The door can now be unlocked.");
         }
+
+        return true;
+    }
+
+    private bool TryUnlockNearestDoor()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, doorInteractRange, doorLayer);
+
+        Door nearestDoor = null;
+        float nearestDistanceSqr = float.MaxValue;
+        Vector2 playerPosition = transform.position;
+
+        foreach (Collider2D hit in hits)
+        {
+            if (hit == null)
+            {
+                continue;
+            }
+
+            Door door = hit.GetComponent<Door>();
+            if (door == null || !door.IsLocked)
+            {
+                continue;
+            }
+
+            Vector2 closestPoint = hit.ClosestPoint(playerPosition);
+            float distanceSqr = (closestPoint - playerPosition).sqrMagnitude;
+
+            if (distanceSqr < nearestDistanceSqr)
+            {
+                nearestDistanceSqr = distanceSqr;
+                nearestDoor = door;
+            }
+        }
+
+        if (nearestDoor == null)
+        {
+            return false;
+        }
+
+        bool unlocked = nearestDoor.TryUnlock();
+
+        if (unlocked)
+        {
+            Debug.Log("Door unlocked.");
+        }
+
+        return unlocked;
     }
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(transform.position, pickupRange);
+        Gizmos.DrawWireSphere(transform.position, keyPickupRange);
+        Gizmos.DrawWireSphere(transform.position, doorInteractRange);
     }
 }
