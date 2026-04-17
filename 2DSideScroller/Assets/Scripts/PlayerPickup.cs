@@ -12,10 +12,20 @@ public sealed class PlayerPickup : MonoBehaviour
     [SerializeField] private float doorInteractRange = 1.5f;
     [SerializeField] private LayerMask doorLayer;
 
+    [Header("UI")]
+    [SerializeField] private GameObject[] collectedKeyUi;
+    [SerializeField] private GameObject doorUnlockedTextUi;
+
     private readonly HashSet<int> collectedKeyIds = new();
 
     public int CollectedKeyCount => collectedKeyIds.Count;
     public bool HasCollectedAllKeys => CollectedKeyCount >= goalKeyCount;
+
+    private void Start()
+    {
+        HideAllKeyUi();
+        HideDoorUnlockedText();
+    }
 
     private void Update()
     {
@@ -59,8 +69,7 @@ public sealed class PlayerPickup : MonoBehaviour
                 continue;
             }
 
-            int keyObjectId = key.gameObject.GetInstanceID();
-            if (collectedKeyIds.Contains(keyObjectId))
+            if (collectedKeyIds.Contains(key.KeyId))
             {
                 continue;
             }
@@ -80,22 +89,27 @@ public sealed class PlayerPickup : MonoBehaviour
             return false;
         }
 
-        int collectedId = nearestKey.gameObject.GetInstanceID();
+        int keyId = nearestKey.KeyId;
 
         if (!nearestKey.TryPickUp())
         {
             return false;
         }
 
-        collectedKeyIds.Add(collectedId);
+        if (!collectedKeyIds.Add(keyId))
+        {
+            return false;
+        }
 
-        Debug.Log($"Collected key {CollectedKeyCount}/{goalKeyCount}");
+        ShowCollectedKeyUi(keyId);
 
         if (HasCollectedAllKeys)
         {
+            ShowDoorUnlockedText();
             Debug.Log("All 3 keys collected. The door can now be unlocked.");
         }
 
+        Debug.Log($"Collected key ID {keyId}. Progress: {CollectedKeyCount}/{goalKeyCount}");
         return true;
     }
 
@@ -143,6 +157,58 @@ public sealed class PlayerPickup : MonoBehaviour
         }
 
         return unlocked;
+    }
+
+    private void ShowCollectedKeyUi(int keyId)
+    {
+        if (collectedKeyUi == null)
+        {
+            return;
+        }
+
+        if (keyId < 0 || keyId >= collectedKeyUi.Length)
+        {
+            Debug.LogWarning($"No UI slot exists for keyId {keyId}.");
+            return;
+        }
+
+        GameObject keyUi = collectedKeyUi[keyId];
+        if (keyUi != null)
+        {
+            keyUi.SetActive(true);
+        }
+    }
+
+    private void HideAllKeyUi()
+    {
+        if (collectedKeyUi == null)
+        {
+            return;
+        }
+
+        foreach (GameObject uiObject in collectedKeyUi)
+        {
+            if (uiObject != null)
+            {
+                uiObject.SetActive(false);
+            }
+        }
+    }
+
+    private void ShowDoorUnlockedText()
+    {
+        if (doorUnlockedTextUi != null)
+        {
+            doorUnlockedTextUi.SetActive(true);
+        }
+    }
+
+    private void HideDoorUnlockedText()
+    {
+        if (doorUnlockedTextUi != null)
+        {
+            doorUnlockedTextUi.SetActive(false);
+        }
     }
 
     private void OnDrawGizmosSelected()

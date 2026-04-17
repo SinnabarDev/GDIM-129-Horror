@@ -59,5 +59,3 @@ public sealed class Door : MonoBehaviour
         }
     }
 }
-
-
