@@ -8,15 +8,23 @@ public sealed class PlayerPickup : MonoBehaviour
     [SerializeField] private LayerMask keyLayer;
     [SerializeField] private int goalKeyCount = 3;
 
-    [Header("Doors")]
+    [Header("Door")]
     [SerializeField] private float doorInteractRange = 1.5f;
     [SerializeField] private LayerMask doorLayer;
 
-    [Header("UI")]
+    [Header("Collection UI")]
     [SerializeField] private GameObject[] collectedKeyUi;
     [SerializeField] private GameObject doorUnlockedTextUi;
 
+    [Header("Interaction Prompts")]
+    [SerializeField] private GameObject keyInteraction;
+    [SerializeField] private GameObject doorInteraction;
+    [SerializeField] private GameObject doorNotUnlocked;
+
     private readonly HashSet<int> collectedKeyIds = new();
+
+    private Key nearbyKey;
+    private Door nearbyDoor;
 
     public int CollectedKeyCount => collectedKeyIds.Count;
     public bool HasCollectedAllKeys => CollectedKeyCount >= goalKeyCount;
@@ -24,35 +32,78 @@ public sealed class PlayerPickup : MonoBehaviour
     private void Start()
     {
         HideAllKeyUi();
-        HideDoorUnlockedText();
+        SetActiveIfAssigned(doorUnlockedTextUi, false);
+        SetActiveIfAssigned(keyInteraction, false);
+        SetActiveIfAssigned(doorInteraction, false);
+        SetActiveIfAssigned(doorNotUnlocked, false);
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        RefreshNearbyInteractables();
+        UpdateInteractionPrompts();
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            HandleLeftClick();
+            HandleInteractInput();
         }
     }
 
-    private void HandleLeftClick()
+    private void HandleInteractInput()
     {
-        if (TryCollectNearestKey())
+        if (nearbyKey != null)
+        {
+            if (TryCollectKey(nearbyKey))
+            {
+                RefreshNearbyInteractables();
+                UpdateInteractionPrompts();
+            }
+
+            return;
+        }
+
+        if (nearbyDoor == null)
         {
             return;
         }
 
-        if (HasCollectedAllKeys)
+        if (!HasCollectedAllKeys)
         {
-            TryUnlockNearestDoor();
+            SetActiveIfAssigned(doorNotUnlocked, true);
+            return;
+        }
+
+        if (nearbyDoor.TryUnlock())
+        {
+            SetActiveIfAssigned(doorNotUnlocked, false);
+            RefreshNearbyInteractables();
+            UpdateInteractionPrompts();
+            Debug.Log("Door unlocked.");
         }
     }
 
-    private bool TryCollectNearestKey()
+    private void RefreshNearbyInteractables()
+    {
+        nearbyKey = FindNearestKeyInRange();
+        nearbyDoor = FindNearestLockedDoorInRange();
+    }
+
+    private void UpdateInteractionPrompts()
+    {
+        SetActiveIfAssigned(keyInteraction, nearbyKey != null);
+        SetActiveIfAssigned(doorInteraction, nearbyDoor != null);
+
+        if (nearbyDoor == null || HasCollectedAllKeys)
+        {
+            SetActiveIfAssigned(doorNotUnlocked, false);
+        }
+    }
+
+    private Key FindNearestKeyInRange()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, keyPickupRange, keyLayer);
 
-        Key nearestKey = null;
+        Key nearest = null;
         float nearestDistanceSqr = float.MaxValue;
         Vector2 playerPosition = transform.position;
 
@@ -80,44 +131,18 @@ public sealed class PlayerPickup : MonoBehaviour
             if (distanceSqr < nearestDistanceSqr)
             {
                 nearestDistanceSqr = distanceSqr;
-                nearestKey = key;
+                nearest = key;
             }
         }
 
-        if (nearestKey == null)
-        {
-            return false;
-        }
-
-        int keyId = nearestKey.KeyId;
-
-        if (!nearestKey.TryPickUp())
-        {
-            return false;
-        }
-
-        if (!collectedKeyIds.Add(keyId))
-        {
-            return false;
-        }
-
-        ShowCollectedKeyUi(keyId);
-
-        if (HasCollectedAllKeys)
-        {
-            ShowDoorUnlockedText();
-            Debug.Log("All 3 keys collected. The door can now be unlocked.");
-        }
-
-        Debug.Log($"Collected key ID {keyId}. Progress: {CollectedKeyCount}/{goalKeyCount}");
-        return true;
+        return nearest;
     }
 
-    private bool TryUnlockNearestDoor()
+    private Door FindNearestLockedDoorInRange()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, doorInteractRange, doorLayer);
 
-        Door nearestDoor = null;
+        Door nearest = null;
         float nearestDistanceSqr = float.MaxValue;
         Vector2 playerPosition = transform.position;
 
@@ -140,23 +165,39 @@ public sealed class PlayerPickup : MonoBehaviour
             if (distanceSqr < nearestDistanceSqr)
             {
                 nearestDistanceSqr = distanceSqr;
-                nearestDoor = door;
+                nearest = door;
             }
         }
 
-        if (nearestDoor == null)
+        return nearest;
+    }
+
+    private bool TryCollectKey(Key key)
+    {
+        int keyId = key.KeyId;
+
+        if (collectedKeyIds.Contains(keyId))
         {
             return false;
         }
 
-        bool unlocked = nearestDoor.TryUnlock();
-
-        if (unlocked)
+        if (!key.TryPickUp())
         {
-            Debug.Log("Door unlocked.");
+            return false;
         }
 
-        return unlocked;
+        collectedKeyIds.Add(keyId);
+        ShowCollectedKeyUi(keyId);
+
+        if (HasCollectedAllKeys)
+        {
+            SetActiveIfAssigned(doorUnlockedTextUi, true);
+            SetActiveIfAssigned(doorNotUnlocked, false);
+            Debug.Log("All 3 keys collected. The door can now be unlocked.");
+        }
+
+        Debug.Log($"Collected key ID {keyId}. Progress: {CollectedKeyCount}/{goalKeyCount}");
+        return true;
     }
 
     private void ShowCollectedKeyUi(int keyId)
@@ -195,19 +236,11 @@ public sealed class PlayerPickup : MonoBehaviour
         }
     }
 
-    private void ShowDoorUnlockedText()
+    private static void SetActiveIfAssigned(GameObject target, bool isActive)
     {
-        if (doorUnlockedTextUi != null)
+        if (target != null)
         {
-            doorUnlockedTextUi.SetActive(true);
-        }
-    }
-
-    private void HideDoorUnlockedText()
-    {
-        if (doorUnlockedTextUi != null)
-        {
-            doorUnlockedTextUi.SetActive(false);
+            target.SetActive(isActive);
         }
     }
 
