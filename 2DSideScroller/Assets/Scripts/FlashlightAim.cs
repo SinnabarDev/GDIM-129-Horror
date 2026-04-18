@@ -65,7 +65,7 @@ public class FlashlightAim : MonoBehaviour
             }    
         }
         UpdateBeamVisuals();
-        //ApplyEffectsToEnemies();
+        ApplyEffectsToEnemies();
         RechargeMash();
     }
 
@@ -101,6 +101,7 @@ public class FlashlightAim : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) //adding enemys in the light to the list for effects application
     {
+        Debug.Log("ENTERED LIGHT: " + collision.name);
         if (collision.CompareTag("Enemy"))
         {
             Enemy enemy = collision.GetComponent<Enemy>();
@@ -114,6 +115,7 @@ public class FlashlightAim : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision) //removing enemys from the list when they exit the light
     {
+        Debug.Log("EXITED LIGHT: " + collision.name);
         if (collision.CompareTag("Enemy"))
         {
             Enemy enemy = collision.GetComponent<Enemy>();
@@ -121,7 +123,7 @@ public class FlashlightAim : MonoBehaviour
             if (enemy != null)
             {
                 enemiesInLight.Remove(enemy);
-                //enemy.ClearLightEffects();
+                enemy.ClearLightEffects();
             }
         }
     }
@@ -147,20 +149,25 @@ public class FlashlightAim : MonoBehaviour
         flashbulb.intensity = Mathf.Lerp(flashbulb.intensity, currentMode == BeamMode.Focused ? 1.25f : 1f, Time.deltaTime * 0.1f);
     }
 
-    void ApplyEffectsToEnemies() //apply effects based on current mode to all enemies in enemy list (enemies currently in the light)
+void ApplyEffectsToEnemies()
+{
+    foreach (Enemy enemy in enemiesInLight)
     {
-        foreach (Enemy enemy in enemiesInLight)
+        if (enemy == null) continue;
+
+        switch (currentMode)
         {
-            if (currentMode == BeamMode.Wide)
-            {
-                //enemy.ApplySlow();
-            }
-            else
-            {
-                //enemy.ApplyStun();
-            }
+            case BeamMode.Wide:
+                enemy.ApplySlow(0.5f);
+                break;
+
+            case BeamMode.Focused:
+                enemy.ApplyStun(0.7f);
+                break;
         }
     }
+    //enemiesInLight.RemoveAll(e => e == null);
+}
 
     void BatterySystem() //drain battery when in focused mode, trigger drain state and visuals
     {
@@ -257,11 +264,13 @@ public class FlashlightAim : MonoBehaviour
         {
         // clear all enemies when light turns off
             foreach (Enemy enemy in enemiesInLight)
-            {
-                //enemy.ClearLightEffects();
-            }
+{
+    if (enemy == null) continue;
 
-        enemiesInLight.Clear();
+    enemy.ClearLightEffects();
+}
+
+enemiesInLight.Clear();
         }
     }
 }

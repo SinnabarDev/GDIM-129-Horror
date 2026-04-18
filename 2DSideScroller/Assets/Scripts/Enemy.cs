@@ -1,108 +1,245 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // -------------------------------------------------------------------------
-    // Inspector-exposed fields
-    // -------------------------------------------------------------------------
+    // =========================
+    // STATE
+    // =========================
+    private enum State
+    {
+        Patrol,
+        Chase
+    }
 
-    /*[Header("Movement")]
-    [SerializeField] private float moveSpeed = 2f;
+    [Header("Debug")]
+    [SerializeField] private bool showDebug = true;
+    private float debugTimer;
 
-    [Header("Wander Timing")]
-    [Tooltip("Minimum seconds before picking a new state.")]
-    [SerializeField] private float minWaitTime = 1f;
+    [Header("Movement")]
+    [SerializeField] private float patrolSpeed = 2f;
+    [SerializeField] private float chaseSpeed = 4f;
 
-    [Tooltip("Maximum seconds before picking a new state.")]
-    [SerializeField] private float maxWaitTime = 5f;
+    [Header("Patrol")]
+    [SerializeField] private List<Transform> waypoints;
 
-    // -------------------------------------------------------------------------
-    // Private state
-    // -------------------------------------------------------------------------
+    [Header("Detection")]
+    [SerializeField] private Transform player;
+    [SerializeField] private float detectionRange = 6f;
+    [SerializeField] private LayerMask obstacleMask;
 
-    // The three possible behaviours the enemy can be in at any moment.
-    private enum WanderState { Idle, MoveLeft, MoveRight }
+    [Header("LOS Surprise Aggro")]
+    [Range(0f, 1f)]
+    [SerializeField] private float surpriseChance = 0.3f;
 
-    private WanderState currentState = WanderState.Idle;
+    [Header("Lose Interest")]
+    [SerializeField] private float loseInterestTime = 3f;
 
-    // Counts UP each frame. When it reaches, a new
-    // state is chosen and the counters are reset.
-    private float stateElapsed = 0f;
-
-    // The randomly-chosen duration (in seconds) the enemy stays in the
-    // current state before switching. Re-rolled every time a new state begins.
-    private float stateTimer = 0f;*/
-
-    // Cached component references
-    private Rigidbody2D rb;
+    [Header("Visuals")]
     private SpriteRenderer sr;
+
+    // =========================
+    // FLASHLIGHT EFFECTS
+    // =========================
+    private float slowBlend = 1f;
+    [SerializeField] private float stunDuration = 3f;
+    private bool isStunned = false;
+
+    // =========================
+    // INTERNAL STATE
+    // =========================
+    private State state = State.Patrol;
+
+    private Rigidbody2D rb;
+
+    private int waypointIndex = 0;
+    private float lastSeenTime;
+
+    private Vector2 velocity;
+
+    // =========================
+    // INIT
+    // =========================
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         rb.freezeRotation = true;
-        //ChooseNewState();
     }
 
-    /// <summary>
-    /// Using FixedUpdate ensures that physics-based movement stays smooth and
-    /// interacts properly with colliders (walls, platforms, other).
-    /// </summary>
+
+    // =========================
+    // PHYSICS
+    // =========================
     private void FixedUpdate()
     {
-        /*// --- Timer logic ---------------------------------------------------
-        stateElapsed += Time.fixedDeltaTime;
+        if (player == null) return;
 
-        if (stateElapsed >= stateTimer)
+         // =========================
+        // STUN STATE (HARD LOCK)
+        // =========================
+        if (isStunned)
         {
-            ChooseNewState();
+            stunDuration -= Time.fixedDeltaTime;
+
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+
+            if (stunDuration <= 0f)
+            {
+                isStunned = false;
+            }
+
+            return;
+        }
+       
+
+        // =========================
+        // RECOVERY (only when NOT stunned)
+        // =========================
+        slowBlend = Mathf.Lerp(slowBlend, 1f, Time.fixedDeltaTime * 1.2f);
+
+        // =========================
+        // PERCEPTION
+        // =========================
+        float distance = Vector2.Distance(transform.position, player.position);
+        bool inRange = distance <= detectionRange;
+        bool hasLOS = HasLineOfSight();
+
+        // =========================
+        // STATE LOGIC
+        // =========================
+        if (inRange)
+        {
+            state = State.Chase;
+            lastSeenTime = Time.time;
         }
 
-        // --- Movement logic ------------------------------------------------
-        switch (currentState)
+        if (state == State.Patrol && inRange && hasLOS)
         {
-            case WanderState.MoveLeft:
-                rb.linearVelocity = new Vector2(-moveSpeed, rb.linearVelocity.y);
-                FaceDirection(left: true);
-                break;
+            if (Random.value < surpriseChance)
+            {
+                state = State.Chase;
+                lastSeenTime = Time.time;
+            }
+        }
 
-            case WanderState.MoveRight:
-                rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
-                FaceDirection(left: false);
-                break;
+        if (state == State.Chase && !inRange)
+        {
+            if (Time.time - lastSeenTime > loseInterestTime)
+            {
+                state = State.Patrol;
+            }
+        }
 
-            case WanderState.Idle:
-                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-                break;
-        }*/
+        // =========================
+        // TARGET + SPEED
+        // =========================
+        Vector2 target;
+        float speed;
+
+        if (state == State.Patrol)
+        {
+            if (waypoints.Count == 0) return;
+
+            target = waypoints[waypointIndex].position;
+            speed = patrolSpeed;
+
+            Vector2 pos = transform.position;
+
+            if (Mathf.Abs(pos.x - target.x) < 0.3f)
+            {
+                waypointIndex = (waypointIndex + 1) % waypoints.Count;
+            }
+        }
+        else
+        {
+            target = player.position;
+            speed = chaseSpeed;
+        }
+
+        // =========================
+        // MOVEMENT
+        // =========================
+        Vector2 direction = (target - (Vector2)transform.position).normalized;
+
+        float finalSpeed = speed * slowBlend;
+        velocity = direction * finalSpeed;
+
+        rb.linearVelocity = new Vector2(velocity.x, rb.linearVelocity.y);
+
+        // =========================
+        // DEBUG
+        // =========================
+        debugTimer -= Time.fixedDeltaTime;
+
+        if (showDebug && debugTimer <= 0f)
+        {
+            debugTimer = 0.25f;
+
+            Debug.Log(
+                $"[{gameObject.name}] " +
+                $"State:{state} | " +
+                $"Slow:{slowBlend:F2} | " +
+                $"Stunned:{isStunned} | " +
+                $"FinalSpeed:{finalSpeed:F2}"
+            );
+        }
+
+        // =========================
+        // FLIP
+        // =========================
+        FaceDirection(direction.x);
     }
 
-    /// Randomly selects one of the three states, then rolls a new wait duration
-    /// between minWaitTime and MaxWaitTime. The elapsed counter is reset to 0 so the
-    /// new state gets its full time slice.
-    /*private void ChooseNewState()
+    // =========================
+    // FLIP
+    // =========================
+    private void FaceDirection(float xDir)
     {
-        int roll = Random.Range(0, 3);
-        // 0 = Idle, 1 = MoveLeft, 2 = MoveRight
-
-        currentState = roll switch
-        {
-            0 => WanderState.Idle,
-            1 => WanderState.MoveLeft,
-            _ => WanderState.MoveRight,
-        };
-
-        // Roll a new duration for the freshly-chosen state.
-        stateTimer = Random.Range(minWaitTime, maxWaitTime);
-
-        // Reset elapsed time for a new state. 
-        stateElapsed = 0f;
+        if (xDir > 0.01f)
+            sr.flipX = false;
+        else if (xDir < -0.01f)
+            sr.flipX = true;
     }
-    */
-    /// Flips the SpriteRenderer so the enemy sprite always faces
-    /// the direction it is walking.
-    private void FaceDirection(bool left)
+
+    // =========================
+    // LOS
+    // =========================
+    private bool HasLineOfSight()
     {
-        sr.flipX = left;
+        Vector2 origin = transform.position;
+        Vector2 dir = (player.position - transform.position).normalized;
+        float dist = Vector2.Distance(transform.position, player.position);
+
+        RaycastHit2D hit = Physics2D.Raycast(origin, dir, dist, obstacleMask);
+
+        return hit.collider == null || hit.collider.transform == player;
+    }
+
+    // =========================
+    // FLASHLIGHT EFFECTS
+    // =========================
+
+    public void ApplySlow(float targetSlow = 0.5f)
+    {
+        slowBlend = Mathf.Lerp(slowBlend, targetSlow, Time.deltaTime * 5f);
+    }
+
+    // 🔥 NEW: STACK SYSTEM
+    public void ApplyStun(float amount)
+    {
+        ApplySlow(amount);
+        TriggerStun();
+    }
+
+    private void TriggerStun()
+    {
+        isStunned = true;
+        stunDuration = 2f;
+    }
+
+    public void ClearLightEffects()
+    {
+        slowBlend = 1f;
     }
 }

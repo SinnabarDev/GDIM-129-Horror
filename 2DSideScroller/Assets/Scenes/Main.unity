@@ -1402,11 +1402,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1846076386}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c95f1a4ef96b714fa16cc2848f3a283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  patrolSpeed: 1.5
+  chaseSpeed: 3
+  waypoints:
+  - {fileID: 1746226385}
+  - {fileID: 1293920239}
+  - {fileID: 1092412600}
+  player: {fileID: 1182339553}
+  detectionRange: 6
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 1
+  surpriseChance: 0.3
+  loseInterestTime: 3
+  animator: {fileID: 0}
 --- !u!114 &1846076392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1414,7 +1428,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1846076386}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
   m_Name: 
