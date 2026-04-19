@@ -17,15 +17,15 @@ public class Enemy : MonoBehaviour
     private float debugTimer;
 
     [Header("Movement")]
-    [SerializeField] private float patrolSpeed = 2f;
-    [SerializeField] private float chaseSpeed = 4f;
+    [SerializeField] private float patrolSpeed = 1.5f;
+    [SerializeField] private float chaseSpeed = 2f;
 
     [Header("Patrol")]
     [SerializeField] private List<Transform> waypoints;
 
     [Header("Detection")]
     [SerializeField] private Transform player;
-    [SerializeField] private float detectionRange = 6f;
+    [SerializeField] private float detectionRange = 5f;
     [SerializeField] private LayerMask obstacleMask;
 
     [Header("LOS Surprise Aggro")]
@@ -41,8 +41,10 @@ public class Enemy : MonoBehaviour
     // =========================
     // FLASHLIGHT EFFECTS
     // =========================
-    private float slowBlend = 1f;
-    [SerializeField] private float stunDuration = 3f;
+    private float moveDebuff = 1f;
+
+    [SerializeField] private float stunDuration = 2f;
+    private float stunTimer = 0f;
     private bool isStunned = false;
 
     // =========================
@@ -51,7 +53,6 @@ public class Enemy : MonoBehaviour
     private State state = State.Patrol;
 
     private Rigidbody2D rb;
-
     private int waypointIndex = 0;
     private float lastSeenTime;
 
@@ -64,9 +65,9 @@ public class Enemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+
         rb.freezeRotation = true;
     }
-
 
     // =========================
     // PHYSICS
@@ -75,31 +76,30 @@ public class Enemy : MonoBehaviour
     {
         if (player == null) return;
 
-         // =========================
-        // STUN STATE (HARD LOCK)
+        // =========================
+        // STUN
         // =========================
         if (isStunned)
         {
-            stunDuration -= Time.fixedDeltaTime;
+            stunTimer -= Time.fixedDeltaTime;
 
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
 
-            if (stunDuration <= 0f)
+            if (stunTimer <= 0f)
             {
                 isStunned = false;
             }
 
             return;
         }
-       
 
         // =========================
-        // RECOVERY (only when NOT stunned)
+        // RECOVER SLOW
         // =========================
-        slowBlend = Mathf.Lerp(slowBlend, 1f, Time.fixedDeltaTime * 1.2f);
+        moveDebuff = Mathf.Lerp(moveDebuff, 1f, Time.fixedDeltaTime * 1.2f);
 
         // =========================
-        // PERCEPTION
+        // DETECTION
         // =========================
         float distance = Vector2.Distance(transform.position, player.position);
         bool inRange = distance <= detectionRange;
@@ -141,12 +141,15 @@ public class Enemy : MonoBehaviour
         {
             if (waypoints.Count == 0) return;
 
-            target = waypoints[waypointIndex].position;
+            // PLATFORMER PATROL (X ONLY)
+            target = new Vector2(
+                waypoints[waypointIndex].position.x,
+                transform.position.y
+            );
+
             speed = patrolSpeed;
 
-            Vector2 pos = transform.position;
-
-            if (Mathf.Abs(pos.x - target.x) < 0.3f)
+            if (Mathf.Abs(transform.position.x - target.x) < 0.2f)
             {
                 waypointIndex = (waypointIndex + 1) % waypoints.Count;
             }
@@ -162,10 +165,16 @@ public class Enemy : MonoBehaviour
         // =========================
         Vector2 direction = (target - (Vector2)transform.position).normalized;
 
-        float finalSpeed = speed * slowBlend;
+        float finalSpeed = speed * moveDebuff;
         velocity = direction * finalSpeed;
 
+        // PLATFORMER MOVE X ONLY
         rb.linearVelocity = new Vector2(velocity.x, rb.linearVelocity.y);
+
+        // =========================
+        // FLIP
+        // =========================
+        FaceDirection(direction.x);
 
         // =========================
         // DEBUG
@@ -179,16 +188,11 @@ public class Enemy : MonoBehaviour
             Debug.Log(
                 $"[{gameObject.name}] " +
                 $"State:{state} | " +
-                $"Slow:{slowBlend:F2} | " +
-                $"Stunned:{isStunned} | " +
-                $"FinalSpeed:{finalSpeed:F2}"
+                $"Waypoint:{waypointIndex} | " +
+                $"Slow:{moveDebuff:F2} | " +
+                $"Stunned:{isStunned}"
             );
         }
-
-        // =========================
-        // FLIP
-        // =========================
-        FaceDirection(direction.x);
     }
 
     // =========================
@@ -203,7 +207,7 @@ public class Enemy : MonoBehaviour
     }
 
     // =========================
-    // LOS
+    // LOS CHECK
     // =========================
     private bool HasLineOfSight()
     {
@@ -219,13 +223,11 @@ public class Enemy : MonoBehaviour
     // =========================
     // FLASHLIGHT EFFECTS
     // =========================
-
     public void ApplySlow(float targetSlow = 0.5f)
     {
-        slowBlend = Mathf.Lerp(slowBlend, targetSlow, Time.deltaTime * 5f);
+        moveDebuff = Mathf.Lerp(moveDebuff, targetSlow, Time.deltaTime * 5f);
     }
 
-    // 🔥 NEW: STACK SYSTEM
     public void ApplyStun(float amount)
     {
         ApplySlow(amount);
@@ -235,11 +237,11 @@ public class Enemy : MonoBehaviour
     private void TriggerStun()
     {
         isStunned = true;
-        stunDuration = 2f;
+        stunTimer = stunDuration;
     }
 
     public void ClearLightEffects()
     {
-        slowBlend = 1f;
+        moveDebuff = 1f;
     }
 }
