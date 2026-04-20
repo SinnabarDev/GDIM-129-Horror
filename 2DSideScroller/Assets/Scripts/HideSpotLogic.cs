@@ -13,17 +13,26 @@ public class HideSpotLogic : MonoBehaviour
     [SerializeField] private GameObject interactUI;
     [SerializeField] private GameObject timerUI;
     [SerializeField] private TextMeshProUGUI timerText;
-
+     [SerializeField] private MonoBehaviour playerControlScript;
     public static bool isPlayerHiding = false;
 
     private float currentHideTimer = 0f;
     private SpriteRenderer[] playerSpriteRenderers;
+    private Collider2D[] playerColliders;
+    private Rigidbody2D playerRb;
+
+    [SerializeField] private GameObject flashlightObject;
+[SerializeField] private GameObject visionObject;
+
 
     void Start()
     {
         if (player != null)
         {
             playerSpriteRenderers = player.GetComponentsInChildren<SpriteRenderer>(true);
+            playerColliders = player.GetComponentsInChildren<Collider2D>(true);
+            playerRb = player.GetComponent<Rigidbody2D>();
+
         }
         interactUI.SetActive(false);
         timerUI.SetActive(false);
@@ -31,6 +40,8 @@ public class HideSpotLogic : MonoBehaviour
 
     void Update()
     {
+        if (player == null) return;
+
         if (isPlayerHiding)
         {
             HandleHidingTimer();
@@ -69,6 +80,36 @@ public class HideSpotLogic : MonoBehaviour
             }
         }
 
+        // Disable colliders
+        if (playerColliders != null)
+        {
+            foreach (Collider2D col in playerColliders)
+            {
+                col.enabled = false;
+            }
+        }
+
+        // Disable movement / controls
+        if (playerControlScript != null)
+        {
+            playerControlScript.enabled = false;
+        }
+        // Disable Rigidbody safely
+        if (playerRb != null)
+        {
+            playerRb.linearVelocity = Vector2.zero;
+            playerRb.angularVelocity = 0f;
+
+            // Prevent falling
+            playerRb.bodyType = RigidbodyType2D.Kinematic;
+            playerRb.simulated = false;
+        }
+        if (flashlightObject != null)
+    flashlightObject.SetActive(false);
+
+if (visionObject != null)
+    visionObject.SetActive(false);
+
         currentHideTimer = hideDuration;
     }
 
@@ -98,6 +139,15 @@ public class HideSpotLogic : MonoBehaviour
 
         // Move the player and reactivate
         player.position = spawnPosition;
+        // Restore Rigidbody FIRST
+        if (playerRb != null)
+        {
+            playerRb.simulated = true;
+            playerRb.bodyType = RigidbodyType2D.Dynamic;
+            playerRb.linearVelocity = Vector2.zero;
+            playerRb.angularVelocity = 0f;
+        }
+        
         if (playerSpriteRenderers != null)
         {
             foreach (SpriteRenderer sr in playerSpriteRenderers)
@@ -105,5 +155,23 @@ public class HideSpotLogic : MonoBehaviour
                 sr.enabled = true;
             }
         }
+        if (playerColliders != null)
+        {
+            foreach (Collider2D col in playerColliders)
+            {
+                col.enabled = true;
+            }
+        }
+
+        // Enable controls
+        if (playerControlScript != null)
+        {
+            playerControlScript.enabled = true;
+        }
+        if (flashlightObject != null)
+    flashlightObject.SetActive(true);
+
+if (visionObject != null)
+    visionObject.SetActive(true);
     }
 }

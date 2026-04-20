@@ -108,6 +108,10 @@ public class Enemy : MonoBehaviour
         // =========================
         // STATE LOGIC
         // =========================
+if (HideSpotLogic.isPlayerHiding)
+{
+    state = State.Patrol;
+}
         if (inRange)
         {
             state = State.Chase;
