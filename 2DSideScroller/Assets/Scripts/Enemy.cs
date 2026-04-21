@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -45,7 +46,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private float stunDuration = 2f;
     private float stunTimer = 0f;
-    private bool isStunned = false;
+    public bool isStunned = false;
 
     // =========================
     // INTERNAL STATE
@@ -55,8 +56,21 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
     private int waypointIndex = 0;
     private float lastSeenTime;
-
     private Vector2 velocity;
+[Header("Typing Weakness")]
+[SerializeField] private string enemyWord = "SHADE";
+
+private int savedProgress = 0;
+private Vector2 savedVelocity;
+private bool isDisabled = false;
+    public string GetWord() => enemyWord;
+    public int GetSavedProgress() => savedProgress;
+    public void SetSavedProgress(int value)
+{
+    savedProgress = value;
+}
+public bool IsStunned() => isStunned;
+
 
     // =========================
     // INIT
@@ -92,6 +106,11 @@ public class Enemy : MonoBehaviour
 
             return;
         }
+        if (isDisabled)
+{
+    rb.linearVelocity = Vector2.zero;
+    return;
+}
 
         // =========================
         // RECOVER SLOW
@@ -248,4 +267,38 @@ if (HideSpotLogic.isPlayerHiding)
     {
         moveDebuff = 1f;
     }
+
+public void TriggerDisable()
+{
+    if (!isDisabled)
+        StartCoroutine(DisableRoutine());
+}
+IEnumerator DisableRoutine()
+{
+    isDisabled = true;
+
+    // freeze movement
+    rb.linearVelocity = Vector2.zero;
+    rb.angularVelocity = 0f;
+
+    // switch to KINEMATIC (safe)
+    rb.bodyType = RigidbodyType2D.Kinematic;
+
+    sr.enabled = false;
+
+    Collider2D col = GetComponent<Collider2D>();
+    if (col != null) col.enabled = false;
+
+    yield return new WaitForSeconds(Random.Range(10f, 15f));
+
+    // restore physics
+    rb.bodyType = RigidbodyType2D.Dynamic;
+
+    sr.enabled = true;
+
+    if (col != null) col.enabled = true;
+
+    savedProgress = 0;
+    isDisabled = false;
+}
 }
