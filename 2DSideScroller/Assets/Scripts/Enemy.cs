@@ -131,7 +131,7 @@ if (HideSpotLogic.isPlayerHiding)
 {
     state = State.Patrol;
 }
-        if (inRange)
+        if (inRange && !HideSpotLogic.isPlayerHiding)
         {
             state = State.Chase;
             lastSeenTime = Time.time;

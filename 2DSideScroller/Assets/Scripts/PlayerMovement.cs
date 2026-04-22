@@ -12,9 +12,12 @@ public class PlayerMovement : MonoBehaviour
     public bool isFacingRight = true;
 
     [SerializeField] private FlashlightAim flashlight;
+    private Animator animator;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+
     }
 
     void Update()
@@ -28,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
+
+        animator.SetBool("isWalking", move != 0);
 
         // Flip logic
         if (move > 0 && !isFacingRight)
