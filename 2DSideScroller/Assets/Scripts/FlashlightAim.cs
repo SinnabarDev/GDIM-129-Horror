@@ -68,7 +68,10 @@ public class FlashlightAim : MonoBehaviour
         ApplyEffectsToEnemies();
         RechargeMash();
     }
-
+    public void SetFacing(bool facingRight)
+    {
+        isFacingRight = facingRight;
+    }
     void AimFlashlight()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -89,15 +92,12 @@ public class FlashlightAim : MonoBehaviour
         if (!isFacingRight && direction.x > 0)
             direction = Vector2.left;
 
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg-90;
 
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-    public void SetFacing(bool facingRight)
-    {
-        isFacingRight = facingRight;
-    }
+
 
     private void OnTriggerEnter2D(Collider2D collision) //adding enemys in the light to the list for effects application
     {

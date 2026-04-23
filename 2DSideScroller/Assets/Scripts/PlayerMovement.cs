@@ -11,7 +11,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     public bool isFacingRight = true;
 
-    [SerializeField] private FlashlightAim flashlight;
+    [SerializeField] private FlashlightAim flashlightscript;
+    [SerializeField] private Hand handscript;
+
     private Animator animator;
     void Start()
     {
@@ -53,7 +55,8 @@ public class PlayerMovement : MonoBehaviour
     theScale.x *= -1;
     transform.localScale = theScale;
 
-    flashlight.SetFacing(isFacingRight); // 👈 notify flashlight
+    flashlightscript.SetFacing(isFacingRight); // 👈 notify flashlight
+    handscript.SetFacing(isFacingRight);
 }
 
     private void OnCollisionEnter2D(Collision2D collision)
