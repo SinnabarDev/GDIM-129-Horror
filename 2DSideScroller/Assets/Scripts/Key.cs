@@ -1,9 +1,18 @@
+// Assets/Scripts/Items/Key.cs
 using UnityEngine;
 
 public sealed class Key : MonoBehaviour
 {
-    [SerializeField] private int keyId;
+    public enum KeyType
+    {
+        Regular = 0,
+        Final = 1
+    }
 
+    [SerializeField] private KeyType keyType = KeyType.Regular;
+    [SerializeField] private int keyId = -1;
+
+    public KeyType Type => keyType;
     public int KeyId => keyId;
     public bool IsPickedUp { get; private set; }
 
