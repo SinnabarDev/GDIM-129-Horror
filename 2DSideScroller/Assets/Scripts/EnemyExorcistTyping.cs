@@ -35,20 +35,27 @@ void HandleTyping()
         char input = char.ToUpper(c);
 
         string word = enemy.GetWord();
+        int progress = enemy.GetSavedProgress();
 
-        if (input == word[enemy.GetSavedProgress()])
+        // Prevent reading past word end
+        if (progress >= word.Length)
+            return;
+
+        if (input == word[progress])
         {
-            enemy.SetSavedProgress(enemy.GetSavedProgress() + 1);
+            progress++;
+            enemy.SetSavedProgress(progress);
 
-            if (enemy.GetSavedProgress() >= word.Length)
+            if (progress >= word.Length)
             {
                 enemy.TriggerDisable();
+                return;
             }
         }
         else
-            {
-                enemy.SetSavedProgress(0);
-            }
+        {
+            enemy.SetSavedProgress(0);
+        }
     }
 
     UpdateText();
