@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class FlashlightAim : MonoBehaviour
 {
+    [SerializeField] private Light2D flashbulbvol; //this is the spot light source for flashlight
     [SerializeField] private Light2D flashbulb; //this is the spot light source for flashlight
     public bool isFacingRight = true; //used as to define conditions for blocking backwards aiming
 
@@ -258,6 +259,7 @@ void ApplyEffectsToEnemies()
         bool active = isFlashlightOn && !isDrained;
 
         flashbulb.enabled = active;
+        flashbulbvol.enabled = active;
         detectray.enabled = active;
 
         if (!active)
