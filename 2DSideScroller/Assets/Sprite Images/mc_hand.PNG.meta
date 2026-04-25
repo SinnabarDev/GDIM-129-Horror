@@ -140,50 +140,6 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: mc_hand_1
-      rect:
-        serializedVersion: 2
-        x: 49
-        y: 9
-        width: 14
-        height: 6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 82671c5ad86c81700800000000000000
-      internalID: 511376869380159016
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mc_hand_2
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 9
-        width: 16
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c8e379150267cbbe0800000000000000
-      internalID: -1460162297994985844
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -201,6 +157,7 @@ TextureImporter:
       mc_hand_0: 6541965508072107887
       mc_hand_1: 511376869380159016
       mc_hand_2: -1460162297994985844
+      mc_hand_3: -955293225
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

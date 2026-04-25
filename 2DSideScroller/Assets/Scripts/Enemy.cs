@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     }
 
     [Header("Debug")]
-    [SerializeField] private bool showDebug = true;
+    [SerializeField] private bool showDebug = false;
     private float debugTimer;
 
     [Header("Movement")]
@@ -30,11 +30,19 @@ public class Enemy : MonoBehaviour
     [SerializeField] private LayerMask obstacleMask;
 
     [Header("LOS Surprise Aggro")]
-    [Range(0f, 1f)]
+    [Range(0f, 2f)]
     [SerializeField] private float surpriseChance = 0.3f;
 
     [Header("Lose Interest")]
     [SerializeField] private float loseInterestTime = 3f;
+
+    [Header("Attack")]
+[SerializeField] private float attackRange = 3f;
+[SerializeField] private float attackCooldown = 20f;
+[SerializeField] private Animator animator;
+
+private float attackTimer;
+private bool isAttacking;
 
     [Header("Visuals")]
     private SpriteRenderer sr;
@@ -78,6 +86,8 @@ public bool IsStunned() => isStunned;
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+
 
         rb.freezeRotation = true;
     }
@@ -88,7 +98,15 @@ public bool IsStunned() => isStunned;
     private void FixedUpdate()
     {
         if (player == null) return;
-
+        // =========================
+        // ATTACKING
+        // =========================
+         attackTimer -= Time.fixedDeltaTime;
+         if (isAttacking)
+{
+    rb.linearVelocity = Vector2.zero;
+    return;
+}
         // =========================
         // STUN
         // =========================
@@ -177,10 +195,21 @@ if (HideSpotLogic.isPlayerHiding)
             }
         }
         else
-        {
-            target = player.position;
-            speed = chaseSpeed;
-        }
+{
+    float distToPlayer =
+        Vector2.Distance(transform.position, player.position);
+
+    if (distToPlayer <= attackRange &&
+        attackTimer <= 0f &&
+        !isAttacking)
+    {
+        Attack();
+        return;
+    }
+
+    target = player.position;
+    speed = chaseSpeed;
+}
 
         // =========================
         // MOVEMENT
@@ -241,6 +270,24 @@ if (HideSpotLogic.isPlayerHiding)
 
         return hit.collider == null || hit.collider.transform == player;
     }
+    // =========================
+    // ATTACK
+    // =========================
+    private void Attack()
+{
+    Debug.Log("ATTACK CALLED");
+    isAttacking = true;
+    attackTimer = attackCooldown;
+
+    rb.linearVelocity = Vector2.zero;
+
+    if (animator != null)
+        animator.SetTrigger("Attack");
+}
+public void EndAttack()
+{
+    isAttacking = false;
+}
 
     // =========================
     // FLASHLIGHT EFFECTS

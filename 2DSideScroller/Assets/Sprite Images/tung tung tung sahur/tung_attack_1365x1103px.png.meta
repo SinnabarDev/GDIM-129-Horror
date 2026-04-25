@@ -158,12 +158,12 @@ TextureImporter:
       name: tung_attack_1365x1103px_0
       rect:
         serializedVersion: 2
-        x: 461
-        y: 2226
-        width: 374
-        height: 282
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 352
+        y: 2224
+        width: 556
+        height: 1070
+      alignment: 9
+      pivot: {x: 0.5, y: 0.45}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,133 +177,23 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tung_attack_1365x1103px_1
-      rect:
-        serializedVersion: 2
-        x: 1826
-        y: 2226
-        width: 391
-        height: 384
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 23084b37562a10db0800000000000000
-      internalID: -4827398768947855310
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tung_attack_1365x1103px_2
-      rect:
-        serializedVersion: 2
-        x: 3203
-        y: 2226
-        width: 400
-        height: 731
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 218496d32bc858820800000000000000
-      internalID: 2919894630582011922
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tung_attack_1365x1103px_3
-      rect:
-        serializedVersion: 2
-        x: 4551
-        y: 2226
-        width: 879
-        height: 961
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 55edd24dfe4bdd460800000000000000
-      internalID: 7268164315795807829
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: tung_attack_1365x1103px_4
       rect:
         serializedVersion: 2
-        x: 5919
-        y: 2226
-        width: 553
-        height: 1066
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1395
+        y: 2224
+        width: 884
+        height: 963
+      alignment: 9
+      pivot: {x: 0.68, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b060bc652d21849c0800000000000000
+      spriteID: 45d77b332bbc1ef49953c1a7a94d5529
       internalID: -3942880779154291189
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tung_attack_1365x1103px_5
-      rect:
-        serializedVersion: 2
-        x: 450
-        y: 1123
-        width: 532
-        height: 1034
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cbca6427a7882fea0800000000000000
-      internalID: -5840455707261489988
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tung_attack_1365x1103px_6
-      rect:
-        serializedVersion: 2
-        x: 1774
-        y: 1123
-        width: 582
-        height: 948
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9c8499fc84b8f4780800000000000000
-      internalID: -8696579210592302903
       vertices: []
       indices: 
       edges: []
@@ -312,108 +202,20 @@ TextureImporter:
       name: tung_attack_1365x1103px_7
       rect:
         serializedVersion: 2
-        x: 2751
-        y: 1123
-        width: 767
-        height: 1007
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 3219
+        y: 2220
+        width: 408
+        height: 737
+      alignment: 9
+      pivot: {x: 0.5, y: 0.67}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b8b0c21841fa59290800000000000000
+      spriteID: bcc2b76f8b877b04d8c9bafa901f4f9d
       internalID: -7884203070040831093
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tung_attack_1365x1103px_8
-      rect:
-        serializedVersion: 2
-        x: 4325
-        y: 1131
-        width: 827
-        height: 1012
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bf4739c6258915510800000000000000
-      internalID: 1536176427686393083
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tung_attack_1365x1103px_9
-      rect:
-        serializedVersion: 2
-        x: 5904
-        y: 1123
-        width: 896
-        height: 1014
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1d0033b6006bbec10800000000000000
-      internalID: 2083959365503746257
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tung_attack_1365x1103px_10
-      rect:
-        serializedVersion: 2
-        x: 465
-        y: 26
-        width: 592
-        height: 986
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: de46370c70e9e6c10800000000000000
-      internalID: 2048748636630901997
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tung_attack_1365x1103px_11
-      rect:
-        serializedVersion: 2
-        x: 1865
-        y: 24
-        width: 275
-        height: 781
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7167047b797c46a50800000000000000
-      internalID: 6513550415513024023
       vertices: []
       indices: 
       edges: []
@@ -422,42 +224,20 @@ TextureImporter:
       name: tung_attack_1365x1103px_12
       rect:
         serializedVersion: 2
-        x: 3186
-        y: 30
-        width: 341
-        height: 429
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 4604
+        y: 2219
+        width: 396
+        height: 392
+      alignment: 9
+      pivot: {x: 0.5, y: 1.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dca2322b0272225f0800000000000000
+      spriteID: e1e5e07ffe87c064a8f730b3d64aeff0
       internalID: -783020363827959091
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tung_attack_1365x1103px_13
-      rect:
-        serializedVersion: 2
-        x: 3618
-        y: 456
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3e9cdaf0dc8b5cd40800000000000000
-      internalID: 5604088502203304419
       vertices: []
       indices: 
       edges: []
@@ -466,20 +246,218 @@ TextureImporter:
       name: tung_attack_1365x1103px_14
       rect:
         serializedVersion: 2
-        x: 4597
-        y: 26
-        width: 275
-        height: 254
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 5984
+        y: 2224
+        width: 394
+        height: 284
+      alignment: 9
+      pivot: {x: 0.5, y: 1.7}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b3e1d13bf1b91de60800000000000000
+      spriteID: 873afa74328e57b44842fa015814ce8e
       internalID: 7985334174755921467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tung_attack_1365x1103px_22
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 1080
+        width: 823
+        height: 1079
+      alignment: 9
+      pivot: {x: 0.7, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e17b5ccfd91d0dd4eb362a79cf82e220
+      internalID: -302389103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tung_attack_1365x1103px_23
+      rect:
+        serializedVersion: 2
+        x: 1671
+        y: 1128
+        width: 830
+        height: 1033
+      alignment: 9
+      pivot: {x: 0.46, y: 0.475}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa5cdf3105a454f429475e9ad6942b52
+      internalID: -2108156372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tung_attack_1365x1103px_24
+      rect:
+        serializedVersion: 2
+        x: 3279
+        y: 1080
+        width: 795
+        height: 1051
+      alignment: 9
+      pivot: {x: 0.1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e76736554307a5f43a218c73850954fd
+      internalID: 1388476973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tung_attack_1365x1103px_25
+      rect:
+        serializedVersion: 2
+        x: 4467
+        y: 1080
+        width: 592
+        height: 1019
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fc27712e3e08cd409e939ae658439a6
+      internalID: -647588430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tung_attack_1365x1103px_26
+      rect:
+        serializedVersion: 2
+        x: 5819
+        y: 1121
+        width: 559
+        height: 1037
+      alignment: 9
+      pivot: {x: 0.5, y: 0.46}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 988daf43567eaa842b7aec98e611c3a3
+      internalID: -1577818476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tung_attack_1365x1103px_31
+      rect:
+        serializedVersion: 2
+        x: 5767
+        y: 25
+        width: 611
+        height: 990
+      alignment: 9
+      pivot: {x: 0.6, y: 0.49999988}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7abe15a8eec747141a57e5c54d921811
+      internalID: 447774628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tung_attack_1365x1103px_35
+      rect:
+        serializedVersion: 2
+        x: 3298
+        y: 28
+        width: 343
+        height: 433
+      alignment: 9
+      pivot: {x: 0.5, y: 1.14}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17914f4dbe05e8340a831d4aa6a3fb00
+      internalID: -1236073460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tung_attack_1365x1103px_37
+      rect:
+        serializedVersion: 2
+        x: 4659
+        y: 18
+        width: 320
+        height: 787
+      alignment: 9
+      pivot: {x: 0.5, y: 0.625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f34ec14272643914bbd70d685a78c356
+      internalID: -224302826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tung_attack_1365x1103px_39
+      rect:
+        serializedVersion: 2
+        x: 1944
+        y: 19
+        width: 285
+        height: 263
+      alignment: 9
+      pivot: {x: 0.5, y: 1.9}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 923e400a378bbf34b99a848b9b1c1291
+      internalID: 305109128
       vertices: []
       indices: 
       edges: []
@@ -488,7 +466,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0f6780b5a48385c41a219f1419eb660e
     internalID: 0
     vertices: []
     indices: 
@@ -496,23 +474,57 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":6825.0,"y":3309.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       tung_attack_1365x1103px_0: 5470742185919995903
-      tung_attack_1365x1103px_1: -4827398768947855310
-      tung_attack_1365x1103px_10: 2048748636630901997
-      tung_attack_1365x1103px_11: 6513550415513024023
+      tung_attack_1365x1103px_1: -693908268
+      tung_attack_1365x1103px_10: -1472829875
+      tung_attack_1365x1103px_11: -920159616
       tung_attack_1365x1103px_12: -783020363827959091
-      tung_attack_1365x1103px_13: 5604088502203304419
+      tung_attack_1365x1103px_13: 113462485
       tung_attack_1365x1103px_14: 7985334174755921467
-      tung_attack_1365x1103px_2: 2919894630582011922
-      tung_attack_1365x1103px_3: 7268164315795807829
+      tung_attack_1365x1103px_15: 946059640
+      tung_attack_1365x1103px_16: 1318415087
+      tung_attack_1365x1103px_17: -690041566
+      tung_attack_1365x1103px_18: -1346842202
+      tung_attack_1365x1103px_19: -1632277519
+      tung_attack_1365x1103px_2: 1404661978
+      tung_attack_1365x1103px_20: -129547313
+      tung_attack_1365x1103px_21: -1349299597
+      tung_attack_1365x1103px_22: -302389103
+      tung_attack_1365x1103px_23: -2108156372
+      tung_attack_1365x1103px_24: 1388476973
+      tung_attack_1365x1103px_25: -647588430
+      tung_attack_1365x1103px_26: -1577818476
+      tung_attack_1365x1103px_27: 550958854
+      tung_attack_1365x1103px_28: -667127338
+      tung_attack_1365x1103px_29: -2024908962
+      tung_attack_1365x1103px_3: -1228395681
+      tung_attack_1365x1103px_30: 857256614
+      tung_attack_1365x1103px_31: 447774628
+      tung_attack_1365x1103px_32: -1932589552
+      tung_attack_1365x1103px_33: 579183006
+      tung_attack_1365x1103px_34: -528994746
+      tung_attack_1365x1103px_35: -1236073460
+      tung_attack_1365x1103px_36: 1791308102
+      tung_attack_1365x1103px_37: -224302826
+      tung_attack_1365x1103px_38: -12115926
+      tung_attack_1365x1103px_39: 305109128
       tung_attack_1365x1103px_4: -3942880779154291189
-      tung_attack_1365x1103px_5: -5840455707261489988
-      tung_attack_1365x1103px_6: -8696579210592302903
+      tung_attack_1365x1103px_40: -686093219
+      tung_attack_1365x1103px_41: 735647587
+      tung_attack_1365x1103px_42: -2122246175
+      tung_attack_1365x1103px_43: -781740782
+      tung_attack_1365x1103px_44: 278869437
+      tung_attack_1365x1103px_45: -1972140468
+      tung_attack_1365x1103px_46: 1779918130
+      tung_attack_1365x1103px_5: 232753887
+      tung_attack_1365x1103px_6: 1450254713
       tung_attack_1365x1103px_7: -7884203070040831093
-      tung_attack_1365x1103px_8: 1536176427686393083
-      tung_attack_1365x1103px_9: 2083959365503746257
+      tung_attack_1365x1103px_8: -1132035923
+      tung_attack_1365x1103px_9: -1834670953
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
