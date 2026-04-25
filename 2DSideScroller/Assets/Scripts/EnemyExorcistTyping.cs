@@ -6,7 +6,8 @@ public class EnemyExorcistTyping : MonoBehaviour
 [SerializeField] private GameObject textBoxUI;
 [SerializeField] private TextMeshProUGUI wordText;
 [SerializeField] private Enemy enemy;
-
+[SerializeField] private string enemyWord = "SHADE";
+public string GetWord() => enemyWord;
     private int currentIndex;
 
     void Update()
@@ -24,17 +25,19 @@ public class EnemyExorcistTyping : MonoBehaviour
     textBoxUI.SetActive(true);
 
     HandleTyping();
+    Debug.Log(enemy.IsStunned());
 }
 
 void HandleTyping()
 {
+    
     foreach (char c in Input.inputString)
     {
         if (!char.IsLetter(c)) continue;
 
         char input = char.ToUpper(c);
 
-        string word = enemy.GetWord();
+        string word = GetWord();
         int progress = enemy.GetSavedProgress();
 
         // Prevent reading past word end
@@ -59,11 +62,13 @@ void HandleTyping()
     }
 
     UpdateText();
+    Debug.Log("Progress: " + enemy.GetSavedProgress());
+    Debug.Log("Input String: " + Input.inputString);
 }
 
     void CheckInput(char input)
     {
-        string word = enemy.GetWord();
+        string word = GetWord();
 
         if (input == word[currentIndex])
         {
@@ -85,13 +90,13 @@ void HandleTyping()
 
     void UpdateText()
     {
-        string word = enemy.GetWord();
+        string word = GetWord();
         int index = enemy.GetSavedProgress();
 
         string done = word.Substring(0, index);
         string remain = word.Substring(index);
 
-        wordText.text = "<color=RED>" + done + "</color>" + remain;
+        wordText.text = "<color=red>" + done + "</color>" + remain;
         wordText.gameObject.SetActive(true);
     }
 }

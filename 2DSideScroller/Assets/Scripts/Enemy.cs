@@ -58,14 +58,13 @@ public class Enemy : MonoBehaviour
     private float lastSeenTime;
     private Vector2 velocity;
 [Header("Typing Weakness")]
-[SerializeField] private string enemyWord = "SHADE";
 
 private int savedProgress = 0;
 private Vector2 savedVelocity;
 private bool isDisabled = false;
-    public string GetWord() => enemyWord;
-    public int GetSavedProgress() => savedProgress;
-    public void SetSavedProgress(int value)
+
+public int GetSavedProgress() => savedProgress;
+public void SetSavedProgress(int value)
 {
     savedProgress = value;
 }

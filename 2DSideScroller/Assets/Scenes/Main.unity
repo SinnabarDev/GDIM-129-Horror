@@ -474,6 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf33a908cb365eb44aa3989aa3519f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlashlightAim
+  flashbulbvol: {fileID: 0}
   flashbulb: {fileID: 479463339}
   isFacingRight: 1
   maxBattery: 5
@@ -2106,7 +2107,6 @@ MonoBehaviour:
   loseInterestTime: 4
   stunDuration: 3
   isStunned: 0
-  enemyWord: MEMEMEMEME
 --- !u!114 &1846076392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2122,6 +2122,7 @@ MonoBehaviour:
   textBoxUI: {fileID: 921371189}
   wordText: {fileID: 1121528266}
   enemy: {fileID: 1846076391}
+  enemyWord: tungtung
 --- !u!1 &2010081544
 GameObject:
   m_ObjectHideFlags: 0
@@ -2231,6 +2232,8 @@ MonoBehaviour:
   player: {fileID: 1182339553}
   smoothSpeed: 0.125
   offset: {x: 0, y: 0, z: 0}
+  leftLimit: -100
+  rightLimit: 100
 --- !u!114 &2010081549
 MonoBehaviour:
   m_ObjectHideFlags: 0
