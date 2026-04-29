@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f5cb7d8ef029d964db3fbd65bc857aa0
+guid: 19051ee2a28619643886f009801e4839
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -790895795640553854
-    second: ClassroomBG_0
+      213: -1842412735128918394
+    second: StairwayDown_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ClassroomBG_0
+      name: StairwayDown_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 20
         y: 0
-        width: 6500
-        height: 2160
+        width: 2360
+        height: 1903
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 28eae76d67c2605f0800000000000000
-      internalID: -790895795640553854
+      spriteID: 6862cf0016f6e66e0800000000000000
+      internalID: -1842412735128918394
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ClassroomBG_0: -790895795640553854
+      StairwayDown_0: -1842412735128918394
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

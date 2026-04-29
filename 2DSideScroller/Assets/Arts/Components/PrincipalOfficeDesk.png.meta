@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 51f0e77f84ea70e449c184c27088cf6b
+guid: ad546107885026247ae244e19c17214d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7811730958580518625
-    second: HallwayBase_0
+      213: -4682447192656639541
+    second: PrincipalOfficeDesk_0
+  - first:
+      213: 6136125924989101300
+    second: PrincipalOfficeDesk_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HallwayBase_0
+      name: PrincipalOfficeDesk_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 31
         y: 0
-        width: 6500
-        height: 2160
+        width: 653
+        height: 767
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +131,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1ee0d132be7d86c60800000000000000
-      internalID: 7811730958580518625
+      spriteID: bc90d22461b940fb0800000000000000
+      internalID: -4682447192656639541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PrincipalOfficeDesk_1
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 839
+        height: 834
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f46a08a406e72550800000000000000
+      internalID: 6136125924989101300
       vertices: []
       indices: 
       edges: []
@@ -148,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HallwayBase_0: 7811730958580518625
+      PrincipalOfficeDesk_0: -4682447192656639541
+      PrincipalOfficeDesk_1: 6136125924989101300
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

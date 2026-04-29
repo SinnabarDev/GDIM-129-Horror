@@ -124,10 +124,10 @@ TextureImporter:
         serializedVersion: 2
         x: 36
         y: 0
-        width: 597
-        height: 802
+        width: 1416
+        height: 1027
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -140,55 +140,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: ClassroomTeacherDesk_1
-      rect:
-        serializedVersion: 2
-        x: 471
-        y: 0
-        width: 967
-        height: 1011
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0b93b2334e3da8310800000000000000
-      internalID: 1408170810571176368
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ClassroomTeacherDesk_2
-      rect:
-        serializedVersion: 2
-        x: 1161
-        y: 599
-        width: 298
-        height: 176
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fd823c808ca8c3830800000000000000
-      internalID: 4052266356471703775
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c3e9fc62dd5552147be90a57d2a55828
     internalID: 0
     vertices: []
     indices: 

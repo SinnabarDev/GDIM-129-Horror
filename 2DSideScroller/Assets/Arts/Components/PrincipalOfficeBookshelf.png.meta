@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d6e1bae542edc744d8ac5f3957c844b8
+guid: 5cf9de9385020754e90322d85267662e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6190943582293514516
-    second: HallwayPillar_0
+      213: 1764680376325485739
+    second: PrincipalOfficeBookshelf_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HallwayPillar_0
+      name: PrincipalOfficeBookshelf_0
       rect:
         serializedVersion: 2
-        x: 33
+        x: 0
         y: 0
-        width: 1315
-        height: 2160
+        width: 390
+        height: 1725
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 419d6171366aae550800000000000000
-      internalID: 6190943582293514516
+      spriteID: ba4bbfcd3776d7810800000000000000
+      internalID: 1764680376325485739
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HallwayPillar_0: 6190943582293514516
+      PrincipalOfficeBookshelf_0: 1764680376325485739
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
