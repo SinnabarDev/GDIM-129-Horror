@@ -134,7 +134,8 @@ GameObject:
   - component: {fileID: 94261851}
   - component: {fileID: 94261850}
   - component: {fileID: 94261854}
-  - component: {fileID: 94261853}
+  - component: {fileID: 94261856}
+  - component: {fileID: 94261855}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -152,7 +153,7 @@ Animator:
   m_GameObject: {fileID: 94261844}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a2cadc359ab466340a50ce76dbc5a6e5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 13ac47c00e1122847a6c47812ddfef4f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -211,9 +212,9 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 305109128, guid: 46e8c32d9ba0ae64c8dbe3cc3151907d, type: 3}
+  m_Sprite: {fileID: -3939139728995933941, guid: cc25ce5020ee92c4fa6c6d04b693f752, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -232,8 +233,8 @@ Transform:
   m_GameObject: {fileID: 94261844}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.56, y: -3, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 44.68, y: -1.5, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2067510939}
@@ -311,7 +312,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!61 &94261853
+--- !u!114 &94261854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94261844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde9f990cd9ff8643b572351ea60700b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
+  animator: {fileID: 94261846}
+  HitBox: {fileID: 1377274345}
+--- !u!61 &94261855
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -345,32 +360,55 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.213377, y: -0.1930039}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 1.9}
-    oldSize: {x: 2.8500001, y: 2.6301525}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 22.39, y: 10.771457}
     newSize: {x: 2.8500001, y: 2.6301525}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4, y: 9.75}
+  m_Size: {x: 8.910606, y: 11.958931}
   m_EdgeRadius: 0
---- !u!114 &94261854
-MonoBehaviour:
+--- !u!70 &94261856
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94261844}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cde9f990cd9ff8643b572351ea60700b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
-  animator: {fileID: 94261846}
-  HitBox: {fileID: 1377274345}
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.66888, y: 2.0152588}
+  m_Size: {x: 17.366926, y: 4.099582}
+  m_Direction: 1
 --- !u!1 &183684280
 GameObject:
   m_ObjectHideFlags: 0
@@ -1746,7 +1784,7 @@ GameObject:
   - component: {fileID: 1377274346}
   - component: {fileID: 1377274347}
   m_Layer: 0
-  m_Name: BatHit
+  m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2578,9 +2616,9 @@ MonoBehaviour:
   m_ComponentVersion: 2
   m_LightType: 1
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.66
+  m_FalloffIntensity: 0.6
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 1.1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 000000001581d25dfff75a49
@@ -2599,8 +2637,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 48.19365, y: 10.395249, z: 0}
-    m_Extent: {x: 76.78225, y: 13.85715, z: 0}
+    m_Center: {x: 48.19435, y: 10.3952, z: 0}
+    m_Extent: {x: 79.78205, y: 16.8571, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -2608,7 +2646,7 @@ MonoBehaviour:
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 12
+  m_ShapeLightFalloffSize: 15
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
   - {x: 112.97632, y: 8.664295, z: 0}

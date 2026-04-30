@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &94261846
 Animator:
   serializedVersion: 7
@@ -2524,9 +2524,9 @@ MonoBehaviour:
   m_ComponentVersion: 2
   m_LightType: 1
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.66
+  m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 1.1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 000000001581d25dfff75a49
@@ -2545,8 +2545,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 48.19365, y: 10.395249, z: 0}
-    m_Extent: {x: 76.78225, y: 13.85715, z: 0}
+    m_Center: {x: 48.19435, y: 10.3952, z: 0}
+    m_Extent: {x: 79.78205, y: 16.8571, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -2554,7 +2554,7 @@ MonoBehaviour:
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 12
+  m_ShapeLightFalloffSize: 15
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
   - {x: 112.97632, y: 8.664295, z: 0}
