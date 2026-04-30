@@ -216,7 +216,7 @@ SpriteRenderer:
   m_MaskInteraction: 0
   m_Sprite: {fileID: -3939139728995933941, guid: cc25ce5020ee92c4fa6c6d04b693f752, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2.8500001, y: 2.6301525}
@@ -271,10 +271,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   showDebug: 0
   patrolSpeed: 1.5
-  chaseSpeed: 2
+  chaseSpeed: 4
   waypoints: []
   player: {fileID: 1129148132}
-  detectionRange: 5
+  detectionRange: 7
   obstacleMask:
     serializedVersion: 2
     m_Bits: 0
@@ -363,8 +363,8 @@ BoxCollider2D:
   m_Offset: {x: 0.213377, y: -0.1930039}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 22.39, y: 10.771457}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 19.380001, y: 12.35167}
     newSize: {x: 2.8500001, y: 2.6301525}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

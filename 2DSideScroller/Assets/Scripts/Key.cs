@@ -6,11 +6,14 @@ public sealed class Key : MonoBehaviour
     public enum KeyType
     {
         Regular = 0,
-        Final = 1
+        Final = 1,
     }
 
-    [SerializeField] private KeyType keyType = KeyType.Regular;
-    [SerializeField] private int keyId = -1;
+    [SerializeField]
+    private KeyType keyType = KeyType.Regular;
+
+    [SerializeField]
+    private int keyId = -1;
 
     public KeyType Type => keyType;
     public int KeyId => keyId;

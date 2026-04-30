@@ -1,23 +1,34 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using System.Collections.Generic;
 
 public class FlashlightAim : MonoBehaviour
 {
-    [SerializeField] private Light2D flashbulbvol; //this is the spot light source for flashlight
-    [SerializeField] private Light2D flashbulb; //this is the spot light source for flashlight
+    [SerializeField]
+    private Light2D flashbulbvol; //this is the spot light source for flashlight
+
+    [SerializeField]
+    private Light2D flashbulb; //this is the spot light source for flashlight
     public bool isFacingRight = true; //used as to define conditions for blocking backwards aiming
 
     private List<Enemy> enemiesInLight = new List<Enemy>();
 
     [Header("Battery")]
-    [SerializeField] private float maxBattery = 5f; //battery size
-    [SerializeField] private float batteryDrainRate = 1f; // 1 second = 1 battery
+    [SerializeField]
+    private float maxBattery = 5f; //battery size
+
+    [SerializeField]
+    private float batteryDrainRate = 1f; // 1 second = 1 battery
 
     [Header("Mash Recovery")]
-    [SerializeField] private float mashTimeRequired = 4f; //time window to mash
-    [SerializeField] private float cooldownTime = 2f; //time before you can try again
-    [SerializeField] private int mashRequiredCount = 20; //number of mashers for successful recovery
+    [SerializeField]
+    private float mashTimeRequired = 4f; //time window to mash
+
+    [SerializeField]
+    private float cooldownTime = 2f; //time before you can try again
+
+    [SerializeField]
+    private int mashRequiredCount = 20; //number of mashers for successful recovery
 
     private bool isDrained = false; //empty battery state
     private bool isRecovering = false; //currently in recovery state
@@ -29,12 +40,15 @@ public class FlashlightAim : MonoBehaviour
     private float currentBattery; //current battery level
     private bool isFlashlightOn = true; //toggle flashlight on/off
     private PolygonCollider2D detectray;
+
     public enum BeamMode
     {
-        Wide,     // normal state to slow
-        Focused   // expending state to stun
+        Wide, // normal state to slow
+        Focused, // expending state to stun
     }
+
     private BeamMode currentMode = BeamMode.Wide;
+
     void Awake()
     {
         detectray = GetComponent<PolygonCollider2D>();
@@ -55,24 +69,23 @@ public class FlashlightAim : MonoBehaviour
             UpdateFlashlightState();
         }
         if (Input.GetMouseButtonDown(1) && isFlashlightOn) // toggle on click to focus beam
-        {   
+        {
             UnityEngine.Debug.Log("Right Mouse Button Pressed");
             if (!isDrained && !isRecovering)
             {
-            currentMode = currentMode == BeamMode.Wide 
-                ? BeamMode.Focused 
-                : BeamMode.Wide;
-
-            }    
+                currentMode = currentMode == BeamMode.Wide ? BeamMode.Focused : BeamMode.Wide;
+            }
         }
         UpdateBeamVisuals();
         ApplyEffectsToEnemies();
         RechargeMash();
     }
+
     public void SetFacing(bool facingRight)
     {
         isFacingRight = facingRight;
     }
+
     void AimFlashlight()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -93,12 +106,10 @@ public class FlashlightAim : MonoBehaviour
         if (!isFacingRight && direction.x > 0)
             direction = Vector2.left;
 
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg-90;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
 
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
-
-
 
     private void OnTriggerEnter2D(Collider2D collision) //adding enemys in the light to the list for effects application
     {
@@ -128,6 +139,7 @@ public class FlashlightAim : MonoBehaviour
             }
         }
     }
+
     void UpdateBeamVisuals() //visual transition between wide and focused beam math
     {
         //if (currentMode == BeamMode.Focused)
@@ -145,30 +157,43 @@ public class FlashlightAim : MonoBehaviour
         float targetOuter = currentMode == BeamMode.Focused ? 25f : 45f;
         float targetInner = currentMode == BeamMode.Focused ? 10f : 25f;
 
-        flashbulb.pointLightOuterAngle = Mathf.Lerp(flashbulb.pointLightOuterAngle, targetOuter, Time.deltaTime * 10f);
-        flashbulb.pointLightInnerAngle = Mathf.Lerp(flashbulb.pointLightInnerAngle, targetInner, Time.deltaTime * 3f);
-        flashbulb.intensity = Mathf.Lerp(flashbulb.intensity, currentMode == BeamMode.Focused ? 1.25f : 1f, Time.deltaTime * 0.1f);
+        flashbulb.pointLightOuterAngle = Mathf.Lerp(
+            flashbulb.pointLightOuterAngle,
+            targetOuter,
+            Time.deltaTime * 10f
+        );
+        flashbulb.pointLightInnerAngle = Mathf.Lerp(
+            flashbulb.pointLightInnerAngle,
+            targetInner,
+            Time.deltaTime * 3f
+        );
+        flashbulb.intensity = Mathf.Lerp(
+            flashbulb.intensity,
+            currentMode == BeamMode.Focused ? 1.25f : 1f,
+            Time.deltaTime * 0.1f
+        );
     }
 
-void ApplyEffectsToEnemies()
-{
-    foreach (Enemy enemy in enemiesInLight)
+    void ApplyEffectsToEnemies()
     {
-        if (enemy == null) continue;
-
-        switch (currentMode)
+        foreach (Enemy enemy in enemiesInLight)
         {
-            case BeamMode.Wide:
-                enemy.ApplySlow(0.5f);
-                break;
+            if (enemy == null)
+                continue;
 
-            case BeamMode.Focused:
-                enemy.ApplyStun(0.7f);
-                break;
+            switch (currentMode)
+            {
+                case BeamMode.Wide:
+                    enemy.ApplySlow(0.5f);
+                    break;
+
+                case BeamMode.Focused:
+                    enemy.ApplyStun(0.7f);
+                    break;
+            }
         }
+        //enemiesInLight.RemoveAll(e => e == null);
     }
-    //enemiesInLight.RemoveAll(e => e == null);
-}
 
     void BatterySystem() //drain battery when in focused mode, trigger drain state and visuals
     {
@@ -191,7 +216,8 @@ void ApplyEffectsToEnemies()
 
     void RechargeMash() //mash to recharge system, trigger on empty battery, start timer and count mashes, if successful recharge if not start cooldown
     {
-        if (!isDrained) return;
+        if (!isDrained)
+            return;
 
         if (cooldownTimer > 0)
         {
@@ -234,6 +260,7 @@ void ApplyEffectsToEnemies()
 
         recoveryStarted = false;
     }
+
     void RechargeBattery() //successful recharge, reset states and visuals
     {
         UnityEngine.Debug.Log("Battery Recharged!");
@@ -264,15 +291,16 @@ void ApplyEffectsToEnemies()
 
         if (!active)
         {
-        // clear all enemies when light turns off
+            // clear all enemies when light turns off
             foreach (Enemy enemy in enemiesInLight)
-{
-    if (enemy == null) continue;
+            {
+                if (enemy == null)
+                    continue;
 
-    enemy.ClearLightEffects();
-}
+                enemy.ClearLightEffects();
+            }
 
-enemiesInLight.Clear();
+            enemiesInLight.Clear();
         }
     }
 }

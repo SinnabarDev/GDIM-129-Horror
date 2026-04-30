@@ -39,17 +39,18 @@ public class PlayerMovement1 : MonoBehaviour
             Flip();
         }
     }
+
     void Flip()
-{
-    isFacingRight = !isFacingRight;
+    {
+        isFacingRight = !isFacingRight;
 
-    // Multiply the player's x local scale by -1.
-    Vector3 theScale = transform.localScale;
-    theScale.x *= -1;
-    transform.localScale = theScale;
+        // Multiply the player's x local scale by -1.
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
 
-    //flashlight.SetFacing(isFacingRight); // 👈 notify flashlight
-}
+        //flashlight.SetFacing(isFacingRight); // 👈 notify flashlight
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

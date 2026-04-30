@@ -11,15 +11,18 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     public bool isFacingRight = true;
 
-    [SerializeField] private FlashlightAim flashlightscript;
-    [SerializeField] private Hand handscript;
+    [SerializeField]
+    private FlashlightAim flashlightscript;
+
+    [SerializeField]
+    private Hand handscript;
 
     private Animator animator;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-
     }
 
     void Update()
@@ -46,18 +49,19 @@ public class PlayerMovement : MonoBehaviour
             Flip();
         }
     }
+
     void Flip()
-{
-    isFacingRight = !isFacingRight;
+    {
+        isFacingRight = !isFacingRight;
 
-    // Multiply the player's x local scale by -1.
-    Vector3 theScale = transform.localScale;
-    theScale.x *= -1;
-    transform.localScale = theScale;
+        // Multiply the player's x local scale by -1.
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
 
-    flashlightscript.SetFacing(isFacingRight); // 👈 notify flashlight
-    handscript.SetFacing(isFacingRight);
-}
+        flashlightscript.SetFacing(isFacingRight); // 👈 notify flashlight
+        handscript.SetFacing(isFacingRight);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

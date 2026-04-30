@@ -1,19 +1,33 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class HideSpotLogic : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private float interactionDistance = 2f;
-    [SerializeField] private float hideDuration = 5f;
-    [SerializeField] private float spawnOffset = 1.5f; // Distance to spawn left or right
+    [SerializeField]
+    private float interactionDistance = 2f;
+
+    [SerializeField]
+    private float hideDuration = 5f;
+
+    [SerializeField]
+    private float spawnOffset = 1.5f; // Distance to spawn left or right
 
     [Header("References")]
-    [SerializeField] private Transform player;
-    [SerializeField] private GameObject interactUI;
-    [SerializeField] private GameObject timerUI;
-    [SerializeField] private TextMeshProUGUI timerText;
-     [SerializeField] private MonoBehaviour playerControlScript;
+    [SerializeField]
+    private Transform player;
+
+    [SerializeField]
+    private GameObject interactUI;
+
+    [SerializeField]
+    private GameObject timerUI;
+
+    [SerializeField]
+    private TextMeshProUGUI timerText;
+
+    [SerializeField]
+    private MonoBehaviour playerControlScript;
     public static bool isPlayerHiding = false;
 
     private float currentHideTimer = 0f;
@@ -21,9 +35,11 @@ public class HideSpotLogic : MonoBehaviour
     private Collider2D[] playerColliders;
     private Rigidbody2D playerRb;
 
-    [SerializeField] private GameObject flashlightObject;
-[SerializeField] private GameObject visionObject;
+    [SerializeField]
+    private GameObject flashlightObject;
 
+    [SerializeField]
+    private GameObject visionObject;
 
     void Start()
     {
@@ -32,7 +48,6 @@ public class HideSpotLogic : MonoBehaviour
             playerSpriteRenderers = player.GetComponentsInChildren<SpriteRenderer>(true);
             playerColliders = player.GetComponentsInChildren<Collider2D>(true);
             playerRb = player.GetComponent<Rigidbody2D>();
-
         }
         interactUI.SetActive(false);
         timerUI.SetActive(false);
@@ -40,7 +55,8 @@ public class HideSpotLogic : MonoBehaviour
 
     void Update()
     {
-        if (player == null) return;
+        if (player == null)
+            return;
 
         if (isPlayerHiding)
         {
@@ -105,10 +121,10 @@ public class HideSpotLogic : MonoBehaviour
             playerRb.simulated = false;
         }
         if (flashlightObject != null)
-    flashlightObject.SetActive(false);
+            flashlightObject.SetActive(false);
 
-if (visionObject != null)
-    visionObject.SetActive(false);
+        if (visionObject != null)
+            visionObject.SetActive(false);
 
         currentHideTimer = hideDuration;
     }
@@ -135,7 +151,8 @@ if (visionObject != null)
         int randomDirection = Random.Range(0, 2) == 0 ? -1 : 1;
 
         // Calculate the new position based on the closet's position plus the offset
-        Vector3 spawnPosition = transform.position + new Vector3(randomDirection * spawnOffset, 0f, 0f);
+        Vector3 spawnPosition =
+            transform.position + new Vector3(randomDirection * spawnOffset, 0f, 0f);
 
         // Move the player and reactivate
         player.position = spawnPosition;
@@ -147,7 +164,7 @@ if (visionObject != null)
             playerRb.linearVelocity = Vector2.zero;
             playerRb.angularVelocity = 0f;
         }
-        
+
         if (playerSpriteRenderers != null)
         {
             foreach (SpriteRenderer sr in playerSpriteRenderers)
@@ -169,9 +186,9 @@ if (visionObject != null)
             playerControlScript.enabled = true;
         }
         if (flashlightObject != null)
-    flashlightObject.SetActive(true);
+            flashlightObject.SetActive(true);
 
-if (visionObject != null)
-    visionObject.SetActive(true);
+        if (visionObject != null)
+            visionObject.SetActive(true);
     }
 }

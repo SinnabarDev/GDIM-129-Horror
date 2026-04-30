@@ -10,39 +10,56 @@ public class Enemy : MonoBehaviour
     private enum State
     {
         Patrol,
-        Chase
+        Chase,
     }
 
     [Header("Debug")]
-    [SerializeField] private bool showDebug = false;
+    [SerializeField]
+    private bool showDebug = false;
     private float debugTimer;
 
     [Header("Movement")]
-    [SerializeField] private float patrolSpeed = 1.5f;
-    [SerializeField] private float chaseSpeed = 2f;
+    [SerializeField]
+    private float patrolSpeed = 1.5f;
+
+    [SerializeField]
+    private float chaseSpeed = 2f;
 
     [Header("Patrol")]
-    [SerializeField] private List<Transform> waypoints;
+    [SerializeField]
+    private List<Transform> waypoints;
 
     [Header("Detection")]
-    [SerializeField] private Transform player;
-    [SerializeField] private float detectionRange = 5f;
-    [SerializeField] private LayerMask obstacleMask;
+    [SerializeField]
+    private Transform player;
+
+    [SerializeField]
+    private float detectionRange = 5f;
+
+    [SerializeField]
+    private LayerMask obstacleMask;
 
     [Header("LOS Surprise Aggro")]
-    [Range(0f, 2f)]
-    [SerializeField] private float surpriseChance = 0.3f;
+    [Range(0f, 1.5f)]
+    [SerializeField]
+    private float surpriseChance = 0.3f;
 
     [Header("Lose Interest")]
-    [SerializeField] private float loseInterestTime = 3f;
+    [SerializeField]
+    private float loseInterestTime = 3f;
 
     [Header("Attack")]
-[SerializeField] private float attackRange = 3f;
-[SerializeField] private float attackCooldown = 20f;
-[SerializeField] private Animator animator;
+    [SerializeField]
+    private float attackRange = 3f;
 
-private float attackTimer;
-private bool isAttacking;
+    [SerializeField]
+    private float attackCooldown = 20f;
+
+    [SerializeField]
+    private Animator animator;
+
+    private float attackTimer;
+    private bool isAttacking;
 
     [Header("Visuals")]
     private SpriteRenderer sr;
@@ -52,7 +69,8 @@ private bool isAttacking;
     // =========================
     private float moveDebuff = 1f;
 
-    [SerializeField] private float stunDuration = 2f;
+    [SerializeField]
+    private float stunDuration = 2f;
     private float stunTimer = 0f;
     public bool isStunned = false;
 
@@ -65,19 +83,20 @@ private bool isAttacking;
     private int waypointIndex = 0;
     private float lastSeenTime;
     private Vector2 velocity;
-[Header("Typing Weakness")]
 
-private int savedProgress = 0;
-private Vector2 savedVelocity;
-private bool isDisabled = false;
+    [Header("Typing Weakness")]
+    private int savedProgress = 0;
+    private Vector2 savedVelocity;
+    private bool isDisabled = false;
 
-public int GetSavedProgress() => savedProgress;
-public void SetSavedProgress(int value)
-{
-    savedProgress = value;
-}
-public bool IsStunned() => isStunned;
+    public int GetSavedProgress() => savedProgress;
 
+    public void SetSavedProgress(int value)
+    {
+        savedProgress = value;
+    }
+
+    public bool IsStunned() => isStunned;
 
     // =========================
     // INIT
@@ -88,7 +107,6 @@ public bool IsStunned() => isStunned;
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
 
-
         rb.freezeRotation = true;
     }
 
@@ -97,23 +115,25 @@ public bool IsStunned() => isStunned;
     // =========================
     private void FixedUpdate()
     {
-        if (player == null) return;
+        if (player == null)
+            return;
         // =========================
         // ATTACKING
         // =========================
-         attackTimer -= Time.fixedDeltaTime;
-         if (isAttacking)
-{
-    rb.linearVelocity = Vector2.zero;
-    return;
-}
+        attackTimer -= Time.fixedDeltaTime;
+        if (isAttacking)
+        {
+            rb.linearVelocity = Vector2.zero;
+            animator.SetBool("isWalking", false);
+            return;
+        }
         // =========================
         // STUN
         // =========================
         if (isStunned)
         {
             stunTimer -= Time.fixedDeltaTime;
-
+            animator.SetBool("isWalking", false);
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
 
             if (stunTimer <= 0f)
@@ -124,10 +144,11 @@ public bool IsStunned() => isStunned;
             return;
         }
         if (isDisabled)
-{
-    rb.linearVelocity = Vector2.zero;
-    return;
-}
+        {
+            rb.linearVelocity = Vector2.zero;
+            animator.SetBool("isWalking", false);
+            return;
+        }
 
         // =========================
         // RECOVER SLOW
@@ -144,10 +165,10 @@ public bool IsStunned() => isStunned;
         // =========================
         // STATE LOGIC
         // =========================
-if (HideSpotLogic.isPlayerHiding)
-{
-    state = State.Patrol;
-}
+        if (HideSpotLogic.isPlayerHiding)
+        {
+            state = State.Patrol;
+        }
         if (inRange && !HideSpotLogic.isPlayerHiding)
         {
             state = State.Chase;
@@ -179,13 +200,11 @@ if (HideSpotLogic.isPlayerHiding)
 
         if (state == State.Patrol)
         {
-            if (waypoints.Count == 0) return;
+            if (waypoints.Count == 0)
+                return;
 
             // PLATFORMER PATROL (X ONLY)
-            target = new Vector2(
-                waypoints[waypointIndex].position.x,
-                transform.position.y
-            );
+            target = new Vector2(waypoints[waypointIndex].position.x, transform.position.y);
 
             speed = patrolSpeed;
 
@@ -195,21 +214,18 @@ if (HideSpotLogic.isPlayerHiding)
             }
         }
         else
-{
-    float distToPlayer =
-        Vector2.Distance(transform.position, player.position);
+        {
+            float distToPlayer = Vector2.Distance(transform.position, player.position);
 
-    if (distToPlayer <= attackRange &&
-        attackTimer <= 0f &&
-        !isAttacking)
-    {
-        Attack();
-        return;
-    }
+            if (distToPlayer <= attackRange && attackTimer <= 0f && !isAttacking)
+            {
+                Attack();
+                return;
+            }
 
-    target = player.position;
-    speed = chaseSpeed;
-}
+            target = player.position;
+            speed = chaseSpeed;
+        }
 
         // =========================
         // MOVEMENT
@@ -221,6 +237,10 @@ if (HideSpotLogic.isPlayerHiding)
 
         // PLATFORMER MOVE X ONLY
         rb.linearVelocity = new Vector2(velocity.x, rb.linearVelocity.y);
+        if (animator != null)
+        {
+            animator.SetBool("isWalking", Mathf.Abs(velocity.x) > 0.05f);
+        }
 
         // =========================
         // FLIP
@@ -237,11 +257,11 @@ if (HideSpotLogic.isPlayerHiding)
             debugTimer = 0.25f;
 
             Debug.Log(
-                $"[{gameObject.name}] " +
-                $"State:{state} | " +
-                $"Waypoint:{waypointIndex} | " +
-                $"Slow:{moveDebuff:F2} | " +
-                $"Stunned:{isStunned}"
+                $"[{gameObject.name}] "
+                    + $"State:{state} | "
+                    + $"Waypoint:{waypointIndex} | "
+                    + $"Slow:{moveDebuff:F2} | "
+                    + $"Stunned:{isStunned}"
             );
         }
     }
@@ -270,24 +290,26 @@ if (HideSpotLogic.isPlayerHiding)
 
         return hit.collider == null || hit.collider.transform == player;
     }
+
     // =========================
     // ATTACK
     // =========================
     private void Attack()
-{
-    Debug.Log("ATTACK CALLED");
-    isAttacking = true;
-    attackTimer = attackCooldown;
+    {
+        Debug.Log("ATTACK CALLED");
+        isAttacking = true;
+        attackTimer = attackCooldown;
 
-    rb.linearVelocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
 
-    if (animator != null)
-        animator.SetTrigger("Attack");
-}
-public void EndAttack()
-{
-    isAttacking = false;
-}
+        if (animator != null)
+            animator.SetTrigger("Attack");
+    }
+
+    public void EndAttack()
+    {
+        isAttacking = false;
+    }
 
     // =========================
     // FLASHLIGHT EFFECTS
@@ -314,37 +336,40 @@ public void EndAttack()
         moveDebuff = 1f;
     }
 
-public void TriggerDisable()
-{
-    if (!isDisabled)
-        StartCoroutine(DisableRoutine());
-}
-IEnumerator DisableRoutine()
-{
-    isDisabled = true;
+    public void TriggerDisable()
+    {
+        if (!isDisabled)
+            StartCoroutine(DisableRoutine());
+    }
 
-    // freeze movement
-    rb.linearVelocity = Vector2.zero;
-    rb.angularVelocity = 0f;
+    IEnumerator DisableRoutine()
+    {
+        isDisabled = true;
 
-    // switch to KINEMATIC (safe)
-    rb.bodyType = RigidbodyType2D.Kinematic;
+        // freeze movement
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0f;
 
-    sr.enabled = false;
+        // switch to KINEMATIC (safe)
+        rb.bodyType = RigidbodyType2D.Kinematic;
 
-    Collider2D col = GetComponent<Collider2D>();
-    if (col != null) col.enabled = false;
+        sr.enabled = false;
 
-    yield return new WaitForSeconds(Random.Range(10f, 15f));
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null)
+            col.enabled = false;
 
-    // restore physics
-    rb.bodyType = RigidbodyType2D.Dynamic;
+        yield return new WaitForSeconds(Random.Range(10f, 15f));
 
-    sr.enabled = true;
+        // restore physics
+        rb.bodyType = RigidbodyType2D.Dynamic;
 
-    if (col != null) col.enabled = true;
+        sr.enabled = true;
 
-    savedProgress = 0;
-    isDisabled = false;
-}
+        if (col != null)
+            col.enabled = true;
+
+        savedProgress = 0;
+        isDisabled = false;
+    }
 }
