@@ -15,11 +15,6 @@ public class EnemyAttack : MonoBehaviour
     // Update is called once per frame
     void Update() { }
 
-    public void Attack()
-    {
-        animator.SetTrigger("Attack");
-    }
-
     public void EnableHitBox()
     {
         HitBox.SetActive(true);

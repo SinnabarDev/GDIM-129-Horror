@@ -98,6 +98,9 @@ public class Enemy : MonoBehaviour
 
     public bool IsStunned() => isStunned;
 
+    private float postAttackPause = 0.5f;
+    private float postAttackTimer;
+
     // =========================
     // INIT
     // =========================
@@ -122,6 +125,14 @@ public class Enemy : MonoBehaviour
         // =========================
         attackTimer -= Time.fixedDeltaTime;
         if (isAttacking)
+        {
+            rb.linearVelocity = Vector2.zero;
+            animator.SetBool("isWalking", false);
+            return;
+        }
+        postAttackTimer -= Time.fixedDeltaTime;
+
+        if (postAttackTimer > 0f)
         {
             rb.linearVelocity = Vector2.zero;
             animator.SetBool("isWalking", false);
@@ -309,6 +320,7 @@ public class Enemy : MonoBehaviour
     public void EndAttack()
     {
         isAttacking = false;
+        postAttackTimer = postAttackPause;
     }
 
     // =========================
@@ -346,28 +358,41 @@ public class Enemy : MonoBehaviour
     {
         isDisabled = true;
 
-        // freeze movement
+        isAttacking = false;
+        isStunned = false;
+
         rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0f;
 
-        // switch to KINEMATIC (safe)
         rb.bodyType = RigidbodyType2D.Kinematic;
 
-        sr.enabled = false;
+        // Disable animator
+        if (animator != null)
+            animator.enabled = false;
 
-        Collider2D col = GetComponent<Collider2D>();
-        if (col != null)
-            col.enabled = false;
+        // Disable all sprites
+        SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
+        foreach (SpriteRenderer s in sprites)
+            s.enabled = false;
+
+        // Disable all colliders
+        Collider2D[] cols = GetComponentsInChildren<Collider2D>();
+        foreach (Collider2D c in cols)
+            c.enabled = false;
 
         yield return new WaitForSeconds(Random.Range(10f, 15f));
 
-        // restore physics
         rb.bodyType = RigidbodyType2D.Dynamic;
 
-        sr.enabled = true;
+        // Re-enable animator
+        if (animator != null)
+            animator.enabled = true;
 
-        if (col != null)
-            col.enabled = true;
+        foreach (SpriteRenderer s in sprites)
+            s.enabled = true;
+
+        foreach (Collider2D c in cols)
+            c.enabled = true;
 
         savedProgress = 0;
         isDisabled = false;

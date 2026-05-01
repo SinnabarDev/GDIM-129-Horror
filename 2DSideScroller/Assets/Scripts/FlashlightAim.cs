@@ -70,7 +70,6 @@ public class FlashlightAim : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1) && isFlashlightOn) // toggle on click to focus beam
         {
-            UnityEngine.Debug.Log("Right Mouse Button Pressed");
             if (!isDrained && !isRecovering)
             {
                 currentMode = currentMode == BeamMode.Wide ? BeamMode.Focused : BeamMode.Wide;
@@ -113,7 +112,6 @@ public class FlashlightAim : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) //adding enemys in the light to the list for effects application
     {
-        Debug.Log("ENTERED LIGHT: " + collision.name);
         if (collision.CompareTag("Enemy"))
         {
             Enemy enemy = collision.GetComponent<Enemy>();
@@ -127,7 +125,6 @@ public class FlashlightAim : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision) //removing enemys from the list when they exit the light
     {
-        Debug.Log("EXITED LIGHT: " + collision.name);
         if (collision.CompareTag("Enemy"))
         {
             Enemy enemy = collision.GetComponent<Enemy>();

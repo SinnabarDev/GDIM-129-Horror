@@ -63,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 150
+  spritePixelsToUnits: 125
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -128,12 +128,12 @@ TextureImporter:
       name: tralala_run_3023x2144px_0
       rect:
         serializedVersion: 2
-        x: 132
-        y: 76
-        width: 2647
-        height: 1985
-      alignment: 9
-      pivot: {x: 0.5, y: 0.49}
+        x: 361
+        y: 60
+        width: 2490
+        height: 1982
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -150,12 +150,12 @@ TextureImporter:
       name: tralala_run_3023x2144px_1
       rect:
         serializedVersion: 2
-        x: 3148
-        y: 51
-        width: 2783
-        height: 1926
+        x: 3149
+        y: 265
+        width: 2770
+        height: 1479
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -172,12 +172,12 @@ TextureImporter:
       name: tralala_run_3023x2144px_2
       rect:
         serializedVersion: 2
-        x: 6140
+        x: 6145
         y: 174
         width: 2830
         height: 1603
-      alignment: 9
-      pivot: {x: 0.5, y: 0.6}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -194,12 +194,12 @@ TextureImporter:
       name: tralala_run_3023x2144px_3
       rect:
         serializedVersion: 2
-        x: 9196
-        y: 261
-        width: 2800
-        height: 1534
-      alignment: 9
-      pivot: {x: 0.5, y: 0.6}
+        x: 9175
+        y: 51
+        width: 2792
+        height: 1881
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -216,12 +216,12 @@ TextureImporter:
       name: tralala_run_3023x2144px_4
       rect:
         serializedVersion: 2
-        x: 12264
-        y: 60
-        width: 2490
-        height: 1982
-      alignment: 9
-      pivot: {x: 0.5, y: 0.48}
+        x: 12336
+        y: 76
+        width: 2647
+        height: 1985
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -238,7 +238,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 431011764ef02a1439e320d74345ee1c
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 

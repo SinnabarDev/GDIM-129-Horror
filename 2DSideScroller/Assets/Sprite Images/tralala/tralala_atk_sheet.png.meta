@@ -96,7 +96,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -164,12 +164,12 @@ TextureImporter:
       name: tralala_atk_sheet_0
       rect:
         serializedVersion: 2
-        x: 73
-        y: 5586
-        width: 1854
-        height: 1183
-      alignment: 9
-      pivot: {x: 0.51, y: 0.5}
+        x: 603
+        y: 5602
+        width: 1334
+        height: 1589
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -186,10 +186,10 @@ TextureImporter:
       name: tralala_atk_sheet_1
       rect:
         serializedVersion: 2
-        x: 2785
-        y: 5576
-        width: 1873
-        height: 1393
+        x: 3122
+        y: 5607
+        width: 1452
+        height: 1580
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,12 +208,12 @@ TextureImporter:
       name: tralala_atk_sheet_2
       rect:
         serializedVersion: 2
-        x: 5450
-        y: 5607
-        width: 1452
-        height: 1580
+        x: 5366
+        y: 5576
+        width: 1873
+        height: 1393
       alignment: 9
-      pivot: {x: 0.5, y: 0.4}
+      pivot: {x: 0.5, y: 0.55}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -230,12 +230,12 @@ TextureImporter:
       name: tralala_atk_sheet_3
       rect:
         serializedVersion: 2
-        x: 8087
-        y: 5602
-        width: 1334
-        height: 1589
+        x: 8097
+        y: 5586
+        width: 1854
+        height: 1183
       alignment: 9
-      pivot: {x: 0.5, y: 0.4}
+      pivot: {x: 0.5, y: 0.62}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -249,37 +249,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tralala_atk_sheet_5
-      rect:
-        serializedVersion: 2
-        x: 49
-        y: 4215
-        width: 2239
-        height: 1077
-      alignment: 8
-      pivot: {x: 1, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a537aabe682faa6d0800000000000000
-      internalID: -2978301542258805926
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: tralala_atk_sheet_6
       rect:
         serializedVersion: 2
-        x: 2796
-        y: 3744
-        width: 2178
-        height: 1465
+        x: 2975
+        y: 3746
+        width: 1859
+        height: 1331
       alignment: 9
-      pivot: {x: 0.4, y: 0.4}
+      pivot: {x: 0.5, y: 0.58}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -296,12 +274,12 @@ TextureImporter:
       name: tralala_atk_sheet_7
       rect:
         serializedVersion: 2
-        x: 5190
-        y: 3746
-        width: 1859
-        height: 1331
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 5050
+        y: 3744
+        width: 2178
+        height: 1465
+      alignment: 9
+      pivot: {x: 0.6, y: 0.45}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -315,15 +293,37 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
+      name: tralala_atk_sheet_8
+      rect:
+        serializedVersion: 2
+        x: 7736
+        y: 4215
+        width: 2239
+        height: 1077
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3620888300679d1f0800000000000000
+      internalID: -1019654097302191517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: tralala_atk_sheet_9
       rect:
         serializedVersion: 2
-        x: 7674
+        x: 394
         y: 3731
         width: 1956
         height: 1051
       alignment: 9
-      pivot: {x: 0.5, y: 0.61}
+      pivot: {x: 0.5, y: 0.7}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -340,12 +340,12 @@ TextureImporter:
       name: tralala_atk_sheet_10
       rect:
         serializedVersion: 2
-        x: 267
-        y: 1876
-        width: 1959
-        height: 1789
-      alignment: 9
-      pivot: {x: 0.5, y: 0.36}
+        x: 292
+        y: 1925
+        width: 2060
+        height: 1241
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -359,10 +359,32 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
+      name: tralala_atk_sheet_11
+      rect:
+        serializedVersion: 2
+        x: 2801
+        y: 1904
+        width: 2099
+        height: 1625
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cc6ee50879e00160800000000000000
+      internalID: 6989843323383868611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: tralala_atk_sheet_12
       rect:
         serializedVersion: 2
-        x: 2797
+        x: 5400
         y: 1855
         width: 1827
         height: 1751
@@ -381,37 +403,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tralala_atk_sheet_13
-      rect:
-        serializedVersion: 2
-        x: 5124
-        y: 1904
-        width: 2099
-        height: 1625
-      alignment: 9
-      pivot: {x: 0.5, y: 0.4}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c3c5e0727a7a43fa0800000000000000
-      internalID: -5821844081926579140
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: tralala_atk_sheet_14
       rect:
         serializedVersion: 2
-        x: 7672
-        y: 1925
-        width: 2060
-        height: 1241
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 7798
+        y: 1876
+        width: 1959
+        height: 1789
+      alignment: 9
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -428,7 +428,7 @@ TextureImporter:
       name: tralala_atk_sheet_16
       rect:
         serializedVersion: 2
-        x: 31
+        x: 8055
         y: 30
         width: 1938
         height: 1235
@@ -450,7 +450,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 23a34489d34fd5d4681eda0465604f8f
+    spriteID: d69a7ff1680ebad44a778e18d1326169
     internalID: 0
     vertices: []
     indices: 
@@ -469,7 +469,6 @@ TextureImporter:
       tralala_atk_sheet_14: 1890644807465360498
       tralala_atk_sheet_15: -8861307765774805921
       tralala_atk_sheet_16: -3939139728995933941
-      tralala_atk_sheet_17: -1984445833
       tralala_atk_sheet_2: 4198177646916744694
       tralala_atk_sheet_3: 1276246269112904583
       tralala_atk_sheet_4: -6442528661527798470
