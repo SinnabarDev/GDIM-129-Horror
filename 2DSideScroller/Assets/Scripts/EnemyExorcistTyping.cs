@@ -72,7 +72,6 @@ public class EnemyExorcistTyping : MonoBehaviour
 
         UpdateText();
         Debug.Log("Progress: " + enemy.GetSavedProgress());
-        Debug.Log("Input String: " + Input.inputString);
     }
 
     void CheckInput(char input)

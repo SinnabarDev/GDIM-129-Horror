@@ -103,10 +103,21 @@ public class SharkSpecial : MonoBehaviour
     private IEnumerator ParabolicJump()
     {
         Vector3 start = transform.position;
-
-        Vector3 end =
-            savedTarget
-            + new Vector3(Random.Range(-randomLandingX, randomLandingX), landingYOffset, 0f);
+        Vector3 end;
+        if (savedTarget.x - start.x <= -0.01f)
+        {
+            end = savedTarget + new Vector3(Random.Range(1f, randomLandingX), landingYOffset, 0f);
+        }
+        else if (savedTarget.x - start.x >= 0.01f)
+        {
+            end = savedTarget + new Vector3(Random.Range(-randomLandingX, -1f), landingYOffset, 0f);
+        }
+        else
+        {
+            end =
+                savedTarget
+                + new Vector3(Random.Range(-randomLandingX, randomLandingX), landingYOffset, 0f);
+        }
 
         float timer = 0f;
 

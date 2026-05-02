@@ -2108,9 +2108,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.09902787, y: -0.43961126}
-      - {x: -1.4936793, y: 6.828909}
-      - {x: 1.5161967, y: 6.846136}
+    - - {x: 0.0002791239, y: -0.0008601919}
+      - {x: -1.2390833, y: 12.394577}
+      - {x: 0.9804152, y: 12.385101}
   m_UseDelaunayMesh: 1
 --- !u!114 &1646034775
 MonoBehaviour:
@@ -2483,7 +2483,7 @@ EdgeCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.1
   m_Points:
   - {x: 112.91193, y: 8.166608}
   - {x: -16.974081, y: 8.037613}
