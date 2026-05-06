@@ -109,7 +109,6 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-
         rb.freezeRotation = true;
     }
 
@@ -126,7 +125,6 @@ public class Enemy : MonoBehaviour
         attackTimer -= Time.fixedDeltaTime;
         if (isAttacking)
         {
-            rb.linearVelocity = Vector2.zero;
             animator.SetBool("isWalking", false);
             return;
         }
