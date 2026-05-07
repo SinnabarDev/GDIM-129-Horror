@@ -368,6 +368,14 @@ public class Enemy : MonoBehaviour
         if (animator != null)
             animator.enabled = false;
 
+        // Disable audio
+        AudioSource[] audios = GetComponentsInChildren<AudioSource>();
+        foreach (AudioSource a in audios)
+        {
+            a.Stop();
+            a.enabled = false;
+        }
+
         // Disable all sprites
         SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
         foreach (SpriteRenderer s in sprites)
@@ -385,6 +393,10 @@ public class Enemy : MonoBehaviour
         // Re-enable animator
         if (animator != null)
             animator.enabled = true;
+
+        // Re-enable audio
+        foreach (AudioSource a in audios)
+            a.enabled = true;
 
         foreach (SpriteRenderer s in sprites)
             s.enabled = true;
