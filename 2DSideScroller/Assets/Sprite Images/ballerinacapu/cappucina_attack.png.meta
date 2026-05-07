@@ -1,0 +1,442 @@
+fileFormatVersion: 2
+guid: 993680c34cbcc224d8cd0eb34ddfdb15
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6952683178724575490
+    second: cappucina_attack_0
+  - first:
+      213: -3891249043427689340
+    second: cappucina_attack_1
+  - first:
+      213: 1257888399121353810
+    second: cappucina_attack_2
+  - first:
+      213: -8214628175900506133
+    second: cappucina_attack_3
+  - first:
+      213: 5626214611951499139
+    second: cappucina_attack_4
+  - first:
+      213: 4306630851868067533
+    second: cappucina_attack_5
+  - first:
+      213: 6668222537965668026
+    second: cappucina_attack_6
+  - first:
+      213: 2526249045984057282
+    second: cappucina_attack_7
+  - first:
+      213: -6977047473513913319
+    second: cappucina_attack_8
+  - first:
+      213: 886746956742854721
+    second: cappucina_attack_9
+  - first:
+      213: -1368073614035975724
+    second: cappucina_attack_10
+  - first:
+      213: -5869555551928728815
+    second: cappucina_attack_11
+  - first:
+      213: -1689747422410367764
+    second: cappucina_attack_12
+  - first:
+      213: -2468119011610154832
+    second: cappucina_attack_13
+  - first:
+      213: 7001985788085873745
+    second: cappucina_attack_14
+  - first:
+      213: -1526932735031487007
+    second: cappucina_attack_15
+  - first:
+      213: -177804945270370101
+    second: cappucina_attack_16
+  - first:
+      213: -7305958599190503696
+    second: cappucina_attack_17
+  - first:
+      213: 2532633937912222381
+    second: cappucina_attack_18
+  - first:
+      213: 4823521914093366964
+    second: cappucina_attack_19
+  - first:
+      213: 8808727511130188848
+    second: cappucina_attack_20
+  - first:
+      213: -6334636693434719172
+    second: cappucina_attack_21
+  - first:
+      213: 6179737663270085350
+    second: cappucina_attack_22
+  - first:
+      213: 844573757087643269
+    second: cappucina_attack_23
+  - first:
+      213: -1562349561037029920
+    second: cappucina_attack_24
+  - first:
+      213: -3787697917133088306
+    second: cappucina_attack_25
+  - first:
+      213: -840874769871984630
+    second: cappucina_attack_26
+  - first:
+      213: -2401122475933940088
+    second: cappucina_attack_27
+  - first:
+      213: -1076874726366300316
+    second: cappucina_attack_28
+  - first:
+      213: -2990303352352678602
+    second: cappucina_attack_29
+  - first:
+      213: 5252074708019488701
+    second: cappucina_attack_30
+  - first:
+      213: 7380405288394636811
+    second: cappucina_attack_31
+  - first:
+      213: 214276913940442736
+    second: cappucina_attack_32
+  - first:
+      213: 9107996985624390212
+    second: cappucina_attack_33
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: cappucina_attack_4
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 1628
+        width: 1420
+        height: 1413
+      alignment: 9
+      pivot: {x: 0.39639625, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3873b7f6164541e40800000000000000
+      internalID: 5626214611951499139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cappucina_attack_6
+      rect:
+        serializedVersion: 2
+        x: 2843
+        y: 1634
+        width: 1185
+        height: 1370
+      alignment: 9
+      pivot: {x: 0.93955755, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab682ba81194a8c50800000000000000
+      internalID: 6668222537965668026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cappucina_attack_7
+      rect:
+        serializedVersion: 2
+        x: 5151
+        y: 1614
+        width: 1175
+        height: 1350
+      alignment: 9
+      pivot: {x: 1.1465098, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c79c086f1a0f0320800000000000000
+      internalID: 2526249045984057282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cappucina_attack_8
+      rect:
+        serializedVersion: 2
+        x: 7859
+        y: 1601
+        width: 1050
+        height: 1403
+      alignment: 9
+      pivot: {x: 1.1302762, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 914aa20f94c8c2f90800000000000000
+      internalID: -6977047473513913319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cappucina_attack_24
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 44
+        width: 1504
+        height: 1183
+      alignment: 9
+      pivot: {x: 0.38384086, y: 0.58}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ed76671a5b615ae0800000000000000
+      internalID: -1562349561037029920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cappucina_attack_25
+      rect:
+        serializedVersion: 2
+        x: 3365
+        y: 44
+        width: 1661
+        height: 1207
+      alignment: 9
+      pivot: {x: 0.35402507, y: 0.58}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec99bccffc46f6bc0800000000000000
+      internalID: -3787697917133088306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cappucina_attack_26
+      rect:
+        serializedVersion: 2
+        x: 5924
+        y: 52
+        width: 1589
+        height: 1196
+      alignment: 9
+      pivot: {x: 0.3596021, y: 0.58}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0821391adc9454f0800000000000000
+      internalID: -840874769871984630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cappucina_attack_28
+      rect:
+        serializedVersion: 2
+        x: 8473
+        y: 49
+        width: 1597
+        height: 1229
+      alignment: 9
+      pivot: {x: 0.3564245, y: 0.58}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4673753542c2e01f0800000000000000
+      internalID: -1076874726366300316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 38dc33e25f7a7a04dbb94b4fba4f10c2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      cappucina_attack_0: 6952683178724575490
+      cappucina_attack_1: -3891249043427689340
+      cappucina_attack_10: -1368073614035975724
+      cappucina_attack_11: -5869555551928728815
+      cappucina_attack_12: -1689747422410367764
+      cappucina_attack_13: -2468119011610154832
+      cappucina_attack_14: 7001985788085873745
+      cappucina_attack_15: -1526932735031487007
+      cappucina_attack_16: -177804945270370101
+      cappucina_attack_17: -7305958599190503696
+      cappucina_attack_18: 2532633937912222381
+      cappucina_attack_19: 4823521914093366964
+      cappucina_attack_2: 1257888399121353810
+      cappucina_attack_20: 8808727511130188848
+      cappucina_attack_21: -6334636693434719172
+      cappucina_attack_22: 6179737663270085350
+      cappucina_attack_23: 844573757087643269
+      cappucina_attack_24: -1562349561037029920
+      cappucina_attack_25: -3787697917133088306
+      cappucina_attack_26: -840874769871984630
+      cappucina_attack_27: -2401122475933940088
+      cappucina_attack_28: -1076874726366300316
+      cappucina_attack_29: -2990303352352678602
+      cappucina_attack_3: -8214628175900506133
+      cappucina_attack_30: 5252074708019488701
+      cappucina_attack_31: 7380405288394636811
+      cappucina_attack_32: 214276913940442736
+      cappucina_attack_33: 9107996985624390212
+      cappucina_attack_4: 5626214611951499139
+      cappucina_attack_5: 4306630851868067533
+      cappucina_attack_6: 6668222537965668026
+      cappucina_attack_7: 2526249045984057282
+      cappucina_attack_8: -6977047473513913319
+      cappucina_attack_9: 886746956742854721
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

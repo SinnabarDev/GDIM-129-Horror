@@ -1,0 +1,400 @@
+fileFormatVersion: 2
+guid: 786ac941be4beb04ebe94f5e500cd8e0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1126909389259273283
+    second: cappuccina_spin_0
+  - first:
+      213: -5042845567876873262
+    second: cappuccina_spin_1
+  - first:
+      213: 207894150694994229
+    second: cappuccina_spin_2
+  - first:
+      213: -7156519343269553551
+    second: cappuccina_spin_3
+  - first:
+      213: 7958539652172925267
+    second: cappuccina_spin_4
+  - first:
+      213: 2281587633710902178
+    second: cappuccina_spin_5
+  - first:
+      213: -8365304933944814198
+    second: cappuccina_spin_6
+  - first:
+      213: 2368235898249885047
+    second: cappuccina_spin_7
+  - first:
+      213: -4094210990326111474
+    second: cappuccina_spin_8
+  - first:
+      213: -8184358091809050089
+    second: cappuccina_spin_9
+  - first:
+      213: 4618870857124939779
+    second: cappuccina_spin_10
+  - first:
+      213: -3416417816230787969
+    second: cappuccina_spin_11
+  - first:
+      213: 6814419617050137656
+    second: cappuccina_spin_12
+  - first:
+      213: -592701079878569995
+    second: cappuccina_spin_13
+  - first:
+      213: -5242519843402163914
+    second: cappuccina_spin_14
+  - first:
+      213: 1624848387853176628
+    second: cappuccina_spin_15
+  - first:
+      213: -1994428068684187068
+    second: cappuccina_spin_16
+  - first:
+      213: 4508551790190572940
+    second: cappuccina_spin_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: cappuccina_spin_9
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 45
+        width: 939
+        height: 1360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 712b0279da15b6e80800000000000000
+      internalID: -8184358091809050089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cappuccina_spin_10
+      rect:
+        serializedVersion: 2
+        x: 1157
+        y: 49
+        width: 982
+        height: 1360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 308065e9296891040800000000000000
+      internalID: 4618870857124939779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cappuccina_spin_11
+      rect:
+        serializedVersion: 2
+        x: 2364
+        y: 43
+        width: 866
+        height: 1360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f748f3bd8127690d0800000000000000
+      internalID: -3416417816230787969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cappuccina_spin_12
+      rect:
+        serializedVersion: 2
+        x: 3452
+        y: 43
+        width: 685
+        height: 1360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8341ab0998ea19e50800000000000000
+      internalID: 6814419617050137656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cappuccina_spin_13
+      rect:
+        serializedVersion: 2
+        x: 4559
+        y: 40
+        width: 741
+        height: 1360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ffe8d3128d46c7f0800000000000000
+      internalID: -592701079878569995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cappuccina_spin_14
+      rect:
+        serializedVersion: 2
+        x: 5668
+        y: 39
+        width: 676
+        height: 1360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 639d31e7af3de37b0800000000000000
+      internalID: -5242519843402163914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cappuccina_spin_15
+      rect:
+        serializedVersion: 2
+        x: 6762
+        y: 40
+        width: 677
+        height: 1360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43fcadbfffe9c8610800000000000000
+      internalID: 1624848387853176628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cappuccina_spin_16
+      rect:
+        serializedVersion: 2
+        x: 7808
+        y: 33
+        width: 732
+        height: 1360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44ab20c0d3e5254e0800000000000000
+      internalID: -1994428068684187068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cappuccina_spin_17
+      rect:
+        serializedVersion: 2
+        x: 8808
+        y: 28
+        width: 790
+        height: 1360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c85b2c147f7919e30800000000000000
+      internalID: 4508551790190572940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: f0f0c389f50a37443969ce4e2558e36e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      cappuccina_spin_0: 1126909389259273283
+      cappuccina_spin_1: -5042845567876873262
+      cappuccina_spin_10: 4618870857124939779
+      cappuccina_spin_11: -3416417816230787969
+      cappuccina_spin_12: 6814419617050137656
+      cappuccina_spin_13: -592701079878569995
+      cappuccina_spin_14: -5242519843402163914
+      cappuccina_spin_15: 1624848387853176628
+      cappuccina_spin_16: -1994428068684187068
+      cappuccina_spin_17: 4508551790190572940
+      cappuccina_spin_2: 207894150694994229
+      cappuccina_spin_3: -7156519343269553551
+      cappuccina_spin_4: 7958539652172925267
+      cappuccina_spin_5: 2281587633710902178
+      cappuccina_spin_6: -8365304933944814198
+      cappuccina_spin_7: 2368235898249885047
+      cappuccina_spin_8: -4094210990326111474
+      cappuccina_spin_9: -8184358091809050089
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

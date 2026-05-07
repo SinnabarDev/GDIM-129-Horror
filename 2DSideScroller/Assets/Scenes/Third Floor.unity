@@ -152,7 +152,7 @@ Animator:
   m_GameObject: {fileID: 94261844}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a2cadc359ab466340a50ce76dbc5a6e5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4274f8b1e31dd0942b0917851b77fc8a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -213,12 +213,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 305109128, guid: 46e8c32d9ba0ae64c8dbe3cc3151907d, type: 3}
+  m_Sprite: {fileID: 4508551790190572940, guid: 786ac941be4beb04ebe94f5e500cd8e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.8500001, y: 2.6301525}
+  m_Size: {x: 9.82, y: 13.321602}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -232,12 +232,13 @@ Transform:
   m_GameObject: {fileID: 94261844}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.56, y: -3, z: 0}
+  m_LocalPosition: {x: 44.56, y: -1.95, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2067510939}
   - {fileID: 1377274346}
+  - {fileID: 1247275479}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &94261850
@@ -255,7 +256,7 @@ MonoBehaviour:
   textBoxUI: {fileID: 2067510938}
   wordText: {fileID: 622292074}
   enemy: {fileID: 94261851}
-  enemyWord: TUNGTUNGSAHUR
+  enemyWord: BALLERINA
 --- !u!114 &94261851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,7 +274,7 @@ MonoBehaviour:
   chaseSpeed: 2
   waypoints: []
   player: {fileID: 1129148132}
-  detectionRange: 5
+  detectionRange: 7
   obstacleMask:
     serializedVersion: 2
     m_Bits: 0
@@ -345,17 +346,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.51120234, y: -0.21049309}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 1.9}
-    oldSize: {x: 2.8500001, y: 2.6301525}
-    newSize: {x: 2.8500001, y: 2.6301525}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 7.8999996, y: 13.601634}
+    newSize: {x: 9.82, y: 13.321602}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4, y: 9.75}
+  m_Size: {x: 6.1049347, y: 13.298309}
   m_EdgeRadius: 0
 --- !u!114 &94261854
 MonoBehaviour:
@@ -1320,6 +1321,37 @@ MonoBehaviour:
   - {x: 2.1177897, y: -3.8865306, z: 0.00000003044409}
   - {x: 1.0541309, y: 6.9330063, z: -0.000000034871015}
   - {x: -0.99936104, y: 6.9604325, z: 0.000000011763582}
+--- !u!1 &1247275478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1247275479}
+  m_Layer: 0
+  m_Name: EnemySounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1247275479
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247275478}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 94261848}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1377274345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1346,7 +1378,7 @@ Transform:
   m_GameObject: {fileID: 1377274345}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 5.1, y: -5.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
