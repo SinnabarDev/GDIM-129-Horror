@@ -16,6 +16,10 @@ public class Enemy : MonoBehaviour
     [Header("Debug")]
     [SerializeField]
     private bool showDebug = false;
+
+    [Header("Respawn")]
+    [SerializeField]
+    private bool isSpawnable = true;
     private float debugTimer;
 
     [Header("Movement")]
@@ -388,23 +392,30 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(Random.Range(10f, 15f));
 
-        rb.bodyType = RigidbodyType2D.Dynamic;
+        if (isSpawnable)
+        {
+            rb.bodyType = RigidbodyType2D.Dynamic;
 
-        // Re-enable animator
-        if (animator != null)
-            animator.enabled = true;
+            // Re-enable animator
+            if (animator != null)
+                animator.enabled = true;
 
-        // Re-enable audio
-        foreach (AudioSource a in audios)
-            a.enabled = true;
+            // Re-enable audio
+            foreach (AudioSource a in audios)
+                a.enabled = true;
 
-        foreach (SpriteRenderer s in sprites)
-            s.enabled = true;
+            foreach (SpriteRenderer s in sprites)
+                s.enabled = true;
 
-        foreach (Collider2D c in cols)
-            c.enabled = true;
+            foreach (Collider2D c in cols)
+                c.enabled = true;
 
-        savedProgress = 0;
-        isDisabled = false;
+            savedProgress = 0;
+            isDisabled = false;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
