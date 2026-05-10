@@ -132,10 +132,9 @@ GameObject:
   - component: {fileID: 94261846}
   - component: {fileID: 94261852}
   - component: {fileID: 94261856}
-  - component: {fileID: 94261850}
+  - component: {fileID: 94261857}
   - component: {fileID: 94261854}
   - component: {fileID: 94261855}
-  - component: {fileID: 94261857}
   - component: {fileID: 94261853}
   m_Layer: 0
   m_Name: Enemy
@@ -243,22 +242,6 @@ Transform:
   - {fileID: 1247275479}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &94261850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 94261844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fbfc33474f24d944bb072d36ae13dcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyExorcistTyping
-  textBoxUI: {fileID: 2067510938}
-  wordText: {fileID: 622292074}
-  enemy: {fileID: 94261857}
-  enemyWord: BALLERINA
 --- !u!50 &94261852
 Rigidbody2D:
   serializedVersion: 5
@@ -358,10 +341,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0043b859159f643989a22eaf8bf2dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallerinaAudioManager
-  music: {fileID: 707738798}
+  creepyMusic: {fileID: 707738798}
+  mutter: {fileID: 686088712}
+  attack: {fileID: 0}
   shuffle: {fileID: 144942074}
-  muttering: {fileID: 686088712}
-  attack: {fileID: 144942074}
 --- !u!114 &94261856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,26 +356,30 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 367902ea5156f9b40830b3bdf29ae819, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BallerinaEnemy
+  m_EditorClassIdentifier: Assembly-CSharp::StalkerNPC
+  audioManager: {fileID: 94261855}
+  isSpawnable: 1
+  stunDuration: 2
+  isStunned: 0
   waypoints:
   - {fileID: 1068206700}
-  - {fileID: 1163883703}
-  - {fileID: 1199020573}
-  - {fileID: 407378218}
-  - {fileID: 776636559}
-  - {fileID: 1984859273}
   moveSpeed: 2
-  reachThreshold: 0.2
-  stepDelay: 1
+  checkDist: 1
+  minMoveTime: 2
+  maxMoveTime: 6
+  minWaitTime: 3
+  maxWaitTime: 9
   player: {fileID: 1129148132}
+  detectionRange: 9
   obstacleMask:
     serializedVersion: 2
     m_Bits: 0
-  detectionRange: 6
-  teleportCooldown: 5
   teleportOffset: 2
-  attackCooldown: 20
-  animator: {fileID: 94261846}
+  playerRb: {fileID: 1129148130}
+  teleportCooldown: 3
+  attackCooldown: 2.5
+  postAttackPause: 0.66
+  attackRange: 3.5
 --- !u!114 &94261857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,28 +387,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94261844}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c95f1a4ef96b714fa16cc2848f3a283, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fbfc33474f24d944bb072d36ae13dcb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  showDebug: 0
-  isSpawnable: 1
-  patrolSpeed: 1.5
-  chaseSpeed: 2
-  waypoints: []
-  player: {fileID: 0}
-  detectionRange: 5
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  surpriseChance: 0.3
-  loseInterestTime: 3
-  attackRange: 3
-  attackCooldown: 20
-  animator: {fileID: 0}
-  stunDuration: 2
-  isStunned: 0
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyExorcistTyping
+  textBoxUI: {fileID: 2067510938}
+  wordText: {fileID: 622292074}
+  enemyBehaviour: {fileID: 94261856}
+  enemyWord: SHADE
 --- !u!1 &144942072
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,7 +443,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1041,7 +1015,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

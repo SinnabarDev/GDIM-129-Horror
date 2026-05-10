@@ -387,7 +387,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyExorcistTyping
   textBoxUI: {fileID: 2067510938}
   wordText: {fileID: 622292074}
-  enemy: {fileID: 94261851}
+  enemyBehaviour: {fileID: 94261851}
   enemyWord: TRALALEROTRALALA
 --- !u!114 &94261851
 MonoBehaviour:

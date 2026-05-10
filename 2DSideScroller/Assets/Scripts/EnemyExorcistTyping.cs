@@ -10,7 +10,9 @@ public class EnemyExorcistTyping : MonoBehaviour
     private TextMeshProUGUI wordText;
 
     [SerializeField]
-    private Enemy enemy;
+    private MonoBehaviour enemyBehaviour;
+
+    private IExorcisable enemy;
 
     [SerializeField]
     private string enemyWord = "SHADE";
@@ -19,18 +21,28 @@ public class EnemyExorcistTyping : MonoBehaviour
 
     private int currentIndex;
 
+    void Awake()
+    {
+        enemy = enemyBehaviour as IExorcisable;
+
+        if (enemy == null)
+        {
+            Debug.LogError("Assigned enemy does not implement IExorcisable!");
+        }
+    }
+
     void Update()
     {
+        if (enemy == null)
+            return;
+
         if (!enemy.IsStunned())
         {
-            // NOT stunned → show empty box or hide text
             textBoxUI.SetActive(true);
             wordText.text = "";
-
             return;
         }
 
-        // STUNNED → show word + typing
         textBoxUI.SetActive(true);
 
         HandleTyping();
@@ -49,7 +61,6 @@ public class EnemyExorcistTyping : MonoBehaviour
             string word = GetWord();
             int progress = enemy.GetSavedProgress();
 
-            // Prevent reading past word end
             if (progress >= word.Length)
                 return;
 
@@ -72,28 +83,6 @@ public class EnemyExorcistTyping : MonoBehaviour
 
         UpdateText();
         Debug.Log("Progress: " + enemy.GetSavedProgress());
-    }
-
-    void CheckInput(char input)
-    {
-        string word = GetWord();
-
-        if (input == word[currentIndex])
-        {
-            currentIndex++;
-
-            enemy.SetSavedProgress(currentIndex);
-
-            if (currentIndex >= word.Length)
-            {
-                enemy.TriggerDisable();
-            }
-        }
-        else
-        {
-            currentIndex = 0;
-            enemy.SetSavedProgress(0);
-        }
     }
 
     void UpdateText()

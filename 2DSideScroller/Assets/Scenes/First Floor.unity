@@ -347,7 +347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyExorcistTyping
   textBoxUI: {fileID: 2067510938}
   wordText: {fileID: 622292074}
-  enemy: {fileID: 94261851}
+  enemyBehaviour: {fileID: 94261851}
   enemyWord: TUNGTUNGSAHUR
 --- !u!114 &94261851
 MonoBehaviour:
@@ -3920,7 +3920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyExorcistTyping
   textBoxUI: {fileID: 1503102278}
   wordText: {fileID: 503963317}
-  enemy: {fileID: 1758305773}
+  enemyBehaviour: {fileID: 1758305773}
   enemyWord: EXORCISE
 --- !u!114 &1758305773
 MonoBehaviour:

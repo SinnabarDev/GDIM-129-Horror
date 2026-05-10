@@ -1,115 +1,89 @@
-using System.Collections;
 using UnityEngine;
 
 public class BallerinaAudioManager : MonoBehaviour
 {
-    public enum AudioState
-    {
-        Dancing,
-        Stepping,
-        Teleporting,
-        Attacking,
-        Idle
-    }
-
-    [Header("Dance / Movement")]
-    [SerializeField] private AudioSource music;
+    [Header("Audio")]
+    [SerializeField] private AudioSource creepyMusic;
+    [SerializeField] private AudioSource mutter;
+    [SerializeField] private AudioSource attack;
     [SerializeField] private AudioSource shuffle;
 
-    [Header("Teleport")]
-    [SerializeField] private AudioSource muttering;
+    private bool isWaiting;
 
-    [Header("Attack")]
-    [SerializeField] private AudioSource attack;
-
-    private AudioState currentState;
-
-    // =========================
-    // PUBLIC STATE CONTROL
-    // =========================
-    public void SetState(AudioState newState)
+    private void Start()
     {
-        if (currentState == newState) return;
-
-        StopAllLoops();
-
-        currentState = newState;
-
-        switch (currentState)
+        if (creepyMusic != null)
         {
-            case AudioState.Dancing:
-                PlayDanceLoop();
-                break;
+            creepyMusic.loop = true;
+            creepyMusic.Stop();
+        }
+    }
 
-            case AudioState.Stepping:
-                PlayStepLoop();
-                break;
+    private void Update()
+    {
+        HandleMusic();
+    }
 
-            case AudioState.Teleporting:
-                PlayTeleport();
-                break;
+    // =========================
+    // LOOP MUSIC STATE
+    // =========================
+    private void HandleMusic()
+    {
+        if (creepyMusic == null)
+            return;
 
-            case AudioState.Attacking:
-                PlayAttack();
-                break;
+        if (!isWaiting)
+        {
+            if (!creepyMusic.isPlaying)
+                creepyMusic.Play();
+        }
+        else
+        {
+            if (creepyMusic.isPlaying)
+                creepyMusic.Pause();
         }
     }
 
     // =========================
-    // DANCE (idle loop)
+    // CALLED BY NPC STATE
     // =========================
-    private void PlayDanceLoop()
+    public void SetWaiting(bool waiting)
     {
-        if (!music.isPlaying)
-            music.Play();
-
-        if (!shuffle.isPlaying)
-            shuffle.Play();
+        isWaiting = waiting;
     }
 
     // =========================
-    // STEPPING (slight variation but same feel)
+    // TELEPORT ONE SHOT
     // =========================
-    private void PlayStepLoop()
+    public void PlayTeleport()
     {
-        if (!music.isPlaying)
-            music.Play();
+        if (mutter == null) return;
 
-        if (!shuffle.isPlaying)
-            shuffle.Play();
+        mutter.pitch = Random.Range(0.9f, 1.1f);
+        mutter.PlayOneShot(mutter.clip);
     }
 
     // =========================
-    // TELEPORT (horror cue)
+    // ANIMATION EVENT
+    // ATTACK SWING
     // =========================
-    private void PlayTeleport()
+    public void PlayAttack()
     {
-        shuffle.Stop();
-        music.Stop();
+        if (attack == null) return;
 
-        muttering.Play();
+        attack.pitch = Random.Range(0.95f, 1.05f);
+        attack.PlayOneShot(attack.clip);
     }
 
     // =========================
-    // ATTACK (impact + rhythm break)
+    // ANIMATION EVENT
+    // SHUFFLE IMPACT
     // =========================
-    private void PlayAttack()
+    public void PlayShuffle()
     {
-        attack.Play();
+        if (shuffle == null) return;
 
-        // keep subtle shuffle under attack for tension
-        if (!shuffle.isPlaying)
-            shuffle.Play();
-    }
-
-    // =========================
-    // STOP EVERYTHING
-    // =========================
-    private void StopAllLoops()
-    {
-        music.Stop();
-        shuffle.Stop();
-        muttering.Stop();
-        attack.Stop();
+        shuffle.pitch = Random.Range(0.95f, 1.1f);
+        shuffle.PlayOneShot(shuffle.clip);
     }
 }
