@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 94261850}
   - component: {fileID: 94261854}
   - component: {fileID: 94261855}
-  - component: {fileID: 94261857}
   - component: {fileID: 94261853}
   m_Layer: 0
   m_Name: Enemy
@@ -257,7 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyExorcistTyping
   textBoxUI: {fileID: 2067510938}
   wordText: {fileID: 622292074}
-  enemy: {fileID: 94261857}
+  enemy: {fileID: 94261856}
   enemyWord: BALLERINA
 --- !u!50 &94261852
 Rigidbody2D:
@@ -371,55 +370,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 94261844}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 367902ea5156f9b40830b3bdf29ae819, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BallerinaEnemy
-  waypoints:
-  - {fileID: 1068206700}
-  - {fileID: 1163883703}
-  - {fileID: 1199020573}
-  - {fileID: 407378218}
-  - {fileID: 776636559}
-  - {fileID: 1984859273}
-  moveSpeed: 2
-  reachThreshold: 0.2
-  stepDelay: 1
-  player: {fileID: 1129148132}
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  detectionRange: 6
-  teleportCooldown: 5
-  teleportOffset: 2
-  attackCooldown: 20
-  animator: {fileID: 94261846}
---- !u!114 &94261857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 94261844}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c95f1a4ef96b714fa16cc2848f3a283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   showDebug: 0
   isSpawnable: 1
-  patrolSpeed: 1.5
-  chaseSpeed: 2
+  patrolSpeed: 2
+  chaseSpeed: 3
   waypoints: []
-  player: {fileID: 0}
-  detectionRange: 5
+  player: {fileID: 1129148132}
+  detectionRange: 6
   obstacleMask:
     serializedVersion: 2
     m_Bits: 0
   surpriseChance: 0.3
   loseInterestTime: 3
   attackRange: 3
-  attackCooldown: 20
-  animator: {fileID: 0}
+  attackCooldown: 5
+  animator: {fileID: 94261846}
   stunDuration: 2
   isStunned: 0
 --- !u!1 &144942072
