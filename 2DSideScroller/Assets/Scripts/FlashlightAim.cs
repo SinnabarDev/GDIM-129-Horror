@@ -63,7 +63,7 @@ public class FlashlightAim : MonoBehaviour
     {
         AimFlashlight();
         BatterySystem();
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             isFlashlightOn = !isFlashlightOn;
             UpdateFlashlightState();
@@ -224,7 +224,7 @@ public class FlashlightAim : MonoBehaviour
 
         if (!recoveryStarted)
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 recoveryStarted = true;
                 isRecovering = true;
@@ -237,7 +237,7 @@ public class FlashlightAim : MonoBehaviour
 
         mashTimer += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             mashCount++;
             UnityEngine.Debug.Log("Mash Count: " + mashCount);

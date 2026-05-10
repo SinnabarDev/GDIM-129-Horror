@@ -388,7 +388,7 @@ MonoBehaviour:
   textBoxUI: {fileID: 2067510938}
   wordText: {fileID: 622292074}
   enemy: {fileID: 94261851}
-  enemyWord: SB
+  enemyWord: TRALALEROTRALALA
 --- !u!114 &94261851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,6 +402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   showDebug: 0
+  isSpawnable: 1
   patrolSpeed: 2
   chaseSpeed: 6
   waypoints: []
@@ -415,7 +416,7 @@ MonoBehaviour:
   attackRange: 6
   attackCooldown: 3
   animator: {fileID: 94261846}
-  stunDuration: 2
+  stunDuration: 4
   isStunned: 0
 --- !u!50 &94261852
 Rigidbody2D:
