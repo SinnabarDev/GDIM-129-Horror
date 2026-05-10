@@ -3,10 +3,17 @@ using UnityEngine;
 public class BallerinaAudioManager : MonoBehaviour
 {
     [Header("Audio")]
-    [SerializeField] private AudioSource creepyMusic;
-    [SerializeField] private AudioSource mutter;
-    [SerializeField] private AudioSource attack;
-    [SerializeField] private AudioSource shuffle;
+    [SerializeField]
+    private AudioSource creepyMusic;
+
+    [SerializeField]
+    private AudioSource mutter;
+
+    [SerializeField]
+    private AudioSource attack;
+
+    [SerializeField]
+    private AudioSource shuffle;
 
     private bool isWaiting;
 
@@ -57,7 +64,8 @@ public class BallerinaAudioManager : MonoBehaviour
     // =========================
     public void PlayTeleport()
     {
-        if (mutter == null) return;
+        if (mutter == null)
+            return;
 
         mutter.pitch = Random.Range(0.9f, 1.1f);
         mutter.PlayOneShot(mutter.clip);
@@ -69,7 +77,8 @@ public class BallerinaAudioManager : MonoBehaviour
     // =========================
     public void PlayAttack()
     {
-        if (attack == null) return;
+        if (attack == null)
+            return;
 
         attack.pitch = Random.Range(0.95f, 1.05f);
         attack.PlayOneShot(attack.clip);
@@ -81,7 +90,8 @@ public class BallerinaAudioManager : MonoBehaviour
     // =========================
     public void PlayShuffle()
     {
-        if (shuffle == null) return;
+        if (shuffle == null)
+            return;
 
         shuffle.pitch = Random.Range(0.95f, 1.1f);
         shuffle.PlayOneShot(shuffle.clip);

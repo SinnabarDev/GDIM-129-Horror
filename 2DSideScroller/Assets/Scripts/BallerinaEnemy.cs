@@ -8,8 +8,11 @@ public class StalkerNPC : MonoBehaviour, IExorcisable
         Moving,
         Waiting,
     }
-[Header("Audio")]
-    [SerializeField] private BallerinaAudioManager audioManager;
+
+    [Header("Audio")]
+    [SerializeField]
+    private BallerinaAudioManager audioManager;
+
     // =========================
     // FLASHLIGHT / STUN SYSTEM
     // =========================
@@ -66,7 +69,9 @@ public class StalkerNPC : MonoBehaviour, IExorcisable
     [Header("Combat")]
     public float attackCooldown = 2f;
     public float postAttackPause = 0.5f;
-    [SerializeField] private float attackRange = 3f;
+
+    [SerializeField]
+    private float attackRange = 3f;
     private float attackTimer;
     private float postAttackTimer;
     private bool isAttacking;
@@ -111,7 +116,6 @@ public class StalkerNPC : MonoBehaviour, IExorcisable
     void Start()
     {
         StartCoroutine(StateLoop());
-
     }
 
     // =========================
@@ -142,7 +146,7 @@ public class StalkerNPC : MonoBehaviour, IExorcisable
             animator.SetBool("isWalking", false);
             return;
         }
-        if(currentState == NPCState.Waiting)
+        if (currentState == NPCState.Waiting)
         {
             audioManager.SetWaiting(true);
             animator.SetBool("isWalking", false);
@@ -306,7 +310,6 @@ public class StalkerNPC : MonoBehaviour, IExorcisable
         if (stunTimer <= 0f)
             isStunned = false;
     }
-
 
     public void ApplySlow(float amount)
     {

@@ -12,7 +12,6 @@ public class FlashlightAim : MonoBehaviour
 
     public bool isFacingRight = true;
 
-    // ✅ CHANGED: Enemy → IExorcisable
     private List<IExorcisable> targetsInLight = new List<IExorcisable>();
 
     [Header("Battery")]
