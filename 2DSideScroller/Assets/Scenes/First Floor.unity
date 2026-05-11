@@ -1680,6 +1680,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main UI
       objectReference: {fileID: 0}
+    - target: {fileID: 1892246625981910348, guid: 3130db3489fa370419bcab510896174e, type: 3}
+      propertyPath: m_AspectRatio
+      value: NaN
+      objectReference: {fileID: 0}
     - target: {fileID: 5912697746855179818, guid: 3130db3489fa370419bcab510896174e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1760,11 +1764,68 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5954422276772627283, guid: 3130db3489fa370419bcab510896174e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5954422276772627283, guid: 3130db3489fa370419bcab510896174e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5954422276772627283, guid: 3130db3489fa370419bcab510896174e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5954422276772627283, guid: 3130db3489fa370419bcab510896174e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6504471088553894502, guid: 3130db3489fa370419bcab510896174e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1296907601504631211, guid: 3130db3489fa370419bcab510896174e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 935436871}
   m_SourcePrefab: {fileID: 100100000, guid: 3130db3489fa370419bcab510896174e, type: 3}
+--- !u!114 &736360030 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 959151658563383300, guid: 3130db3489fa370419bcab510896174e, type: 3}
+  m_PrefabInstance: {fileID: 736360029}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!1 &935436866 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1296907601504631211, guid: 3130db3489fa370419bcab510896174e, type: 3}
+  m_PrefabInstance: {fileID: 736360029}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &935436871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935436866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af4c764c994c01a459304f9fce037585, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIManager
+  healthFill: {fileID: 736360030}
+  maxHealth: 100
+  currentHealth: 0
+  smoothSpeed: 5
+  pulseThreshold: 0.3
+  basePulseSpeed: 5
 --- !u!1 &1032254712
 GameObject:
   m_ObjectHideFlags: 0
@@ -5052,6 +5113,50 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &2075043589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2075043591}
+  - component: {fileID: 2075043590}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2075043590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075043589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ce1a799d0550b4d9f353a1f91e3af1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameController
+--- !u!4 &2075043591
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075043589}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1475.2343, y: 850.4719, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2117618477
 GameObject:
   m_ObjectHideFlags: 0
@@ -5223,6 +5328,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1810276992}
+  - {fileID: 2075043591}
   - {fileID: 1129148132}
   - {fileID: 1711616703}
   - {fileID: 1529573547}

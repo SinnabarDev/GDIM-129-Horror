@@ -20,7 +20,10 @@ public class Bat : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player Hit!");
+            Debug.Log("Player Being Hit!");
+
+            GameController.Instance.UpdatePlayerGetHit(damage);
+
             Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
 
             if (rb != null)
