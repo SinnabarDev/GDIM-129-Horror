@@ -4,20 +4,21 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [Header("UI References")]
-        public Image healthFill;
-        public Transform healthBar;
+    public Image healthFill;
+    public Slider healthBar;
 
     [Header("Health Variables")]
-        public float maxHealth = 100f;
-        public float currentHealth;
-        public float smoothSpeed = 5f;
-        [Tooltip("Starts pulsing when health is below this ratio (e.g., 0.3 = 30%)")]
-        [Range(0f, 1f)]
-        public float pulseThreshold = 0.5f;
-        public float basePulseSpeed = 7f;
+    public float maxHealth = 100f;
+    public float currentHealth;
+    public float smoothSpeed = 5f;
 
-        private float targetFillProportion;
-        private Vector3 originalScale;
+    [Tooltip("Starts pulsing when health is below this ratio (e.g., 0.3 = 30%)")]
+    [Range(0f, 1f)]
+    public float pulseThreshold = 0.5f;
+    public float basePulseSpeed = 7f;
+
+    private float targetFillProportion;
+    private Vector3 originalScale;
 
     void Start()
     {
@@ -27,23 +28,32 @@ public class UIManager : MonoBehaviour
 
         targetFillProportion = 1f;
 
-        if (healthFill != null)
+        if (healthBar != null)
         {
-            originalScale = healthBar.localScale;
+            originalScale = healthBar.transform.localScale;
         }
     }
 
-    void Update() {
+    void Update()
+    {
         targetFillProportion = currentHealth / maxHealth;
 
-        healthFill.fillAmount = Mathf.Lerp(healthFill.fillAmount, targetFillProportion, Time.deltaTime * smoothSpeed);
+        if (healthBar != null)
+        {
+            healthBar.value = Mathf.Lerp(
+                healthBar.value,
+                targetFillProportion,
+                Time.deltaTime * smoothSpeed
+            );
+        }
 
         HandleNervousPulse();
     }
 
     private void HandleNervousPulse()
     {
-        if (healthBar == null) return;
+        if (healthBar == null)
+            return;
 
         if (targetFillProportion <= pulseThreshold && targetFillProportion > 0)
         {
@@ -54,12 +64,16 @@ public class UIManager : MonoBehaviour
 
             float throb = Mathf.Sin(Time.time * currentPulseSpeed) * 0.05f * intensity;
 
-            healthBar.localScale = originalScale + new Vector3(throb, throb, 0f);
+            healthBar.transform.localScale = originalScale + new Vector3(throb, throb, 0f);
         }
         else
         {
             // If health is safe, smoothly return to normal size
-            healthBar.localScale = Vector3.Lerp(healthBar.localScale, originalScale, Time.deltaTime * 5f);
+            healthBar.transform.localScale = Vector3.Lerp(
+                healthBar.transform.localScale,
+                originalScale,
+                Time.deltaTime * 5f
+            );
         }
     }
 
