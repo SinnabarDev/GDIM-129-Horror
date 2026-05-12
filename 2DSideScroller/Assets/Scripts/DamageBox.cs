@@ -28,10 +28,9 @@ public class Bat : MonoBehaviour
 
             if (rb != null)
             {
-                float dir = Mathf.Sign(other.transform.position.x - transform.position.x);
-
+                Vector2 knockbackDirection = (other.transform.position - transform.position).normalized;
                 rb.linearVelocity = Vector2.zero;
-                rb.AddForce(new Vector2(dir * knockbackForce, 2f), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(knockbackDirection.x * knockbackForce, 2f), ForceMode2D.Impulse);
             }
         }
     }
