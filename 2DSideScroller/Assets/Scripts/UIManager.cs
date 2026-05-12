@@ -5,15 +5,16 @@ public class UIManager : MonoBehaviour
 {
     [Header("UI References")]
         public Image healthFill;
+        public Transform healthBar;
 
     [Header("Health Variables")]
-        public int maxHealth = 100;
-        public int currentHealth;
+        public float maxHealth = 100f;
+        public float currentHealth;
         public float smoothSpeed = 5f;
         [Tooltip("Starts pulsing when health is below this ratio (e.g., 0.3 = 30%)")]
         [Range(0f, 1f)]
-        public float pulseThreshold = 0.3f;
-        public float basePulseSpeed = 5f;
+        public float pulseThreshold = 0.5f;
+        public float basePulseSpeed = 7f;
 
         private float targetFillProportion;
         private Vector3 originalScale;
@@ -28,7 +29,7 @@ public class UIManager : MonoBehaviour
 
         if (healthFill != null)
         {
-            originalScale = healthFill.transform.localScale;
+            originalScale = healthBar.localScale;
         }
     }
 
@@ -42,7 +43,7 @@ public class UIManager : MonoBehaviour
 
     private void HandleNervousPulse()
     {
-        if (healthFill == null) return;
+        if (healthBar == null) return;
 
         if (targetFillProportion <= pulseThreshold && targetFillProportion > 0)
         {
@@ -53,12 +54,12 @@ public class UIManager : MonoBehaviour
 
             float throb = Mathf.Sin(Time.time * currentPulseSpeed) * 0.05f * intensity;
 
-            healthFill.transform.localScale = originalScale + new Vector3(throb, throb, 0f);
+            healthBar.localScale = originalScale + new Vector3(throb, throb, 0f);
         }
         else
         {
             // If health is safe, smoothly return to normal size
-            healthFill.transform.localScale = Vector3.Lerp(healthFill.transform.localScale, originalScale, Time.deltaTime * 5f);
+            healthBar.localScale = Vector3.Lerp(healthBar.localScale, originalScale, Time.deltaTime * 5f);
         }
     }
 
@@ -66,5 +67,6 @@ public class UIManager : MonoBehaviour
     {
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        Debug.Log($"Player Get Hit! Damage: {damage}, Current Health: {currentHealth}");
     }
 }
