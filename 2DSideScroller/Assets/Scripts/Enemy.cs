@@ -284,10 +284,14 @@ public class Enemy : MonoBehaviour, IExorcisable
     // =========================
     private void FaceDirection(float xDir)
     {
+        Vector3 scale = transform.localScale;
+
         if (xDir > 0.01f)
-            sr.flipX = false;
+            scale.x = Mathf.Abs(scale.x); // face right
         else if (xDir < -0.01f)
-            sr.flipX = true;
+            scale.x = -Mathf.Abs(scale.x); // face left
+
+        transform.localScale = scale;
     }
 
     // =========================

@@ -7,12 +7,15 @@ public class GameController : MonoBehaviour
 
     // Major Game Events
     public static event Action OnPauseGame; // Implemented✅
+
     //public static event Action OnQuitGame;
     //public static event Action OnRestartGame;
     public static event Action<int> OnPlayerHit;
+
     //public static event Action OnPlayerDeath;
 
     private bool isGamePaused = false;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -23,18 +26,22 @@ public class GameController : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-    void Start() { 
-    }
-    void Update() { 
+
+    void Start() { }
+
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause();
         }
     }
 
-    public void TogglePause() {
+    public void TogglePause()
+    {
         isGamePaused = !isGamePaused;
-        if (isGamePaused) {
+        if (isGamePaused)
+        {
             OnPauseGame?.Invoke();
             Time.timeScale = 0f;
         }

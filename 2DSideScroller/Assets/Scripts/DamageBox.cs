@@ -8,7 +8,7 @@ public class Bat : MonoBehaviour
     private int damage = 1;
 
     [SerializeField]
-    float knockbackForce = 7f;
+    float knockbackForce = 14f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() { }
@@ -21,6 +21,7 @@ public class Bat : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player Being Hit!");
+            Debug.Log("Triggered by: " + other.name);
 
             GameController.Instance.UpdatePlayerGetHit(damage);
 
@@ -28,9 +29,11 @@ public class Bat : MonoBehaviour
 
             if (rb != null)
             {
-                Vector2 knockbackDirection = (other.transform.position - transform.position).normalized;
+                float direction = Mathf.Sign(other.transform.position.x - transform.position.x);
+
                 rb.linearVelocity = Vector2.zero;
-                rb.AddForce(new Vector2(knockbackDirection.x * knockbackForce, 2f), ForceMode2D.Impulse);
+
+                rb.AddForce(new Vector2(direction * knockbackForce, 3f), ForceMode2D.Impulse);
             }
         }
     }
