@@ -1533,7 +1533,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 852531590}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1567,7 +1567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 981919211}
   - component: {fileID: 981919212}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SidedoorBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1936,6 +1936,7 @@ GameObject:
   - component: {fileID: 1129148130}
   - component: {fileID: 1129148129}
   - component: {fileID: 1129148128}
+  - component: {fileID: 1129148133}
   - component: {fileID: 1129148127}
   m_Layer: 0
   m_Name: Player
@@ -2124,6 +2125,32 @@ Transform:
   - {fileID: 1199656332}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1129148133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129148126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ccd46e4ab25ab41817f5530d3f8b73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPickup
+  keyPickupRange: 1.25
+  keyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  goalKeyCount: 3
+  doorInteractRange: 1.5
+  doorLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  collectedKeyUi: []
+  doorUnlockedTextUi: {fileID: 0}
+  keyInteraction: {fileID: 0}
+  doorInteraction: {fileID: 0}
+  doorNotUnlocked: {fileID: 0}
 --- !u!1 &1163883702
 GameObject:
   m_ObjectHideFlags: 0
@@ -3645,7 +3672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2013157651}
   - component: {fileID: 2013157652}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sidedoor_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3826,7 +3853,7 @@ Canvas:
   m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1230698495
   m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &2069627118
