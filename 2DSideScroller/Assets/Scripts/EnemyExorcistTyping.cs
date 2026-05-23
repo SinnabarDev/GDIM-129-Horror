@@ -94,6 +94,43 @@ public class EnemyExorcistTyping : MonoBehaviour
         string remain = word.Substring(index);
 
         wordText.text = "<color=red>" + done + "</color>" + remain;
+
         wordText.gameObject.SetActive(true);
+
+        AnimateCompletedLetters(index);
+    }
+
+    void AnimateCompletedLetters(int completed)
+    {
+        wordText.ForceMeshUpdate();
+
+        TMP_TextInfo textInfo = wordText.textInfo;
+
+        for (int i = 0; i < completed; i++)
+        {
+            if (!textInfo.characterInfo[i].isVisible)
+                continue;
+
+            int materialIndex = textInfo.characterInfo[i].materialReferenceIndex;
+            int vertexIndex = textInfo.characterInfo[i].vertexIndex;
+
+            Vector3[] vertices = textInfo.meshInfo[materialIndex].vertices;
+
+            Vector3 center = (vertices[vertexIndex] + vertices[vertexIndex + 2]) * 0.5f;
+
+            float scale = 1f + Mathf.Sin(Time.time * 6f + i * 0.25f) * 0.2f;
+
+            for (int j = 0; j < 4; j++)
+            {
+                vertices[vertexIndex + j] = center + (vertices[vertexIndex + j] - center) * scale;
+            }
+        }
+
+        for (int i = 0; i < textInfo.meshInfo.Length; i++)
+        {
+            textInfo.meshInfo[i].mesh.vertices = textInfo.meshInfo[i].vertices;
+
+            wordText.UpdateGeometry(textInfo.meshInfo[i].mesh, i);
+        }
     }
 }

@@ -375,7 +375,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   teleportOffset: 2
-  playerRb: {fileID: 0}
+  playerRb: {fileID: 1850247240}
   teleportCooldown: 3
   attackCooldown: 2.5
   postAttackPause: 0.66
@@ -2142,7 +2142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1109842280
 SpriteRenderer:
   serializedVersion: 2
@@ -3366,6 +3366,11 @@ PrefabInstance:
 --- !u!4 &1850247234 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7428005844848613317, guid: 29daf95da24bb6d47a62216daa2d2636, type: 3}
+  m_PrefabInstance: {fileID: 1850247233}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1850247240 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 163095306651325923, guid: 29daf95da24bb6d47a62216daa2d2636, type: 3}
   m_PrefabInstance: {fileID: 1850247233}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1866682959
