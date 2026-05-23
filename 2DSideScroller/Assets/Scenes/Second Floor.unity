@@ -2720,7 +2720,6 @@ MonoBehaviour:
   keyLayer:
     serializedVersion: 2
     m_Bits: 64
-  goalKeyCount: 3
   doorInteractRange: 1.5
   doorLayer:
     serializedVersion: 2

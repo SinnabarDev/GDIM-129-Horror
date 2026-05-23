@@ -1,51 +1,26 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public sealed class PlayerPickup : MonoBehaviour
 {
     [Header("Keys")]
-    [SerializeField]
-    private float keyPickupRange = 1.25f;
-
-    [SerializeField]
-    private LayerMask keyLayer;
-
-    [SerializeField]
-    private int goalKeyCount = 3;
+    [SerializeField] private float keyPickupRange = 1.25f;
+    [SerializeField] private LayerMask keyLayer;
 
     [Header("Doors")]
-    [SerializeField]
-    private float doorInteractRange = 1.5f;
-
-    [SerializeField]
-    private LayerMask doorLayer;
+    [SerializeField] private float doorInteractRange = 1.5f;
+    [SerializeField] private LayerMask doorLayer;
 
     [Header("Collection UI")]
-    [SerializeField]
-    private GameObject[] collectedKeyUi;
-
-    [SerializeField]
-    private GameObject doorUnlockedTextUi;
+    [SerializeField] private GameObject[] collectedKeyUi;
+    [SerializeField] private GameObject doorUnlockedTextUi;
 
     [Header("Interaction Prompts")]
-    [SerializeField]
-    private GameObject keyInteraction;
-
-    [SerializeField]
-    private GameObject doorInteraction;
-
-    [SerializeField]
-    private GameObject doorNotUnlocked;
-
-    private readonly HashSet<int> collectedRegularKeyIds = new();
+    [SerializeField] private GameObject keyInteraction;
+    [SerializeField] private GameObject doorInteraction;
+    [SerializeField] private GameObject doorNotUnlocked;
 
     private Key nearbyKey;
     private Door nearbyDoor;
-    private bool hasFinalKey;
-
-    public int CollectedKeyCount => collectedRegularKeyIds.Count;
-    public bool HasCollectedAllKeys => CollectedKeyCount >= goalKeyCount;
-    public bool HasFinalKey => hasFinalKey;
 
     private void Start()
     {
@@ -54,6 +29,7 @@ public sealed class PlayerPickup : MonoBehaviour
         SetActiveIfAssigned(keyInteraction, false);
         SetActiveIfAssigned(doorInteraction, false);
         SetActiveIfAssigned(doorNotUnlocked, false);
+        RefreshProgressUi();
     }
 
     private void Update()
@@ -119,11 +95,7 @@ public sealed class PlayerPickup : MonoBehaviour
 
     private Key FindNearestKeyInRange()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(
-            transform.position,
-            keyPickupRange,
-            keyLayer
-        );
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, keyPickupRange, keyLayer);
 
         Key nearest = null;
         float nearestDistanceSqr = float.MaxValue;
@@ -136,8 +108,8 @@ public sealed class PlayerPickup : MonoBehaviour
                 continue;
             }
 
-            Key key = hit.GetComponent<Key>();
-            if (key == null || key.IsPickedUp || IsKeyAlreadyCollected(key))
+            Key key = hit.GetComponent<Key>() ?? hit.GetComponentInParent<Key>();
+            if (key == null || key.IsPickedUp || KeyProgression.Instance.IsKeyCollected(key))
             {
                 continue;
             }
@@ -157,11 +129,7 @@ public sealed class PlayerPickup : MonoBehaviour
 
     private Door FindNearestLockedDoorInRange()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(
-            transform.position,
-            doorInteractRange,
-            doorLayer
-        );
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, doorInteractRange, doorLayer);
 
         Door nearest = null;
         float nearestDistanceSqr = float.MaxValue;
@@ -174,7 +142,7 @@ public sealed class PlayerPickup : MonoBehaviour
                 continue;
             }
 
-            Door door = hit.GetComponent<Door>();
+            Door door = hit.GetComponent<Door>() ?? hit.GetComponentInParent<Door>();
             if (door == null || !door.IsLocked)
             {
                 continue;
@@ -195,105 +163,82 @@ public sealed class PlayerPickup : MonoBehaviour
 
     private bool TryCollectKey(Key key)
     {
-        if (IsKeyAlreadyCollected(key))
+        if (KeyProgression.Instance.IsKeyCollected(key))
         {
             return false;
         }
-
-        Key.KeyType keyType = key.Type;
-        int keyId = key.KeyId;
 
         if (!key.TryPickUp())
         {
             return false;
         }
 
-        switch (keyType)
+        if (!KeyProgression.Instance.RegisterCollectedKey(key))
         {
-            case Key.KeyType.Regular:
-                if (!collectedRegularKeyIds.Add(keyId))
-                {
-                    return false;
-                }
-
-                ShowCollectedKeyUi(keyId);
-
-                if (HasCollectedAllKeys)
-                {
-                    SetActiveIfAssigned(doorUnlockedTextUi, true);
-                    SetActiveIfAssigned(doorNotUnlocked, false);
-                    Debug.Log("All 3 regular keys collected. The first door can now be unlocked.");
-                }
-
-                Debug.Log(
-                    $"Collected regular key ID {keyId}. Progress: {CollectedKeyCount}/{goalKeyCount}"
-                );
-                return true;
-
-            case Key.KeyType.Final:
-                hasFinalKey = true;
-                SetActiveIfAssigned(doorNotUnlocked, false);
-                Debug.Log("Collected the final key. The final door can now be unlocked.");
-                return true;
-
-            default:
-                return false;
+            return false;
         }
-    }
 
-    private bool IsKeyAlreadyCollected(Key key)
-    {
-        return key.Type switch
+        if (key.Type == Key.KeyType.Regular)
         {
-            Key.KeyType.Regular => collectedRegularKeyIds.Contains(key.KeyId),
-            Key.KeyType.Final => hasFinalKey,
-            _ => false,
-        };
+            ShowCollectedKeyUi(key.KeyId);
+
+            if (KeyProgression.Instance.HasAllRegularKeys)
+            {
+                SetActiveIfAssigned(doorUnlockedTextUi, true);
+                SetActiveIfAssigned(doorNotUnlocked, false);
+                Debug.Log("All 3 regular keys collected. The first door can now be unlocked.");
+            }
+
+            Debug.Log($"Collected regular key ID {key.KeyId}. Progress: {KeyProgression.Instance.CollectedRegularKeyCount}/3");
+            return true;
+        }
+
+        if (key.Type == Key.KeyType.Final)
+        {
+            SetActiveIfAssigned(doorNotUnlocked, false);
+            Debug.Log("Collected the final key. The final door can now be unlocked.");
+            return true;
+        }
+
+        return false;
     }
 
     private bool CanUnlockDoor(Door door)
     {
         return door.Requirement switch
         {
-            Door.UnlockRequirement.ThreeRegularKeys => HasCollectedAllKeys,
-            Door.UnlockRequirement.FinalKey => HasFinalKey,
-            _ => false,
+            Door.UnlockRequirement.ThreeRegularKeys => KeyProgression.Instance.HasAllRegularKeys,
+            Door.UnlockRequirement.FinalKey => KeyProgression.Instance.HasFinalKey,
+            _ => false
         };
+    }
+
+    private void RefreshProgressUi()
+    {
+        for (int i = 0; i < collectedKeyUi.Length; i++)
+        {
+            SetActiveIfAssigned(collectedKeyUi[i], KeyProgression.Instance.IsRegularKeyCollected(i));
+        }
+
+        SetActiveIfAssigned(doorUnlockedTextUi, KeyProgression.Instance.HasAllRegularKeys);
     }
 
     private void ShowCollectedKeyUi(int keyId)
     {
-        if (collectedKeyUi == null)
-        {
-            return;
-        }
-
         if (keyId < 0 || keyId >= collectedKeyUi.Length)
         {
-            Debug.LogWarning($"No UI slot exists for keyId {keyId}.");
+            Debug.LogWarning($"No UI slot exists for keyId {keyId}.", this);
             return;
         }
 
-        GameObject keyUi = collectedKeyUi[keyId];
-        if (keyUi != null)
-        {
-            keyUi.SetActive(true);
-        }
+        SetActiveIfAssigned(collectedKeyUi[keyId], true);
     }
 
     private void HideAllKeyUi()
     {
-        if (collectedKeyUi == null)
-        {
-            return;
-        }
-
         foreach (GameObject uiObject in collectedKeyUi)
         {
-            if (uiObject != null)
-            {
-                uiObject.SetActive(false);
-            }
+            SetActiveIfAssigned(uiObject, false);
         }
     }
 
