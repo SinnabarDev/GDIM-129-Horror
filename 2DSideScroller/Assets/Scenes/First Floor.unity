@@ -2441,6 +2441,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2937231600711587557, guid: 3130db3489fa370419bcab510896174e, type: 3}
   m_PrefabInstance: {fileID: 736360029}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &1030652357 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2850149057597357526, guid: 29daf95da24bb6d47a62216daa2d2636, type: 3}
+  m_PrefabInstance: {fileID: 6538965848382006137}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1032254712
 GameObject:
   m_ObjectHideFlags: 0
@@ -5713,6 +5718,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8137203078854137829, guid: 29daf95da24bb6d47a62216daa2d2636, type: 3}
+      propertyPath: flashlightSprite
+      value: 
+      objectReference: {fileID: 1030652357}
     - target: {fileID: 8866859713445165271, guid: 29daf95da24bb6d47a62216daa2d2636, type: 3}
       propertyPath: m_Name
       value: Player

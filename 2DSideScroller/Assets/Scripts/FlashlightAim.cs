@@ -4,6 +4,19 @@ using UnityEngine.Rendering.Universal;
 
 public class FlashlightAim : MonoBehaviour
 {
+    [Header("Mash Feedback")]
+    [SerializeField]
+    private SpriteRenderer flashlightSprite;
+
+    [SerializeField]
+    private float pulseScale = 1.2f;
+
+    [SerializeField]
+    private float pulseSpeed = 12f;
+
+    private Vector3 originalScale;
+    private float pulseAmount = 0f;
+
     [SerializeField]
     private Light2D flashbulbvol;
 
@@ -60,6 +73,7 @@ public class FlashlightAim : MonoBehaviour
     void Start()
     {
         currentBattery = maxBattery;
+        originalScale = flashlightSprite.transform.localScale;
     }
 
     void Update()
@@ -84,6 +98,7 @@ public class FlashlightAim : MonoBehaviour
         UpdateBeamVisuals();
         ApplyEffectsToEnemies();
         RechargeMash();
+        UpdatePulse();
     }
 
     public void SetFacing(bool facingRight)
@@ -237,28 +252,38 @@ public class FlashlightAim : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             mashCount++;
+
+            // trigger pulse
+            pulseAmount = 1f;
         }
 
         if (mashTimer < mashTimeRequired)
             return;
 
-        if (mashCount >= mashRequiredCount)
-            RechargeBattery();
-        else
-            FailRecovery();
+        float percent = Mathf.Clamp01((float)mashCount / mashRequiredCount);
+
+        RecoverBattery(percent);
 
         recoveryStarted = false;
     }
 
-    void RechargeBattery()
+    void RecoverBattery(float percent)
     {
-        Debug.Log("Battery Recharged!");
+        currentBattery = maxBattery * percent;
 
-        isDrained = false;
+        Debug.Log($"Recovered {percent * 100f:F0}% battery");
+
         isRecovering = false;
-        currentBattery = maxBattery;
 
-        UpdateFlashlightState();
+        if (currentBattery > 0)
+        {
+            isDrained = false;
+            UpdateFlashlightState();
+        }
+        else
+        {
+            FailRecovery();
+        }
     }
 
     void FailRecovery()
@@ -290,6 +315,25 @@ public class FlashlightAim : MonoBehaviour
             }
 
             targetsInLight.Clear();
+        }
+    }
+
+    void UpdatePulse()
+    {
+        if (flashlightSprite == null)
+            return;
+
+        if (pulseAmount > 0f)
+        {
+            pulseAmount -= Time.deltaTime * pulseSpeed;
+
+            float scale = Mathf.Lerp(1f, pulseScale, Mathf.Sin(pulseAmount * Mathf.PI));
+
+            flashlightSprite.transform.localScale = originalScale * scale;
+        }
+        else
+        {
+            flashlightSprite.transform.localScale = originalScale;
         }
     }
 }
