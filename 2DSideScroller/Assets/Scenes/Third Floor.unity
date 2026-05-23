@@ -3113,7 +3113,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 25463ab6a1a98334d8e0c69f72fd4626, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3155,7 +3155,7 @@ Transform:
   m_GameObject: {fileID: 1568457010}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.25, y: -0.55, z: 0}
+  m_LocalPosition: {x: -16.226, y: -0.55, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3197,8 +3197,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.8626499, y: -0.71414995, z: 0}
-    m_Extent: {x: 10.49055, y: 9.708851, z: 0}
+    m_Center: {x: 7.9701, y: 0.13535023, z: 0}
+    m_Extent: {x: 12.3951, y: 11.18715, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -3209,10 +3209,9 @@ MonoBehaviour:
   m_ShapeLightFalloffSize: 1
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
-  - {x: -1.8797035, y: -9.422069, z: 0}
-  - {x: 7.628458, y: -9.330089, z: 0}
-  - {x: -10.537613, y: 7.9963756, z: 0}
-  - {x: -11.353649, y: 5.880834, z: 0}
+  - {x: 7.6834354, y: -10.050823, z: 0}
+  - {x: 19.365986, y: -10.005908, z: 0}
+  - {x: -3.4256783, y: 10.322334, z: 0}
 --- !u!61 &1568457014
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3247,17 +3246,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -9.708385, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0.5}
     oldSize: {x: 20, y: 19.323017}
     newSize: {x: 20, y: 19.323017}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.58322906, y: 19.323017}
+  m_Size: {x: 1, y: 19.323017}
   m_EdgeRadius: 0
 --- !u!114 &1568457015
 MonoBehaviour:

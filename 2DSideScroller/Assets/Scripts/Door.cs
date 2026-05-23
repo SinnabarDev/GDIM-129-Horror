@@ -6,15 +6,26 @@ public sealed class Door : MonoBehaviour
     public enum UnlockRequirement
     {
         ThreeRegularKeys = 0,
-        FinalKey = 1
+        FinalKey = 1,
     }
 
-    [SerializeField] private bool startsLocked = true;
-    [SerializeField] private UnlockRequirement unlockRequirement = UnlockRequirement.ThreeRegularKeys;
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Sprite lockedSprite;
-    [SerializeField] private Sprite openedSprite;
-    [SerializeField] private Collider2D blockingCollider;
+    [SerializeField]
+    private bool startsLocked = true;
+
+    [SerializeField]
+    private UnlockRequirement unlockRequirement = UnlockRequirement.ThreeRegularKeys;
+
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+
+    [SerializeField]
+    private Sprite lockedSprite;
+
+    [SerializeField]
+    private Sprite openedSprite;
+
+    [SerializeField]
+    private Collider2D blockingCollider;
 
     public bool IsLocked { get; private set; }
     public UnlockRequirement Requirement => unlockRequirement;
