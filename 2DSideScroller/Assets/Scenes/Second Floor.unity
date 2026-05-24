@@ -1650,6 +1650,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bf82293768669e4994c5e6558ae56a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+--- !u!114 &702489954 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8137203078854137829, guid: 29daf95da24bb6d47a62216daa2d2636, type: 3}
+  m_PrefabInstance: {fileID: 702489949}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf33a908cb365eb44aa3989aa3519f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlashlightAim
 --- !u!1 &710704415
 GameObject:
   m_ObjectHideFlags: 0
@@ -1959,6 +1970,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 736360030}
+    - target: {fileID: 9015325536764823858, guid: 3130db3489fa370419bcab510896174e, type: 3}
+      propertyPath: flashlightAim
+      value: 
+      objectReference: {fileID: 702489954}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

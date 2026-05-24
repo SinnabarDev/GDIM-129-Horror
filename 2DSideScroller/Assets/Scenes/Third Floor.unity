@@ -1772,6 +1772,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main UI
       objectReference: {fileID: 0}
+    - target: {fileID: 2316051296910457943, guid: 3130db3489fa370419bcab510896174e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5912697746855179818, guid: 3130db3489fa370419bcab510896174e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1864,6 +1868,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 736360030}
+    - target: {fileID: 9015325536764823858, guid: 3130db3489fa370419bcab510896174e, type: 3}
+      propertyPath: flashlightAim
+      value: 
+      objectReference: {fileID: 1850247238}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -3525,6 +3533,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bf82293768669e4994c5e6558ae56a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+--- !u!114 &1850247238 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8137203078854137829, guid: 29daf95da24bb6d47a62216daa2d2636, type: 3}
+  m_PrefabInstance: {fileID: 1850247233}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf33a908cb365eb44aa3989aa3519f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlashlightAim
 --- !u!50 &1850247240 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 163095306651325923, guid: 29daf95da24bb6d47a62216daa2d2636, type: 3}

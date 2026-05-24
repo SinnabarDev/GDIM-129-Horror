@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 3876788072987734800}
   - component: {fileID: 6152738265468139685}
   - component: {fileID: 5210656628333522354}
+  - component: {fileID: 9015325536764823858}
   m_Layer: 5
   m_Name: Battery UI Display
   m_TagString: Untagged
@@ -201,6 +202,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &9015325536764823858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2316051296910457943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9277e78790e12fb4492f0d911a8e42cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlashlightBatteryUI
+  flashlightAim: {fileID: 0}
+  batteryImage: {fileID: 5210656628333522354}
+  batteryLevelSprites:
+  - {fileID: 5956276656237550550, guid: db2ddd8ec8c956543bc4b07d7c43daee, type: 3}
+  - {fileID: 3150600660807385850, guid: fb3f7ebc8dc56374ca687cb79763b90b, type: 3}
+  - {fileID: 289594261319597103, guid: 1b07b29d0600dd24ebb9d485311451fe, type: 3}
+  - {fileID: 2993122801906066152, guid: 33448be2e6756054c83b11068365a79e, type: 3}
+  - {fileID: -3291413068825124141, guid: 3baaf1a8a7834c64ca028644bb4e1954, type: 3}
+  - {fileID: -4100491138489570891, guid: 485d96c7159e3294681c5d3ab1c74a13, type: 3}
 --- !u!1 &2328838907876248590
 GameObject:
   m_ObjectHideFlags: 0
