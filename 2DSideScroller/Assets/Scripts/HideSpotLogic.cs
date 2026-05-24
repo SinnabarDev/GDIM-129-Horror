@@ -40,6 +40,7 @@ public class HideSpotLogic : MonoBehaviour
 
     [SerializeField]
     private GameObject visionObject;
+    private static HideSpotLogic activeHideSpot;
 
     void Start()
     {
@@ -57,10 +58,11 @@ public class HideSpotLogic : MonoBehaviour
     {
         if (player == null)
             return;
-
         if (isPlayerHiding)
         {
-            HandleHidingTimer();
+            if (activeHideSpot == this)
+                HandleHidingTimer();
+
             return;
         }
 
@@ -83,6 +85,7 @@ public class HideSpotLogic : MonoBehaviour
 
     private void EnterHideSpot()
     {
+        activeHideSpot = this;
         isPlayerHiding = true;
 
         interactUI.SetActive(false);
@@ -144,6 +147,7 @@ public class HideSpotLogic : MonoBehaviour
 
     private void ExitHideSpot()
     {
+        activeHideSpot = null;
         isPlayerHiding = false;
         timerUI.SetActive(false);
 

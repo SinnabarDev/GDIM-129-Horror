@@ -172,8 +172,8 @@ public class Enemy : MonoBehaviour, IExorcisable
         // DETECTION
         // =========================
         float distance = Vector2.Distance(transform.position, player.position);
-        bool inRange = distance <= detectionRange;
-        bool hasLOS = HasLineOfSight();
+        bool inRange = !HideSpotLogic.isPlayerHiding && distance <= detectionRange;
+        bool hasLOS = !HideSpotLogic.isPlayerHiding && HasLineOfSight();
 
         // =========================
         // STATE LOGIC
@@ -182,7 +182,7 @@ public class Enemy : MonoBehaviour, IExorcisable
         {
             state = State.Patrol;
         }
-        if (inRange && !HideSpotLogic.isPlayerHiding)
+        else if (inRange)
         {
             state = State.Chase;
             lastSeenTime = Time.time;

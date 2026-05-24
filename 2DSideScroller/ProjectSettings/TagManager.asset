@@ -43,11 +43,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Closet
+    uniqueID: 1230698495
+    locked: 0
   - name: Player
     uniqueID: 1574076693
     locked: 0
-  - name: Closet
-    uniqueID: 1230698495
+  - name: Fog
+    uniqueID: 506008017
     locked: 0
   m_RenderingLayers:
   - Default
