@@ -12,7 +12,7 @@ public class StairTransition : MonoBehaviour
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            SceneTransitionManager.SpawnPointID = targetSpawnID;
+            SceneTransitionManager.Instance.SpawnPointID = targetSpawnID;
             SceneManager.LoadScene(sceneToLoad);
         }
     }

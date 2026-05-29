@@ -5765,6 +5765,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2075043591}
   - component: {fileID: 2075043590}
+  - component: {fileID: 2075043592}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -5784,6 +5785,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ce1a799d0550b4d9f353a1f91e3af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameController
+  playerMaxHealth: 100
+  currentHealth: 0
 --- !u!4 &2075043591
 Transform:
   m_ObjectHideFlags: 0
@@ -5799,6 +5802,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2075043592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075043589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 238f17a2967fc474cb763984d9dd7ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneTransitionManager
+  SpawnPointID: Start
 --- !u!1 &2082972407
 GameObject:
   m_ObjectHideFlags: 0
@@ -5942,6 +5958,10 @@ PrefabInstance:
       propertyPath: flashlightSprite
       value: 
       objectReference: {fileID: 1030652357}
+    - target: {fileID: 8638328702168907092, guid: 29daf95da24bb6d47a62216daa2d2636, type: 3}
+      propertyPath: SpawnPointHolder
+      value: 
+      objectReference: {fileID: 138214871}
     - target: {fileID: 8866859713445165271, guid: 29daf95da24bb6d47a62216daa2d2636, type: 3}
       propertyPath: m_Name
       value: Player

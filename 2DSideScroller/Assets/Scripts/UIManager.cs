@@ -6,25 +6,24 @@ public class UIManager : MonoBehaviour
     [Header("UI References")]
     public Image healthFill;
     public Slider healthBar;
-
-    [Header("Health Variables")]
-    public float maxHealth = 100f;
-    public float currentHealth;
-    public float smoothSpeed = 5f;
+    
 
     [Tooltip("Starts pulsing when health is below this ratio (e.g., 0.3 = 30%)")]
     [Range(0f, 1f)]
     public float pulseThreshold = 0.5f;
     public float basePulseSpeed = 7f;
+    public float smoothSpeed = 5f;
 
     private float targetFillProportion;
     private Vector3 originalScale;
+    private float currentHealth;
 
     void Start()
     {
         GameController.OnPlayerHit += UpdateHealthUI;
+        GameController.OnPlayerDeath += ResetHealthUI;
 
-        currentHealth = maxHealth;
+        currentHealth = GameController.Instance.playerMaxHealth;
 
         targetFillProportion = 1f;
 
@@ -36,7 +35,7 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        targetFillProportion = currentHealth / maxHealth;
+        targetFillProportion = currentHealth / GameController.Instance.playerMaxHealth;
 
         if (healthBar != null)
         {
@@ -80,7 +79,12 @@ public class UIManager : MonoBehaviour
     private void UpdateHealthUI(int damage)
     {
         currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth, 0, GameController.Instance.playerMaxHealth);
         Debug.Log($"Player Get Hit! Damage: {damage}, Current Health: {currentHealth}");
+    }
+
+    private void ResetHealthUI()
+    {
+        currentHealth = GameController.Instance.playerMaxHealth;
     }
 }

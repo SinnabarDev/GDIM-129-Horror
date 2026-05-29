@@ -5,6 +5,9 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; }
 
+    public float playerMaxHealth = 100f;
+    public float currentHealth;
+
     // Major Game Events
     public static event Action OnPauseGame; // Implemented✅
 
@@ -12,7 +15,7 @@ public class GameController : MonoBehaviour
     //public static event Action OnRestartGame;
     public static event Action<int> OnPlayerHit;
 
-    //public static event Action OnPlayerDeath;
+    public static event Action OnPlayerDeath;
 
     private bool isGamePaused = false;
 
@@ -24,13 +27,19 @@ public class GameController : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
-    void Start() { }
+    void Start() { 
+        currentHealth = playerMaxHealth;
+    }
 
     void Update()
     {
+        if (currentHealth <= 0)
+        {
+            OnPlayerDeath?.Invoke();
+            currentHealth = playerMaxHealth;
+        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause();
@@ -54,5 +63,6 @@ public class GameController : MonoBehaviour
     public void UpdatePlayerGetHit(int damage)
     {
         OnPlayerHit?.Invoke(damage);
+        currentHealth -= damage;
     }
 }
