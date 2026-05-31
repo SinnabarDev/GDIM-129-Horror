@@ -72,7 +72,7 @@ public class HideSpotLogic : MonoBehaviour
         {
             interactUI.SetActive(true);
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 EnterHideSpot();
             }

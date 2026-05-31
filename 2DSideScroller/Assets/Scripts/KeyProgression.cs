@@ -5,7 +5,8 @@ public sealed class KeyProgression : MonoBehaviour
 {
     private static KeyProgression instance;
 
-    [SerializeField] private int requiredRegularKeyCount = 3;
+    [SerializeField]
+    private int requiredRegularKeyCount = 3;
 
     private readonly HashSet<int> collectedRegularKeyIds = new();
     private bool hasFinalKey;
@@ -56,7 +57,7 @@ public sealed class KeyProgression : MonoBehaviour
         {
             Key.KeyType.Regular => IsRegularKeyCollected(key.KeyId),
             Key.KeyType.Final => hasFinalKey,
-            _ => false
+            _ => false,
         };
     }
 
@@ -71,18 +72,21 @@ public sealed class KeyProgression : MonoBehaviour
         {
             Key.KeyType.Regular => collectedRegularKeyIds.Add(key.KeyId),
             Key.KeyType.Final => RegisterFinalKey(),
-            _ => false
+            _ => false,
         };
     }
 
     private bool RegisterFinalKey()
     {
+        Debug.Log("RegisterFinalKey called");
+
         if (hasFinalKey)
-        {
             return false;
-        }
 
         hasFinalKey = true;
+
+        Debug.Log("hasFinalKey = true");
+
         return true;
     }
 }

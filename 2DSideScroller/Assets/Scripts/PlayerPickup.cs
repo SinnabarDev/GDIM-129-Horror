@@ -3,21 +3,35 @@ using UnityEngine;
 public sealed class PlayerPickup : MonoBehaviour
 {
     [Header("Keys")]
-    [SerializeField] private float keyPickupRange = 1.25f;
-    [SerializeField] private LayerMask keyLayer;
+    [SerializeField]
+    private float keyPickupRange = 1.25f;
+
+    [SerializeField]
+    private LayerMask keyLayer;
 
     [Header("Doors")]
-    [SerializeField] private float doorInteractRange = 1.5f;
-    [SerializeField] private LayerMask doorLayer;
+    [SerializeField]
+    private float doorInteractRange = 1.5f;
+
+    [SerializeField]
+    private LayerMask doorLayer;
 
     [Header("Collection UI")]
-    [SerializeField] private GameObject[] collectedKeyUi;
-    [SerializeField] private GameObject doorUnlockedTextUi;
+    [SerializeField]
+    private GameObject[] collectedKeyUi;
+
+    [SerializeField]
+    private GameObject doorUnlockedTextUi;
 
     [Header("Interaction Prompts")]
-    [SerializeField] private GameObject keyInteraction;
-    [SerializeField] private GameObject doorInteraction;
-    [SerializeField] private GameObject doorNotUnlocked;
+    [SerializeField]
+    private GameObject keyInteraction;
+
+    [SerializeField]
+    private GameObject doorInteraction;
+
+    [SerializeField]
+    private GameObject doorNotUnlocked;
 
     private Key nearbyKey;
     private Door nearbyDoor;
@@ -95,7 +109,11 @@ public sealed class PlayerPickup : MonoBehaviour
 
     private Key FindNearestKeyInRange()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, keyPickupRange, keyLayer);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(
+            transform.position,
+            keyPickupRange,
+            keyLayer
+        );
 
         Key nearest = null;
         float nearestDistanceSqr = float.MaxValue;
@@ -129,7 +147,11 @@ public sealed class PlayerPickup : MonoBehaviour
 
     private Door FindNearestLockedDoorInRange()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, doorInteractRange, doorLayer);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(
+            transform.position,
+            doorInteractRange,
+            doorLayer
+        );
 
         Door nearest = null;
         float nearestDistanceSqr = float.MaxValue;
@@ -189,7 +211,9 @@ public sealed class PlayerPickup : MonoBehaviour
                 Debug.Log("All 3 regular keys collected. The first door can now be unlocked.");
             }
 
-            Debug.Log($"Collected regular key ID {key.KeyId}. Progress: {KeyProgression.Instance.CollectedRegularKeyCount}/3");
+            Debug.Log(
+                $"Collected regular key ID {key.KeyId}. Progress: {KeyProgression.Instance.CollectedRegularKeyCount}/3"
+            );
             return true;
         }
 
@@ -209,7 +233,7 @@ public sealed class PlayerPickup : MonoBehaviour
         {
             Door.UnlockRequirement.ThreeRegularKeys => KeyProgression.Instance.HasAllRegularKeys,
             Door.UnlockRequirement.FinalKey => KeyProgression.Instance.HasFinalKey,
-            _ => false
+            _ => false,
         };
     }
 
@@ -217,7 +241,10 @@ public sealed class PlayerPickup : MonoBehaviour
     {
         for (int i = 0; i < collectedKeyUi.Length; i++)
         {
-            SetActiveIfAssigned(collectedKeyUi[i], KeyProgression.Instance.IsRegularKeyCollected(i));
+            SetActiveIfAssigned(
+                collectedKeyUi[i],
+                KeyProgression.Instance.IsRegularKeyCollected(i)
+            );
         }
 
         SetActiveIfAssigned(doorUnlockedTextUi, KeyProgression.Instance.HasAllRegularKeys);
