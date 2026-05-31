@@ -46,7 +46,7 @@ public class EnemyExorcistTyping : MonoBehaviour
         textBoxUI.SetActive(true);
 
         HandleTyping();
-        Debug.Log(enemy.IsStunned());
+        //Debug.Log(enemy.IsStunned());
     }
 
     void HandleTyping()
@@ -82,7 +82,7 @@ public class EnemyExorcistTyping : MonoBehaviour
         }
 
         UpdateText();
-        Debug.Log("Progress: " + enemy.GetSavedProgress());
+        //Debug.Log("Progress: " + enemy.GetSavedProgress());
     }
 
     void UpdateText()

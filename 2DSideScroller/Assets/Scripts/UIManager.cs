@@ -6,7 +6,6 @@ public class UIManager : MonoBehaviour
     [Header("UI References")]
     public Image healthFill;
     public Slider healthBar;
-    
 
     [Tooltip("Starts pulsing when health is below this ratio (e.g., 0.3 = 30%)")]
     [Range(0f, 1f)]

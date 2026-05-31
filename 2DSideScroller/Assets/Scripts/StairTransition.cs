@@ -3,16 +3,34 @@ using UnityEngine.SceneManagement;
 
 public class StairTransition : MonoBehaviour
 {
-    public string sceneToLoad;
-    public string targetSpawnID;
+    [Header("Scene Transition")]
+    [SerializeField]
+    private string sceneToLoad;
+
+    [SerializeField]
+    private string targetSpawnID;
 
     private bool playerInRange;
+    private bool isTransitioning;
 
     private void Update()
     {
-        if (playerInRange && Input.GetKeyDown(KeyCode.E))
+        if (!playerInRange || isTransitioning)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            SceneTransitionManager.Instance.SpawnPointID = targetSpawnID;
+            isTransitioning = true;
+
+            if (SceneTransitionManager.Instance != null)
+            {
+                SceneTransitionManager.Instance.SpawnPointID = targetSpawnID;
+            }
+            else
+            {
+                Debug.LogWarning("SceneTransitionManager not found!");
+            }
+
             SceneManager.LoadScene(sceneToLoad);
         }
     }
@@ -20,12 +38,16 @@ public class StairTransition : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
+        {
             playerInRange = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
+        {
             playerInRange = false;
+        }
     }
 }

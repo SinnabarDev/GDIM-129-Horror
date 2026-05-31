@@ -1,17 +1,25 @@
 using UnityEngine;
+
 public class SceneTransitionManager : MonoBehaviour
 {
     public static SceneTransitionManager Instance { get; private set; }
 
+    [HideInInspector]
     public string SpawnPointID;
 
     private void Awake()
     {
-        if (Instance != this && Instance != null)
+        // Destroy duplicate managers
+        if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
             return;
         }
+
+        // Set singleton instance
         Instance = this;
+
+        // Keep this object when changing scenes
+        DontDestroyOnLoad(gameObject);
     }
 }
