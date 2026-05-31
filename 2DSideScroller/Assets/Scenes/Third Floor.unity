@@ -204,7 +204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &94261846
 Animator:
   serializedVersion: 7
@@ -1420,6 +1420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 639871134}
   - component: {fileID: 639871135}
+  - component: {fileID: 639871136}
   m_Layer: 0
   m_Name: Exit
   m_TagString: Untagged
@@ -1472,7 +1473,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1488,6 +1489,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5, y: 18}
   m_EdgeRadius: 0
+--- !u!114 &639871136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639871133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 257219f2bc49e004c9f34ada17ff1dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OutroLoader
+  outroSceneName: Outro
 --- !u!1 &645538464
 GameObject:
   m_ObjectHideFlags: 0
@@ -3231,7 +3245,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568457010}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
