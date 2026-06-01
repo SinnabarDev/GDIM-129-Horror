@@ -1,18 +1,36 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
 public class VideoSceneLoader : MonoBehaviour
 {
-    public VideoPlayer videoPlayer;
-    public string nextScene;
+    [SerializeField]
+    private VideoPlayer videoPlayer;
 
-    void Start()
+    [SerializeField]
+    private string videoFileName;
+
+    [SerializeField]
+    private string nextScene;
+
+    private void Start()
     {
+        if (videoPlayer == null)
+            videoPlayer = GetComponent<VideoPlayer>();
+
+        string videoPath = Path.Combine(Application.streamingAssetsPath, videoFileName);
+
+        Debug.Log("Video Path: " + videoPath);
+
+        videoPlayer.source = VideoSource.Url;
+        videoPlayer.url = videoPath;
+
         videoPlayer.loopPointReached += EndReached;
+        videoPlayer.Play();
     }
 
-    void EndReached(VideoPlayer vp)
+    private void EndReached(VideoPlayer vp)
     {
         SceneManager.LoadScene(nextScene);
     }
