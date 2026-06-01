@@ -106,6 +106,11 @@ public class FlashlightAim : MonoBehaviour
         isFacingRight = facingRight;
     }
 
+    public bool IsFocusedMode()
+    {
+        return currentMode == BeamMode.Focused;
+    }
+
     void AimFlashlight()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

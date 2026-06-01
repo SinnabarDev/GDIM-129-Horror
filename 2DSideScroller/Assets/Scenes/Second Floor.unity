@@ -1610,6 +1610,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 297496932146620695, guid: 29daf95da24bb6d47a62216daa2d2636, type: 3}
+      propertyPath: handSprite
+      value: 
+      objectReference: {fileID: 702489958}
     - target: {fileID: 2574132975383120055, guid: 29daf95da24bb6d47a62216daa2d2636, type: 3}
       propertyPath: 'collectedKeyUi.Array.data[0]'
       value: 
@@ -1716,6 +1720,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf33a908cb365eb44aa3989aa3519f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlashlightAim
+--- !u!212 &702489958 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2850149057597357526, guid: 29daf95da24bb6d47a62216daa2d2636, type: 3}
+  m_PrefabInstance: {fileID: 702489949}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &710704415
 GameObject:
   m_ObjectHideFlags: 0

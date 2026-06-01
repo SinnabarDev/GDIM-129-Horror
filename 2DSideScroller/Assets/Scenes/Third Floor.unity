@@ -2154,6 +2154,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1535957282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &970740268 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2850149057597357526, guid: 29daf95da24bb6d47a62216daa2d2636, type: 3}
+  m_PrefabInstance: {fileID: 1850247233}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &981919210
 GameObject:
   m_ObjectHideFlags: 0
@@ -3556,6 +3561,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 297496932146620695, guid: 29daf95da24bb6d47a62216daa2d2636, type: 3}
+      propertyPath: handSprite
+      value: 
+      objectReference: {fileID: 970740268}
     - target: {fileID: 2574132975383120055, guid: 29daf95da24bb6d47a62216daa2d2636, type: 3}
       propertyPath: 'collectedKeyUi.Array.data[0]'
       value: 

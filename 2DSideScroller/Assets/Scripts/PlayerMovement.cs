@@ -40,13 +40,16 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isWalking", move != 0);
 
         // Flip logic
-        if (move > 0 && !isFacingRight)
+        if (!flashlightscript.IsFocusedMode())
         {
-            Flip();
-        }
-        else if (move < 0 && isFacingRight)
-        {
-            Flip();
+            if (move > 0 && !isFacingRight)
+            {
+                Flip();
+            }
+            else if (move < 0 && isFacingRight)
+            {
+                Flip();
+            }
         }
     }
 
