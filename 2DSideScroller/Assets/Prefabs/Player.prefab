@@ -251,7 +251,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1574076693
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 6541965508072107887, guid: e91ee53f4900c3545a1f181aee274328, type: 3}
@@ -434,6 +434,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf33a908cb365eb44aa3989aa3519f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlashlightAim
+  flashlightSprite: {fileID: 2850149057597357526}
+  pulseScale: 1.2
+  pulseSpeed: 12
   flashbulbvol: {fileID: 8863579192196906859}
   flashbulb: {fileID: 4026759820617229243}
   isFacingRight: 1
@@ -642,7 +645,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -662,7 +665,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1574076693
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 1089944989394997029, guid: 0dbb810184a48944a88daec3adc35c7f, type: 3}
@@ -820,3 +823,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71dbd96ac892592488e5089b5df705aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSpawnLoader
+  spawnPointHolder: {fileID: 0}

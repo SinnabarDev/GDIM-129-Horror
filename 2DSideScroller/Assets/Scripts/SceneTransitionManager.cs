@@ -4,7 +4,7 @@ public class SceneTransitionManager : MonoBehaviour
 {
     public static SceneTransitionManager Instance { get; private set; }
 
-    [HideInInspector]
+    //[HideInInspector]
     public string SpawnPointID;
 
     private void Awake()
@@ -21,5 +21,10 @@ public class SceneTransitionManager : MonoBehaviour
 
         // Keep this object when changing scenes
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void SetSpawnPoint(string spawnID)
+    {
+        SpawnPointID = spawnID;
     }
 }

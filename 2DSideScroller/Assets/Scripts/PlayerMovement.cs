@@ -81,4 +81,19 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Spawnpoint"))
+        {
+            SpawnPoint spawnPoint = collision.GetComponent<SpawnPoint>();
+            if (spawnPoint != null)
+            {
+                collision.GetComponent<Collider2D>().enabled = false; // Disable the collider to prevent multiple triggers
+                collision.GetComponent<ParticleSystem>().Play(); // Play the particle system
+                SceneTransitionManager.Instance.SetSpawnPoint(spawnPoint.spawnID);
+                Debug.Log($"Player entered spawn point: {spawnPoint.spawnID}");
+            }
+        }
+    }
 }
