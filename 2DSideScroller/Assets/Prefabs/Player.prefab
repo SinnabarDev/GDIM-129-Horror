@@ -198,7 +198,7 @@ Transform:
   m_GameObject: {fileID: 5707329179151525382}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.375, y: 0.525, z: 0}
+  m_LocalPosition: {x: 0.38, y: 0.525, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -434,7 +434,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf33a908cb365eb44aa3989aa3519f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlashlightAim
+<<<<<<< Updated upstream
   flashlightSprite: {fileID: 2850149057597357526}
+=======
+  flashlightSprite: {fileID: 0}
+>>>>>>> Stashed changes
   pulseScale: 1.2
   pulseSpeed: 12
   flashbulbvol: {fileID: 8863579192196906859}
