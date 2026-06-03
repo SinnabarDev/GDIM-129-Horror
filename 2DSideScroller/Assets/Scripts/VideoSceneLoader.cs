@@ -34,4 +34,26 @@ public class VideoSceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene(nextScene);
     }
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (videoPlayer == null)
+            return;
+
+        if (hasFocus)
+            videoPlayer.Play();
+        else
+            videoPlayer.Pause();
+    }
+
+    private void OnApplicationPause(bool pauseStatus)
+    {
+        if (videoPlayer == null)
+            return;
+
+        if (pauseStatus)
+            videoPlayer.Pause();
+        else
+            videoPlayer.Play();
+    }
 }
