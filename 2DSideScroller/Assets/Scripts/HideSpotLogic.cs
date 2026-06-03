@@ -5,13 +5,10 @@ public class HideSpotLogic : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField]
-    private float interactionDistance = 2f;
-
-    [SerializeField]
     private float hideDuration = 5f;
 
     [SerializeField]
-    private float spawnOffset = 1.5f; // Distance to spawn left or right
+    private float spawnOffset = 1.5f;
 
     [Header("References")]
     [SerializeField]
@@ -28,21 +25,26 @@ public class HideSpotLogic : MonoBehaviour
 
     [SerializeField]
     private MonoBehaviour playerControlScript;
-    public static bool isPlayerHiding = false;
-
-    private float currentHideTimer = 0f;
-    private SpriteRenderer[] playerSpriteRenderers;
-    private Collider2D[] playerColliders;
-    private Rigidbody2D playerRb;
 
     [SerializeField]
     private GameObject flashlightObject;
 
     [SerializeField]
     private GameObject visionObject;
+
+    public static bool isPlayerHiding = false;
+
     private static HideSpotLogic activeHideSpot;
 
-    void Start()
+    private bool playerInRange;
+    private float currentHideTimer;
+
+    private SpriteRenderer[] playerSpriteRenderers;
+    private Collider2D[] playerColliders;
+    private Rigidbody2D playerRb;
+    private Vector3 spawnPosition;
+
+    private void Start()
     {
         if (player != null)
         {
@@ -50,14 +52,19 @@ public class HideSpotLogic : MonoBehaviour
             playerColliders = player.GetComponentsInChildren<Collider2D>(true);
             playerRb = player.GetComponent<Rigidbody2D>();
         }
-        interactUI.SetActive(false);
-        timerUI.SetActive(false);
+
+        if (interactUI != null)
+            interactUI.SetActive(false);
+
+        if (timerUI != null)
+            timerUI.SetActive(false);
     }
 
-    void Update()
+    private void Update()
     {
         if (player == null)
             return;
+
         if (isPlayerHiding)
         {
             if (activeHideSpot == this)
@@ -66,63 +73,63 @@ public class HideSpotLogic : MonoBehaviour
             return;
         }
 
-        float distance = Vector2.Distance(transform.position, player.position);
-
-        if (distance <= interactionDistance)
+        if (playerInRange && Input.GetKeyDown(KeyCode.Space))
         {
+            EnterHideSpot();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player"))
+            return;
+
+        playerInRange = true;
+
+        if (interactUI != null)
             interactUI.SetActive(true);
+    }
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                EnterHideSpot();
-            }
-        }
-        else
-        {
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player"))
+            return;
+
+        playerInRange = false;
+
+        if (interactUI != null)
             interactUI.SetActive(false);
-        }
     }
 
     private void EnterHideSpot()
     {
         activeHideSpot = this;
         isPlayerHiding = true;
+        spawnPosition = player.position;
 
-        interactUI.SetActive(false);
-        timerUI.SetActive(true);
+        if (interactUI != null)
+            interactUI.SetActive(false);
 
-        if (playerSpriteRenderers != null)
-        {
-            foreach (SpriteRenderer sr in playerSpriteRenderers)
-            {
-                sr.enabled = false;
-            }
-        }
+        if (timerUI != null)
+            timerUI.SetActive(true);
 
-        // Disable colliders
-        if (playerColliders != null)
-        {
-            foreach (Collider2D col in playerColliders)
-            {
-                col.enabled = false;
-            }
-        }
+        foreach (SpriteRenderer sr in playerSpriteRenderers)
+            sr.enabled = false;
 
-        // Disable movement / controls
+        foreach (Collider2D col in playerColliders)
+            col.enabled = false;
+
         if (playerControlScript != null)
-        {
             playerControlScript.enabled = false;
-        }
-        // Disable Rigidbody safely
+
         if (playerRb != null)
         {
             playerRb.linearVelocity = Vector2.zero;
             playerRb.angularVelocity = 0f;
-
-            // Prevent falling
             playerRb.bodyType = RigidbodyType2D.Kinematic;
             playerRb.simulated = false;
         }
+
         if (flashlightObject != null)
             flashlightObject.SetActive(false);
 
@@ -136,8 +143,8 @@ public class HideSpotLogic : MonoBehaviour
     {
         currentHideTimer -= Time.deltaTime;
 
-        // Update the UI text to show whole seconds (Mathf.Ceil rounds up to the nearest whole number)
-        timerText.text = "TIME LEFT: " + Mathf.Ceil(currentHideTimer).ToString();
+        if (timerText != null)
+            timerText.text = "TIME LEFT: " + Mathf.Ceil(currentHideTimer);
 
         if (currentHideTimer <= 0)
         {
@@ -149,18 +156,16 @@ public class HideSpotLogic : MonoBehaviour
     {
         activeHideSpot = null;
         isPlayerHiding = false;
-        timerUI.SetActive(false);
 
-        // Randomly pick -1 (left) or 1 (right)
+        if (timerUI != null)
+            timerUI.SetActive(false);
+
         int randomDirection = Random.Range(0, 2) == 0 ? -1 : 1;
 
-        // Calculate the new position based on the closet's position plus the offset
-        Vector3 spawnPosition =
-            transform.position + new Vector3(randomDirection * spawnOffset, 0f, 0f);
+        //Vector3 spawnPosition = transform.position + new Vector3(randomDirection * spawnOffset, 0f, 0f);
 
-        // Move the player and reactivate
         player.position = spawnPosition;
-        // Restore Rigidbody FIRST
+
         if (playerRb != null)
         {
             playerRb.simulated = true;
@@ -169,26 +174,15 @@ public class HideSpotLogic : MonoBehaviour
             playerRb.angularVelocity = 0f;
         }
 
-        if (playerSpriteRenderers != null)
-        {
-            foreach (SpriteRenderer sr in playerSpriteRenderers)
-            {
-                sr.enabled = true;
-            }
-        }
-        if (playerColliders != null)
-        {
-            foreach (Collider2D col in playerColliders)
-            {
-                col.enabled = true;
-            }
-        }
+        foreach (SpriteRenderer sr in playerSpriteRenderers)
+            sr.enabled = true;
 
-        // Enable controls
+        foreach (Collider2D col in playerColliders)
+            col.enabled = true;
+
         if (playerControlScript != null)
-        {
             playerControlScript.enabled = true;
-        }
+
         if (flashlightObject != null)
             flashlightObject.SetActive(true);
 

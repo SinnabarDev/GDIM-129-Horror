@@ -48,12 +48,15 @@ public class FlashlightAim : MonoBehaviour
     private bool isRecovering = false;
     private bool recoveryStarted = false;
 
+    public bool IsBatteryDrained => isDrained;
+
     private float mashTimer = 0f;
     private int mashCount = 0;
     private float cooldownTimer = 0f;
 
     private float currentBattery;
     private bool isFlashlightOn = true;
+    public bool IsFlashlightOn => isFlashlightOn;
 
     private PolygonCollider2D detectray;
 
@@ -298,6 +301,20 @@ public class FlashlightAim : MonoBehaviour
         isRecovering = false;
         recoveryStarted = false;
         cooldownTimer = cooldownTime;
+    }
+
+    public float DisplayBattery
+    {
+        get
+        {
+            if (recoveryStarted)
+            {
+                float percent = Mathf.Clamp01((float)mashCount / mashRequiredCount);
+                return maxBattery * percent;
+            }
+
+            return currentBattery;
+        }
     }
 
     // =========================

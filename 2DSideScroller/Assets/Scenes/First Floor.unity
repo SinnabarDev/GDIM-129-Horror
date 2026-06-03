@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 55190090}
   - component: {fileID: 55190089}
   - component: {fileID: 55190088}
+  - component: {fileID: 55190091}
   m_Layer: 0
   m_Name: Plant_Hiding
   m_TagString: Untagged
@@ -149,7 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ec138bbf9f18944952119a7884da27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HideSpotLogic
-  interactionDistance: 2
   hideDuration: 5
   spawnOffset: 1.5
   player: {fileID: 1129148132}
@@ -234,6 +234,52 @@ Transform:
   - {fileID: 1339017833}
   m_Father: {fileID: 1529573547}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &55190091
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55190087}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 8.28, y: 9.43}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 8.28, y: 9.43}
+  m_EdgeRadius: 0
 --- !u!1 &94261844
 GameObject:
   m_ObjectHideFlags: 0
@@ -2131,6 +2177,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main UI
       objectReference: {fileID: 0}
+    - target: {fileID: 2506082017454182854, guid: 3130db3489fa370419bcab510896174e, type: 3}
+      propertyPath: flashlightAim
+      value: 
+      objectReference: {fileID: 6538965848382006141}
     - target: {fileID: 2566387386571092992, guid: 3130db3489fa370419bcab510896174e, type: 3}
       propertyPath: m_text
       value: Name
@@ -2155,6 +2205,10 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4289901234
       objectReference: {fileID: 0}
+    - target: {fileID: 2671786875760558535, guid: 3130db3489fa370419bcab510896174e, type: 3}
+      propertyPath: flashlightAim
+      value: 
+      objectReference: {fileID: 6538965848382006141}
     - target: {fileID: 5912697746855179818, guid: 3130db3489fa370419bcab510896174e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2235,6 +2289,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5920208075253322089, guid: 3130db3489fa370419bcab510896174e, type: 3}
+      propertyPath: flashlightAim
+      value: 
+      objectReference: {fileID: 6538965848382006141}
     - target: {fileID: 6683756980746797560, guid: 3130db3489fa370419bcab510896174e, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -2251,7 +2309,8 @@ PrefabInstance:
       propertyPath: flashlightAim
       value: 
       objectReference: {fileID: 6538965848382006141}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2671786875760558535, guid: 3130db3489fa370419bcab510896174e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2751,6 +2810,7 @@ GameObject:
   - component: {fileID: 1150997404}
   - component: {fileID: 1150997406}
   - component: {fileID: 1150997405}
+  - component: {fileID: 1150997407}
   m_Layer: 0
   m_Name: ClassroomChairs_Hiding
   m_TagString: Untagged
@@ -2786,7 +2846,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ec138bbf9f18944952119a7884da27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HideSpotLogic
-  interactionDistance: 3
   hideDuration: 5
   spawnOffset: 1.5
   player: {fileID: 1129148132}
@@ -2855,6 +2914,52 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!61 &1150997407
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150997403}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 43.096367, y: 4.55}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 43.096367, y: 4.55}
+  m_EdgeRadius: 0
 --- !u!1 &1193337849
 GameObject:
   m_ObjectHideFlags: 0
@@ -3292,10 +3397,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.Light2D
   m_ComponentVersion: 2
   m_LightType: 2
-  m_BlendStyleIndex: 0
+  m_BlendStyleIndex: 1
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.33
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000fff75a491581d25dd111291e
@@ -5199,10 +5304,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.Light2D
   m_ComponentVersion: 2
   m_LightType: 2
-  m_BlendStyleIndex: 0
+  m_BlendStyleIndex: 1
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.33
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000fff75a491581d25dd111291e
