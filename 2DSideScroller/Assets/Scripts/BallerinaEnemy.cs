@@ -102,6 +102,11 @@ public class StalkerNPC : MonoBehaviour, IExorcisable
 
     public bool IsStunned() => isStunned;
 
+    [SerializeField]
+    private EnemyAttack enemyAttack;
+
+    private int facingDir = 1;
+
     // =========================
     // INIT
     // =========================
@@ -174,9 +179,18 @@ public class StalkerNPC : MonoBehaviour, IExorcisable
     private void FaceDirection(float xDir)
     {
         if (xDir > 0.01f)
-            sr.flipX = false;
+            facingDir = 1;
         else if (xDir < -0.01f)
-            sr.flipX = true;
+            facingDir = -1;
+        else
+            return;
+
+        Vector3 scale = transform.localScale;
+        scale.x = Mathf.Abs(scale.x) * facingDir;
+        transform.localScale = scale;
+
+        if (enemyAttack != null)
+            enemyAttack.SetFacingDirection(facingDir);
     }
 
     // =========================

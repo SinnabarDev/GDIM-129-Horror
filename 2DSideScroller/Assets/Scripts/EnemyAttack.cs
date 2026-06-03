@@ -1,27 +1,53 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
     [SerializeField]
-    private Animator animator;
+    private GameObject hitBox;
 
     [SerializeField]
-    private GameObject HitBox;
+    private Transform hitBoxTransform;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start() { }
+    private float originalX;
+    private int facingDir = 1;
 
-    // Update is called once per frame
-    void Update() { }
+    private void Awake()
+    {
+        if (hitBoxTransform != null)
+        {
+            originalX = hitBoxTransform.localPosition.x;
+        }
+    }
+
+    private void Start()
+    {
+        UpdateHitboxPosition();
+        hitBox.SetActive(false);
+    }
+
+    public void SetFacingDirection(int direction)
+    {
+        facingDir = direction > 0 ? 1 : -1;
+        UpdateHitboxPosition();
+    }
+
+    private void UpdateHitboxPosition()
+    {
+        if (hitBoxTransform == null)
+            return;
+
+        Vector3 pos = hitBoxTransform.localPosition;
+        pos.x = Mathf.Abs(originalX) * facingDir;
+        hitBoxTransform.localPosition = pos;
+    }
 
     public void EnableHitBox()
     {
-        HitBox.SetActive(true);
+        hitBox.SetActive(true);
     }
 
     public void DisableHitBox()
     {
-        HitBox.SetActive(false);
+        hitBox.SetActive(false);
     }
 }

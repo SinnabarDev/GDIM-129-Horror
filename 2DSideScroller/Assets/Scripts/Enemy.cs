@@ -95,6 +95,11 @@ public class Enemy : MonoBehaviour, IExorcisable
 
     public int GetSavedProgress() => savedProgress;
 
+    [SerializeField]
+    private EnemyAttack enemyAttack;
+
+    private int facingDir = 1;
+
     public void SetSavedProgress(int value)
     {
         savedProgress = value;
@@ -284,14 +289,19 @@ public class Enemy : MonoBehaviour, IExorcisable
     // =========================
     private void FaceDirection(float xDir)
     {
-        Vector3 scale = transform.localScale;
-
         if (xDir > 0.01f)
-            scale.x = Mathf.Abs(scale.x); // face right
+            facingDir = 1;
         else if (xDir < -0.01f)
-            scale.x = -Mathf.Abs(scale.x); // face left
+            facingDir = -1;
+        else
+            return;
 
+        Vector3 scale = transform.localScale;
+        scale.x = Mathf.Abs(scale.x) * facingDir;
         transform.localScale = scale;
+
+        if (enemyAttack != null)
+            enemyAttack.SetFacingDirection(facingDir);
     }
 
     // =========================

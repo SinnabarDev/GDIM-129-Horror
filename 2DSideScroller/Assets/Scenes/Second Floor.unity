@@ -520,6 +520,7 @@ MonoBehaviour:
   animator: {fileID: 94261846}
   stunDuration: 5
   isStunned: 0
+  enemyAttack: {fileID: 0}
 --- !u!50 &94261852
 Rigidbody2D:
   serializedVersion: 5
@@ -559,8 +560,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cde9f990cd9ff8643b572351ea60700b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
-  animator: {fileID: 94261846}
-  HitBox: {fileID: 1377274345}
+  hitBox: {fileID: 1377274345}
+  hitBoxTransform: {fileID: 1377274346}
 --- !u!61 &94261855
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -641,8 +642,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 1}
-  m_Size: {x: 17, y: 4}
+  m_Offset: {x: 0, y: 0.5}
+  m_Size: {x: 15.5, y: 4}
   m_Direction: 1
 --- !u!114 &94261857
 MonoBehaviour:
@@ -4063,7 +4064,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1377274346
 Transform:
   m_ObjectHideFlags: 0
@@ -4138,7 +4139,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bat
   damage: 5
-  knockbackForce: 25
+  horizontalKnockback: 8
+  verticalKnockback: 2
+  knockbackDuration: 0.25
 --- !u!50 &1377274349
 Rigidbody2D:
   serializedVersion: 5

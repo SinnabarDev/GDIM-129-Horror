@@ -1,40 +1,42 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Bat : MonoBehaviour
+public class DamageBox : MonoBehaviour
 {
+    [Header("Damage")]
     [SerializeField]
     private int damage = 1;
 
+    [Header("Knockback")]
     [SerializeField]
-    float knockbackForce = 14f;
+    private float horizontalKnockback = 14f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start() { }
+    [SerializeField]
+    private float verticalKnockback = 3f;
 
-    // Update is called once per frame
-    void Update() { }
+    [SerializeField]
+    private float knockbackDuration = 0.2f;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (!other.CompareTag("Player"))
+            return;
+
+        Debug.Log("Player Being Hit!");
+
+        GameController.Instance.UpdatePlayerGetHit(damage);
+
+        PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
+
+        if (playerMovement != null)
         {
-            Debug.Log("Player Being Hit!");
-            Debug.Log("Triggered by: " + other.name);
+            float direction = other.transform.position.x > transform.position.x ? 1f : -1f;
 
-            GameController.Instance.UpdatePlayerGetHit(damage);
+            Vector2 knockbackForce = new Vector2(
+                direction * horizontalKnockback,
+                verticalKnockback
+            );
 
-            Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
-
-            if (rb != null)
-            {
-                float direction = Mathf.Sign(other.transform.position.x - transform.position.x);
-
-                rb.linearVelocity = Vector2.zero;
-
-                rb.AddForce(new Vector2(direction * knockbackForce, 3f), ForceMode2D.Impulse);
-            }
+            playerMovement.ApplyKnockback(knockbackForce, knockbackDuration);
         }
     }
 }

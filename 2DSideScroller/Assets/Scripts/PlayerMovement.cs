@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     private Hand handscript;
 
     private Animator animator;
+    private bool isKnockedBack;
+    private float knockbackTimer;
 
     void Start()
     {
@@ -27,6 +29,15 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (isKnockedBack)
+        {
+            knockbackTimer -= Time.deltaTime;
+
+            if (knockbackTimer <= 0f)
+                isKnockedBack = false;
+
+            return;
+        }
         float move = Input.GetAxis("Horizontal");
 
         // FIXED velocity
@@ -95,5 +106,14 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log($"Player entered spawn point: {spawnPoint.spawnID}");
             }
         }
+    }
+
+    public void ApplyKnockback(Vector2 force, float duration)
+    {
+        isKnockedBack = true;
+        knockbackTimer = duration;
+        animator.SetTrigger("isKnocked");
+        rb.linearVelocity = Vector2.zero;
+        rb.AddForce(force, ForceMode2D.Impulse);
     }
 }
