@@ -252,6 +252,7 @@ public class StalkerNPC : MonoBehaviour, IExorcisable
             transform.position.z
         );
         FaceDirection(player.position.x - transform.position.x);
+        Attack();
     }
 
     // =========================
