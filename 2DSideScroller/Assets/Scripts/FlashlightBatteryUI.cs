@@ -6,11 +6,15 @@ using UnityEngine.UI;
 public class FlashlightBatteryUI : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private FlashlightAim flashlightAim;
-    [SerializeField] private Image batteryImage;
+    [SerializeField]
+    private FlashlightAim flashlightAim;
+
+    [SerializeField]
+    private Image batteryImage;
 
     [Header("Sprites (Index 0 = Empty, 5 = Full)")]
-    [SerializeField] private Sprite[] batteryLevelSprites = new Sprite[6];
+    [SerializeField]
+    private Sprite[] batteryLevelSprites = new Sprite[6];
 
     private FieldInfo currentBatteryField;
     private int lastShownLevel = -1;
@@ -50,7 +54,10 @@ public class FlashlightBatteryUI : MonoBehaviour
 
         if (batteryLevelSprites == null || batteryLevelSprites.Length != 6)
         {
-            Debug.LogWarning("FlashlightBatteryUI needs exactly 6 sprites assigned (0 to 5).", this);
+            Debug.LogWarning(
+                "FlashlightBatteryUI needs exactly 6 sprites assigned (0 to 5).",
+                this
+            );
             return;
         }
 
