@@ -339,7 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VideoSceneLoader
   videoPlayer: {fileID: 1648495364}
   videoFileName: Game_Outro_H264.mp4
-  nextScene: 
+  nextScene: Credits
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
