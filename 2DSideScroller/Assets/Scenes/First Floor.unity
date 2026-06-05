@@ -4603,7 +4603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2851aec3f771141b5194aa5142a63e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicManager
-  gameplayMusic: {fileID: 8300000, guid: 61cc4e7c21a54584c8ff54f5c0eefd9e, type: 3}
+  gameplayMusic: {fileID: 8300000, guid: 0742a2ac840ea2444ac3b752586e6c87, type: 3}
 --- !u!82 &1756894922
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4615,8 +4615,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 61cc4e7c21a54584c8ff54f5c0eefd9e, type: 3}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 8300000, guid: 0742a2ac840ea2444ac3b752586e6c87, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 0.33
   m_Pitch: 1
   Loop: 1
@@ -4628,7 +4628,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

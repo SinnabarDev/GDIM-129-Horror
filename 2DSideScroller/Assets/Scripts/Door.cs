@@ -27,6 +27,12 @@ public sealed class Door : MonoBehaviour
     [SerializeField]
     private Collider2D blockingCollider;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private AudioClip unlockSound;
     public bool IsLocked { get; private set; }
     public UnlockRequirement Requirement => unlockRequirement;
 
@@ -42,6 +48,11 @@ public sealed class Door : MonoBehaviour
             blockingCollider = GetComponent<Collider2D>();
         }
 
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
         IsLocked = startsLocked;
         ApplyState();
     }
@@ -55,6 +66,12 @@ public sealed class Door : MonoBehaviour
 
         IsLocked = false;
         ApplyState();
+
+        if (audioSource != null && unlockSound != null)
+        {
+            audioSource.PlayOneShot(unlockSound);
+        }
+
         return true;
     }
 

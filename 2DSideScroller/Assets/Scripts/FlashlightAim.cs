@@ -60,6 +60,13 @@ public class FlashlightAim : MonoBehaviour
 
     private PolygonCollider2D detectray;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private AudioClip flashlightClickSound;
+
     public enum BeamMode
     {
         Wide,
@@ -88,6 +95,11 @@ public class FlashlightAim : MonoBehaviour
         {
             isFlashlightOn = !isFlashlightOn;
             UpdateFlashlightState();
+
+            if (audioSource != null && flashlightClickSound != null)
+            {
+                audioSource.PlayOneShot(flashlightClickSound);
+            }
         }
 
         if (Input.GetMouseButtonDown(1) && isFlashlightOn)
